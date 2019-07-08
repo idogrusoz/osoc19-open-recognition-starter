@@ -18,4 +18,21 @@ const createTable = () => {
   console.log("comment table table created successfully!!!!!");
 };
 
-module.exports = createTable;
+const insertComment = data => {
+  database.query(SQL`
+  INSERT INTO comment (
+    id,
+    author,
+    reciever,
+    creationdate,
+    message
+  ) VALUES (
+    ${data.id},
+    ${data.author},
+    ${data.reciever},
+    ${data.creationdate},
+    ${data.message}
+  )
+  `);
+  }
+module.exports = {createTable, insertComment};
