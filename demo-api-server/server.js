@@ -1,7 +1,10 @@
 const express = require("express");
 const app = express();
-const bodyParser = require("body-parser")
+
+
+const bodyParser = require("body-parser");
 const router = express.Router();
+app.use(bodyParser.json());
 
 // const authors = require("./authors");
 // app.use("/authors", authors);
