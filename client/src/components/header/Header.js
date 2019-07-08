@@ -4,10 +4,10 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <h2>First APP</h2>
+        <h2 style={{ color: "red" }}>First APP</h2>
       </div>
     );
   }
 }
 
-export default Headers;
+export default Header;

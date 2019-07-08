@@ -1,12 +1,15 @@
 import React from "react";
 import logo from "./logo.svg";
+import Header from "../src/components/header/Header";
+import Footer from "../src/components/footer/Footer";
+
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Heare />
+        <Header />
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -24,6 +27,7 @@ function App() {
           {require("./demo-dummy-api/books/id/get.json")[0].title}
         </p>
       </header>
+      <Footer />
     </div>
   );
 }
