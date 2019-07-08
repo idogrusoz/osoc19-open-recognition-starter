@@ -11,7 +11,7 @@ controller.welcome = (req, res) => {
 controller.insert = (req, res) => {
   const data = req.body;
   console.log(data);
-  usertable.insert(req.body);
+  usertable.insert(data);
   res.send(data);
 };
 

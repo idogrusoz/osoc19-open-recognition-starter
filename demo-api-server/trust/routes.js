@@ -5,4 +5,5 @@ const controller = require("./controller");
 
 router.get("/", controller.welcome);
 
+
 module.exports = router;
