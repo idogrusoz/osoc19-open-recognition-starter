@@ -1,12 +1,15 @@
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser")
 const router = express.Router();
 
-const authors = require("./authors");
-app.use("/authors", authors);
+// const authors = require("./authors");
+// app.use("/authors", authors);
 
-const books = require("./books");
-app.use("/books", books);
+// const books = require("./books");
+// app.use("/books", books);
+
+app.use(bodyParser.json());
 
 const users = require("./users");
 app.use("/users", users);
