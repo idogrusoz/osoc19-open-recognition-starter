@@ -11,8 +11,8 @@ const createTable = () => {
     (
       id VARCHAR(55) PRIMARY KEY,
       name VARCHAR(30) NOT NULL,
-      author VARCHAR(55) NOT NULL REFERENCES users(id),
-      reciever VARCHAR(55)  NOT NULL REFERENCES users(id)
+      author NUMERIC NOT NULL REFERENCES users(id),
+      reciever NUMERIC  NOT NULL REFERENCES users(id)
     );
 `);
   console.log("skill table created successfully!!!!!");

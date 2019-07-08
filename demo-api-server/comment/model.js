@@ -9,8 +9,8 @@ const createTable = () => {
     comment
     (
       id VARCHAR(55) PRIMARY KEY,
-      author VARCHAR(55) NOT NULL REFERENCES users(id),
-      reciever VARCHAR(55)  NOT NULL REFERENCES users(id),
+      author NUMERIC NOT NULL REFERENCES users(id),
+      reciever NUMERIC  NOT NULL REFERENCES users(id),
       creationdate DATE  NOT NULL,
       message TEXT NOT NULL
     );
