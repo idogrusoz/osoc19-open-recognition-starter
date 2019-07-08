@@ -1,7 +1,7 @@
 // this example-config exists so you know what to put in your config.js
 // we gitignored ours 
 
-process.env.MONGODB_URL = "https://www.badgerbadgerbadger.com";
+// process.env.MONGODB_URL = "https://www.badgerbadgerbadger.com";
 process.env.PORT = 3000;
 
 console.log(`
