@@ -3,16 +3,22 @@ const usertable = require("./model");
 usertable.createTable();
 const controller = {};
 
-controller.welcome = (req, res) => {
-  console.log("is it working?");
-  res.send("is it working? yes");
-};
+
 
 controller.insert = (req, res) => {
   const data = req.body;
-  console.log(data);
   usertable.insert(data);
   res.send(data);
+};
+
+controller.getUser = (req, res) => {
+  const id = req.params.id;
+  const response = usertable.getUserById(id);
+  response.then(user => {
+    const data = user.rows;
+    console.log(data);
+    res.send(data);
+  });
 };
 
 module.exports = controller;
