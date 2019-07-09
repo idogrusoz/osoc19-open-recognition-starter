@@ -36,7 +36,22 @@ const insertSkill = data => {
   `);
 };
 
+const getSkillsOfOneUser = id => (
+  database.query(SQL`
+    SELECT 
+    *
+    FROM 
+    skill
+    WHERE
+    reciever = ${id};
+  `)
+
+)
+
+
+
 module.exports = {
 createTable,
-insertSkill
+insertSkill,
+getSkillsOfOneUser
 };
