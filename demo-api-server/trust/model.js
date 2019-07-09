@@ -22,4 +22,6 @@ const createTable = () => {
   console.log("trust table created successfully!!!!!");
 };
 
+
+
 module.exports = createTable;

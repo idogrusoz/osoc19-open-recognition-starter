@@ -21,7 +21,7 @@ const createTable = () => {
 };
 
 const insertSkill = data => {
-  database.query(SQL `
+  database.query(SQL`
   INSERT INTO skill (
     id,
     name,
@@ -45,13 +45,12 @@ const getSkillsOfOneUser = id => (
     WHERE
     reciever = ${id};
   `)
-
 )
 
 
 
 module.exports = {
-createTable,
-insertSkill,
-getSkillsOfOneUser
+  createTable,
+  insertSkill,
+  getSkillsOfOneUser
 };

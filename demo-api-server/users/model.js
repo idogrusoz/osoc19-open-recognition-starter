@@ -40,34 +40,7 @@ const insert = data => {
     login ,
     password
   ) VALUES (
-    1,
-    ${data.first_name} ,
-    ${data.last_name} , 
-    ${data.email} ,
-    ${data.picture} ,
-    ${data.profession} ,
-    ${data.employment},
-    ${data.city} ,
-    ${data.country} ,
-    ${data.login} ,
-    ${data.password}
-    )
-  `);
-  database.query(SQL`
-  INSERT INTO users (
-    id ,
-    first_name ,
-    last_name ,
-    email ,
-    picture ,
-    profession ,
-    employment ,
-    city ,
-    country ,
-    login ,
-    password
-  ) VALUES (
-    3,
+    ${data.id}
     ${data.first_name} ,
     ${data.last_name} , 
     ${data.email} ,
@@ -81,4 +54,20 @@ const insert = data => {
     )
   `);
 };
-module.exports = { createTable, insert };
+
+const getUserById = id => (
+  database.query(SQL`
+  SELECT
+  *
+  FROM
+  users
+  WHERE
+  id = ${id}
+  `)
+  );
+
+module.exports = { 
+  createTable, 
+  insert,
+  getUserById
+ };
