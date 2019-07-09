@@ -4,7 +4,7 @@ class Header extends Component {
   render() {
     return (
       <div>
-        <h2 style={{ color: "red" }}>First APP</h2>
+        <h2 style={{ color: "pink" }}>App</h2>
       </div>
     );
   }
