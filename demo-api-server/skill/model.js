@@ -3,6 +3,8 @@
 const database = require("../database");
 const SQL = require("pg-template-tag").default;
 console.log("usertable");
+
+
 const createTable = () => {
   console.log("inside createtable");
   database.query(`
@@ -18,4 +20,23 @@ const createTable = () => {
   console.log("skill table created successfully!!!!!");
 };
 
-module.exports = createTable;
+const insertSkill = data => {
+  database.query(SQL `
+  INSERT INTO skill (
+    id,
+    name,
+    author,
+    reciever
+  ) VALUES (
+    ${data.id},
+    ${data.name},
+    ${data.author},
+    ${data.reciever}
+  )
+  `);
+};
+
+module.exports = {
+createTable,
+insertSkill
+};
