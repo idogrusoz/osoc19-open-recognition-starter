@@ -3,7 +3,9 @@ const router = express.Router();
 
 const controller = require("./controller");
 
-router.get("/", controller.welcome);
+router.get("/:id", controller.getTrust)
+
+router.post("/", controller.addTrust)
 
 
 module.exports = router;
