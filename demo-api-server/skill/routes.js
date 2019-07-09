@@ -5,4 +5,6 @@ const controller = require("./controller");
 
 router.get("/", controller.welcome);
 
+router.post("/", controller.addSkill)
+
 module.exports = router;
