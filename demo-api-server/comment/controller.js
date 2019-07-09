@@ -4,15 +4,24 @@ commenttable.createTable();
 
 const controller = {};
 
-controller.welcome = (req, res) => {
-  console.log("in controller comment");
-  res.send("response from comment");
-};
+controller.getUserComments = (req,res) => {
+  const id = req.params.id;
+  console.log(id);
+  const response = commenttable.getCommentsOfOneUser(id);
+  response.then(
+    comments=>{
+      const data = comments.rows;
+      res.send(data);
+    }
+  )
+}
 
 controller.addNewComment = (req, res) => {
     const data = req.body;
     commenttable.insertComment(data);
-    res.send(data)
+    res.send(data);
 }
+
+
 
 module.exports = controller;

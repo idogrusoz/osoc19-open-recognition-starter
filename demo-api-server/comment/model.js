@@ -34,5 +34,23 @@ const insertComment = data => {
     ${data.message}
   )
   `);
-  }
-module.exports = {createTable, insertComment};
+  };
+
+  const getCommentsOfOneUser = id => (
+    database.query(SQL`
+    SELECT
+    *
+    FROM
+    comment
+    WHERE
+    reciever = ${id};
+    `)
+  )
+    
+
+
+module.exports = {
+  createTable,
+  insertComment,
+  getCommentsOfOneUser
+};
