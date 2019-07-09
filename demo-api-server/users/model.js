@@ -40,7 +40,7 @@ const insert = data => {
     login ,
     password
   ) VALUES (
-    ${data.id}
+    ${data.id} ,
     ${data.first_name} ,
     ${data.last_name} , 
     ${data.email} ,
