@@ -6,8 +6,8 @@ const controller = {};
 
 controller.getUserComments = (req,res) => {
   const id = req.params.id;
-  console.log(id);
   const response = commenttable.getCommentsOfOneUser(id);
+  console.log(response);
   response.then(
     comments=>{
       const data = comments.rows;

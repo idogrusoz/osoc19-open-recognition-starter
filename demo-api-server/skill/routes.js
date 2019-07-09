@@ -3,7 +3,7 @@ const router = express.Router();
 
 const controller = require("./controller");
 
-router.get("/", controller.welcome);
+router.get("/:id", controller.getSkills)
 
 router.post("/", controller.addSkill)
 
