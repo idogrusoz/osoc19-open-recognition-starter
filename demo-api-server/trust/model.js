@@ -8,9 +8,9 @@ const createTable = () => {
   CREATE TABLE IF NOT EXISTS
     trust
     (
-      id VARCHAR(55) PRIMARY KEY,
-      userrequesting NUMERIC NOT NULL REFERENCES users(id),
-      userrecieving NUMERIC NOT NULL REFERENCES users(id),
+      id SERIAL PRIMARY KEY,
+      userrequesting INTEGER NOT NULL REFERENCES users(id),
+      userrecieving INTEGER NOT NULL REFERENCES users(id),
       daterequesting DATE  NOT NULL,
       dateapproving DATE NOT NULL,
       active BOOLEAN NOT NULL,
@@ -25,7 +25,6 @@ const createTable = () => {
 const insertTrust = data => {
   database.query(SQL`
     INSERT INTO trust (
-      id,
       userrequesting,
       userrecieving,
       daterequesting,
@@ -35,7 +34,6 @@ const insertTrust = data => {
       user1approval,
       user2approval
     ) VALUES (
-      ${data.id},
       ${data.userrequesting},
       ${data.userrecieving},
       ${data.daterequesting},

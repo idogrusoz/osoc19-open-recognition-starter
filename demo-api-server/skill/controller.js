@@ -1,6 +1,7 @@
 const skilltable = require("./model");
 
 skilltable.createTable();
+
 const controller = {};
 
 controller.addSkill = (req, res) => {

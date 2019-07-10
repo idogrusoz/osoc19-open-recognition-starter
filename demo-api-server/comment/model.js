@@ -8,9 +8,9 @@ const createTable = () => {
   CREATE TABLE IF NOT EXISTS
     comment
     (
-      id VARCHAR(55) PRIMARY KEY,
-      author NUMERIC NOT NULL REFERENCES users(id),
-      reciever NUMERIC  NOT NULL REFERENCES users(id),
+      id SERIAL PRIMARY KEY,
+      author INTEGER NOT NULL REFERENCES users(id),
+      reciever INTEGER NOT NULL REFERENCES users(id),
       creationdate DATE  NOT NULL,
       message TEXT NOT NULL
     );
@@ -21,13 +21,11 @@ const createTable = () => {
 const insertComment = data => {
   database.query(SQL`
   INSERT INTO comment (
-    id,
     author,
     reciever,
     creationdate,
     message
   ) VALUES (
-    ${data.id},
     ${data.author},
     ${data.reciever},
     ${data.creationdate},

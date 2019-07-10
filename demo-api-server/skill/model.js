@@ -11,10 +11,10 @@ const createTable = () => {
   CREATE TABLE IF NOT EXISTS
     skill
     (
-      id VARCHAR(55) PRIMARY KEY,
+      id SERIAL PRIMARY KEY,
       name VARCHAR(30) NOT NULL,
-      author NUMERIC NOT NULL REFERENCES users(id),
-      reciever NUMERIC  NOT NULL REFERENCES users(id)
+      author INTEGER NOT NULL REFERENCES users(id),
+      reciever INTEGER NOT NULL REFERENCES users(id)
     );
 `);
   console.log("skill table created successfully!!!!!");
@@ -23,12 +23,10 @@ const createTable = () => {
 const insertSkill = data => {
   database.query(SQL`
   INSERT INTO skill (
-    id,
     name,
     author,
     reciever
   ) VALUES (
-    ${data.id},
     ${data.name},
     ${data.author},
     ${data.reciever}
