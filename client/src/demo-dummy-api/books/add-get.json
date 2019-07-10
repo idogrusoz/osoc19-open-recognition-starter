@@ -1,1 +1,1 @@
-"put a new book\'s title in the body and send a post request to this address: { title: 'string' }. you\'ll get back the new books\'s entry"
+"put a new book/'s title in the body and send a post request to this address: { title: 'string' }. you'll get back the new books's entry"
