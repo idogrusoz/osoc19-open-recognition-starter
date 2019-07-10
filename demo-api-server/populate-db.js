@@ -199,31 +199,45 @@ const generateUsers = (array) => {
     });
 };
 
-generateUsers(usersArray);
 
 const generateTrust = (array) => {
     array.forEach(trustElement => {
-        console.log(trustElement);
         trust.insertTrust(trustElement)
     });
 }
 
-generateTrust(trustArray);
 
 const generateSkills = (array) => {
     array.forEach(skillElement => {
-        console.log(skillElement);
         skill.insertSkill(skillElement)
     });
 }
 
-generateSkills(skillsArray);
 
 const generateComments = (array) => {
     array.forEach(commentElement => {
-        console.log(commentElement);
         comment.insertComment(commentElement)
     });
 }
 
-generateComments(commentsArray);
+const populate = function () {
+
+    users.createTable()
+
+    generateUsers(usersArray);
+
+    trust.createTable()
+
+    generateTrust(trustArray);
+
+    skill.createTable()
+    
+     generateSkills(skillsArray);
+
+    comment.createTable()
+    
+    generateComments(commentsArray);
+}
+
+
+populate()
