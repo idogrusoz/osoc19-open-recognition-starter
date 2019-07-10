@@ -1,16 +1,11 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 
-
+app.use(cors());
 const bodyParser = require("body-parser");
 const router = express.Router();
 app.use(bodyParser.json());
-
-// const authors = require("./authors");
-// app.use("/authors", authors);
-
-// const books = require("./books");
-// app.use("/books", books);
 
 app.use(bodyParser.json());
 
