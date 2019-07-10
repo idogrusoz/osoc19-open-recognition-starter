@@ -9,11 +9,11 @@ const createTable = () => {
   CREATE TABLE IF NOT EXISTS
     users
     (
-      id NUMERIC PRIMARY KEY NOT NULL,
+      id SERIAL PRIMARY KEY NOT NULL,
       first_name VARCHAR(30) NOT NULL,
       last_name VARCHAR(30)  NOT NULL,
       email VARCHAR(30)  NOT NULL,
-      picture VARCHAR(30) NOT NULL,
+      picture VARCHAR(300) NOT NULL,
       profession VARCHAR(30) NOT NULL,
       employment VARCHAR(30) NOT NULL,
       city VARCHAR(30) NOT NULL,
@@ -28,7 +28,6 @@ const createTable = () => {
 const insert = data => {
   database.query(SQL`
   INSERT INTO users (
-    id ,
     first_name ,
     last_name ,
     email ,
@@ -40,7 +39,6 @@ const insert = data => {
     login ,
     password
   ) VALUES (
-    ${data.id} ,
     ${data.first_name} ,
     ${data.last_name} , 
     ${data.email} ,
