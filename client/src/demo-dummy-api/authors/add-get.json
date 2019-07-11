@@ -1,1 +1,0 @@
-"put a new author\'s name in the body and send a post request to this address: { first_name: 'string' }. you\'ll get back the new author\'s entry"

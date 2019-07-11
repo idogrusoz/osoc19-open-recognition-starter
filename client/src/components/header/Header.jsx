@@ -1,21 +1,32 @@
 import React from "react";
+import { FormControl, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <nav className="navbar navbar-dark mb-5 navbar-fixed-top">
-      <span className="navbar mb-0 h2 mx-auto"> Open Recognition </span>
-      <span className="navbar mb-0 h2 mx-auto">
-        <button type="button" className="btn btn-primary">
-          Trust
-        </button>
-      </span>
-      <span className="navbar mb-0 h2 mx-auto">
-        <button type="button" className="btn btn-primary">
-          Trust
-        </button>
-      </span>
-      <div classclass="container" />
-    </nav>
+    <div className="header">
+      <div className="nav">
+        <div className="menu">
+          <ul className="navlinks">
+            <Link className="linksss" to="/login">
+              <li>Login</li>
+            </Link>
+            <Link className="linksss" to="/register">
+              <li>Register</li>
+            </Link>
+          </ul>
+        </div>
+        <div className="sera">
+          <FormControl
+            type="text"
+            placeholder="Search"
+            className="mr-sm-2"
+            id="search"
+          />
+          <Button>Search</Button>
+        </div>
+      </div>
+    </div>
   );
 };
 export default Header;

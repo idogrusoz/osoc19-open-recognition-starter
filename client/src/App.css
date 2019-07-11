@@ -1,54 +1,36 @@
-span,
-nav,
-footer {
-  background: rgb(208, 240, 240);
-  color: rgb(31, 27, 32);
-  /* font-family: "Pacifico", cursive; */
+.header {
+  height: 8%;
+  text-align: right;
+  color: white;
+  width: 100%;
+  margin: auto;
+  border: 2px solid red;
 }
-
-img {
-  width: 100px;
-  height: 100px;
+.nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 10vh;
+  background: rgb(73, 79, 82);
 }
-
-.btn {
-  margin-left: 10px;
-  margin-right: 10px;
+.navlinks {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
 }
-/* Boostrap Buttons Styling */
-
-.btn-default {
-  font-family: Raleway-SemiBold;
-  font-size: 13px;
-  color: rgba(108, 88, 179, 0.75);
-  letter-spacing: 1px;
-  line-height: 15px;
-  border: 2px solid rgba(108, 89, 179, 0.75);
-  border-radius: 40px;
-  background: transparent;
-  transition: all 0.3s ease 0s;
+.menu {
+  width: 40%;
 }
-
-.btn-default:hover {
-  color: rgb(255, 251, 254);
-  background: rgba(108, 88, 179, 0.75);
-  border: 2px solid rgba(108, 89, 179, 0.75);
+.mainPage {
+  width: 80%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid green;
 }
-
-.btn-primary {
-  font-family: Raleway-SemiBold;
-  font-size: 13px;
-  color: rgba(58, 133, 191, 0.75);
-  letter-spacing: 1px;
-  line-height: 15px;
-  border: 2px solid rgba(58, 133, 191, 0.75);
-  border-radius: 40px;
-  background: transparent;
-  transition: all 0.3s ease 0s;
-}
-
-.btn-primary:hover {
-  color: #fff;
-  background: rgba(58, 133, 191, 0.75);
-  border: 2px solid rgba(58, 133, 191, 0.75);
+.sera {
+  display: flex;
+  flex-direction: row;
 }

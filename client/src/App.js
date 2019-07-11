@@ -1,21 +1,32 @@
 import React from "react";
-import Comments from "../src/components/comments/Comments";
-import Header from "../src/components/header/Header";
-import Footer from "../src/components/footer/Footer";
-import ImageAvatars from "../src/components/img/ImageAvatars";
-
+import MyRoutes from "./routes/myroutes";
 import "./App.css";
 
 function App() {
   return (
-    <React.Fragment>
-      <div className="App">
-        <Header />
-        <ImageAvatars />
-        <Comments />
-        <Footer />
+    <Reacy-Fragment>
+      <div className="mainPage">
+        <MyRoutes />
+        <br />
+        tesct
+        <br />
+        tesct
+        <br />
+        tesct
+        <br />
+        tesct
+        <br />
+        tesct
+        <br />
+        tesct
+        <br />
+        tesct
+        <br />
+        tesct
+        <br />
+        tesct
       </div>
-    </React.Fragment>
+    </Reacy-Fragment>
   );
 }
 
