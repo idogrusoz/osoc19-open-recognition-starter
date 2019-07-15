@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Card from "react-bootstrap/Card";
 
 class Comments extends Component {
   constructor() {
@@ -19,19 +20,20 @@ class Comments extends Component {
 
   render() {
     return this.state.comments.map(x => (
+
       <div className="col-md-6">
         <div className="card mb-4 shadow-sm">
           <div className="card-body">
             <p className="card-text">
-              <strong>
-                <i className="fa fa-car" /> Comments:
-              </strong>
-              {/* <h3>hello: {this.state.comments}</h3> */}
+              <strong>Comments:</strong>
+              <p> {x.id} </p>
+              <p> {x.creationdate} </p>
               <p> {x.message} </p>
             </p>
           </div>
         </div>
       </div>
+
     ));
   }
 }

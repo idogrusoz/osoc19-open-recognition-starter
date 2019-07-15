@@ -53,7 +53,7 @@ const insert = data => {
   `);
 };
 
-const getUserById = id => (
+const getUserById = id =>
   database.query(SQL`
   SELECT
   *
@@ -61,25 +61,42 @@ const getUserById = id => (
   users
   WHERE
   id = ${id}
-  `)
-  );
+  `);
+
 
   const checkUser = (login, password) => (
     database.query(SQL`
+
     SELECT
     *
     FROM
     users
     WHERE
+
     login = ${login} AND password = ${password};
 
     `)
   )
 
 
-module.exports = { 
-  createTable, 
+
+
+const getUserByName = name =>
+  database.query(SQL`
+
+    SELECT
+    *
+    FROM
+    users
+    WHERE
+    first_name = ${name}
+    `);
+
+module.exports = {
+  createTable,
   insert,
   getUserById,
-  checkUser
- };
+  getUserByName,
+   checkUser
+};
+

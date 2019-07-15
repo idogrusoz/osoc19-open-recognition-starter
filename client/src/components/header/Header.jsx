@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react'
 import { FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -10,6 +11,7 @@ export default class Header extends Component {
         <div className="nav">
           <div className="ilogo">
             <span>Logo Here</span>
+
           </div>
           <div className="sera">
             <FormControl
@@ -17,6 +19,7 @@ export default class Header extends Component {
               placeholder="Search"
               className="mr-sm-2"
               id="search"
+
             />
             <Button>Search</Button>
           </div>
@@ -29,10 +32,12 @@ export default class Header extends Component {
                 <li>Register</li>
               </Link>
             </ul>
+
           </div>
         </div>
       </div>
     );
   }
 }
+
 

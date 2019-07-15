@@ -12,7 +12,7 @@ controller.addSkill = (req, res) => {
 
 controller.getSkills = (req, res) => {
   const id = req.params.id;
-  const response = skilltable.getSkillsOfOneUser(id);
+  const response = skilltable.getSkillsGrouped(id);
   response.then(skills => {
     const data = skills.rows;
     res.send(data);
