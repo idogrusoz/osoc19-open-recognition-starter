@@ -12,7 +12,7 @@
   justify-content: space-between;
   align-items: center;
   min-height: 10vh;
-  background: rgb(73, 79, 82);
+  background: rgb(127, 208, 248);
 }
 .navlinks {
   display: flex;
@@ -28,13 +28,12 @@
   margin: auto;
   display: flex;
   flex-direction: column;
+  padding: 5%;
+  margin: 5%;
   border: 2px solid green;
 }
 .sera {
   display: flex;
   flex-direction: row;
 }
-.sskillcontainer {
-  border: 2px solid black;
-  /* width: 20%; */
-}
+

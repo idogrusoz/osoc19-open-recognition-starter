@@ -7,6 +7,7 @@ import "./App.css";
 import Profile from "./components/Profile";
 import ImageAvatars from "./components/img/ImageAvatars";
 
+
 class App extends Component {
   state = {};
   render() {
@@ -21,6 +22,7 @@ class App extends Component {
       </React.Fragment>
     );
   }
+
 }
 
 export default App;
