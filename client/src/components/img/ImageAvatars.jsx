@@ -10,8 +10,8 @@ const useStyles = makeStyles(
     },
     bigAvatar: {
       margin: 20,
-      width: 200,
-      height: 200
+      width: 100,
+      height: 100
     }
   })
 );
@@ -23,17 +23,7 @@ function ImageAvatars() {
     <Grid container justify="center" alignItems="center">
       <Avatar
         alt="Remy Sharp"
-        src="https://picsum.photos/id/633/500/501"
-        className={classes.bigAvatar}
-      />
-      <Avatar
-        alt="Remy Sharp"
-        src="https://picsum.photos/id/613/600/600"
-        className={classes.bigAvatar}
-      />
-      <Avatar
-        alt="Remy Sharp"
-        src="https://picsum.photos/id/619/600/600"
+        src="https://picsum.photos/id/633/100/101"
         className={classes.bigAvatar}
       />
     </Grid>
