@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 
+import Image from "react-bootstrap/Image";
+import Card from "react-bootstrap/Card";
+
+
 class Profile extends Component {
   constructor() {
     super();
@@ -19,6 +23,7 @@ class Profile extends Component {
 
   render() {
     return this.state.name.map(x => (
+
       <div>
         <div className="card" style={{ width: "270px" }}>
           <img src={x.picture} alt="prof pic" />
@@ -32,6 +37,7 @@ class Profile extends Component {
           </div>
         </div>
       </div>
+
     ));
   }
 }

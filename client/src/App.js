@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MyRoutes from "./routes/myroutes";
+import Layout from "./components/Layout";
 import Skills from "./components/Skill/skills";
 import Search from "./components/search/searchresult";
 import "./App.css";
@@ -15,6 +16,7 @@ class App extends Component {
           <MyRoutes />
           {/* <Skills /> */}
           {/* <Search /> */}
+          <Layout />
         </div>
       </React.Fragment>
     );
