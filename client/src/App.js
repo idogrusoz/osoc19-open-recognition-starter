@@ -1,33 +1,22 @@
-import React from "react";
+import React, { Component } from "react";
 import MyRoutes from "./routes/myroutes";
+import Skills from "./components/Skill/skills";
+import Search from "./components/search/searchresult";
 import "./App.css";
 
-function App() {
-  return (
-    <Reacy-Fragment>
-      <div className="mainPage">
-        <MyRoutes />
-        <br />
-        tesct
-        <br />
-        tesct
-        <br />
-        tesct
-        <br />
-        tesct
-        <br />
-        tesct
-        <br />
-        tesct
-        <br />
-        tesct
-        <br />
-        tesct
-        <br />
-        tesct
-      </div>
-    </Reacy-Fragment>
-  );
+class App extends Component {
+  state = {};
+  render() {
+    return (
+      <React.Fragment>
+        <div className="mainPage">
+          <MyRoutes />
+          {/* <Skills /> */}
+          {/* <Search /> */}
+        </div>
+      </React.Fragment>
+    );
+  }
 }
 
 export default App;
