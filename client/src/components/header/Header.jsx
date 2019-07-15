@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import Skill from "../Skill/skills";
 
 class Header extends Component {
   constructor() {
