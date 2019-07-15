@@ -19,16 +19,16 @@ controller.getUser = (req, res) => {
   });
 };
 
-controller.check = (req, res) => {
+controller.checkUser = (req, res) => {
   const login = req.params.login;
   const password = req.params.password;
-  const resultat = usertable.check(login, password);
-  resultat.then(x => {
-    console.log(x);
+  const result = usertable.checkUser(login, password);
+
+  result.then(x => {
     if (x.rows.length === 0) {
-      res.status(403).send("error server");
+      res.status(403).send("Wrong login or password");
     } else {
-      res.send(x.rows);
+      res.status(200).send(x.rows)
     }
   });
 };

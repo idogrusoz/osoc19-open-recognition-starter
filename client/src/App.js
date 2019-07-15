@@ -7,7 +7,7 @@ function App() {
     <Reacy-Fragment>
       <div className="mainPage">
         <MyRoutes />
-        <br />
+        {/* <br />
         tesct
         <br />
         tesct
@@ -24,7 +24,7 @@ function App() {
         <br />
         tesct
         <br />
-        tesct
+        tesct */}
       </div>
     </Reacy-Fragment>
   );

@@ -64,8 +64,22 @@ const getUserById = id => (
   `)
   );
 
+  const checkUser = (login, password) => (
+    database.query(SQL`
+    SELECT
+    *
+    FROM
+    users
+    WHERE
+    login = ${login} AND password = ${password};
+
+    `)
+  )
+
+
 module.exports = { 
   createTable, 
   insert,
-  getUserById
+  getUserById,
+  checkUser
  };
