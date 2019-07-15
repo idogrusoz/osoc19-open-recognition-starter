@@ -23,10 +23,9 @@ class Comments extends Component {
         <div className="card mb-4 shadow-sm">
           <div className="card-body">
             <p className="card-text">
-              <strong>
-                <i className="fa fa-car" /> Comments:
-              </strong>
-              {/* <h3>hello: {this.state.comments}</h3> */}
+              <strong>Comments:</strong>
+              <p> {x.id} </p>
+              <p> {x.creationdate} </p>
               <p> {x.message} </p>
             </p>
           </div>
