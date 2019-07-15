@@ -5,6 +5,8 @@ const controller = require("./controller");
 
 router.post("/", controller.insert);
 
-router.get("/:id", controller.getUser)
+router.get("/:id", controller.getUser);
+
+router.get("/search/:name", controller.getUserByName);
 
 module.exports = router;
