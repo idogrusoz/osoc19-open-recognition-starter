@@ -20,14 +20,20 @@ class Comments extends Component {
 
   render() {
     return this.state.comments.map(x => (
-      <Card border="info">
-        <Card.Body>
-          <p> author: {x.author}</p>
-          <p> user id:{x.id} </p>
-          <p> {x.creationdate} </p>
-          <p> {x.message} </p>
-        </Card.Body>
-      </Card>
+
+      <div className="col-md-6">
+        <div className="card mb-4 shadow-sm">
+          <div className="card-body">
+            <p className="card-text">
+              <strong>Comments:</strong>
+              <p> {x.id} </p>
+              <p> {x.creationdate} </p>
+              <p> {x.message} </p>
+            </p>
+          </div>
+        </div>
+      </div>
+
     ));
   }
 }
