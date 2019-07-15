@@ -33,4 +33,16 @@ controller.check = (req, res) => {
   });
 };
 
+controller.getUserByName = (req, res) => {
+  const name = req.params.name;
+  const result = usertable.getUserByName(name);
+  result.then(x => {
+    if (x.rows.length === 0) {
+      res.status(403).send("error server");
+    } else {
+      res.send(x.rows);
+    }
+  });
+};
+
 module.exports = controller;
