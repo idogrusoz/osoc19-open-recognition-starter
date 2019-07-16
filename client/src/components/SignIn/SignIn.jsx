@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import Header from '../header/Header'
+import { compose } from "@material-ui/system";
+import {Redirect} from 'react-router'
+import { withRouter } from 'react-router-dom' 
 
 export default class SignIn extends Component {
   constructor() {
@@ -25,12 +28,17 @@ export default class SignIn extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    const { history } = this.props
     fetch(`http://localhost:3000/users/${this.state.login}/${this.state.password}`, {
         method: "GET",
         headers: {'Content-Type': 'application/json'}
       })
       .then(res => {
-        res.status === 200 ? this.setState({ mistake: false }) : this.setState({ mistake: true });
+        if (res.status === 200) {
+         history.push("/profile")
+        } else {
+           this.setState({ mistake: true })
+          }
       })
       .catch(err => console.log("Error:", err))
   };

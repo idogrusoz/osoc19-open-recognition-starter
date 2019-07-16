@@ -28,8 +28,6 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  padding: 5%;
-  margin: 5%;
   border: 2px solid green;
 }
 .sera {
@@ -37,3 +35,21 @@
   flex-direction: row;
 }
 
+.landing-container {
+  height: 80vh;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.background-image {
+  position: relative;
+  height: 80vh
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
+}

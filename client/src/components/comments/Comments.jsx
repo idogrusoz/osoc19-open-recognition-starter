@@ -21,7 +21,7 @@ class Comments extends Component {
   render() {
     return this.state.comments.map(x => (
 
-      <div className="col-md-6">
+      <div className="col">
         <div className="card mb-4 shadow-sm">
           <div className="card-body">
             <p className="card-text">
