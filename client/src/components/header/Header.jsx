@@ -20,7 +20,7 @@ console.log('hello');
             <span>Logo Here</span>
 
           </div>
-          <div className="sera">
+          {/* <div className="sera">
             <FormControl
               type="text"
               placeholder="Search"
@@ -29,18 +29,22 @@ console.log('hello');
 
             />
             <Button onClick={()=>this.hello()}>Search</Button>
-          </div>
+          </div> */}
           <div className="menu">
             <ul className="navlinks">
               <Link className="linksss" to="/signin">
                 <SignInOut />
               </Link>
+             
+              {localStorage.getItem("id") ? 
+              <div></div> :
               <Link className="linksss" to="/register">
                <Button
                variant="outline-primary">
                Register
                </Button>
-              </Link>
+              </Link>  }
+              
             </ul>
 
           </div>
