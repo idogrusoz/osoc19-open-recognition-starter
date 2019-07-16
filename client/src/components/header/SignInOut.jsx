@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
 
- export default class LoginLogout extends Component {
+ export default class SignInOut extends Component {
     constructor(props) {
         super()
     }

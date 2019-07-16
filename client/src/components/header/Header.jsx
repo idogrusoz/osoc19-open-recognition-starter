@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import LoginLogout from "./LoginLogout"
+import SignInOut from "./SignInOut"
  
 export default class Header extends Component {
   render(){
@@ -26,7 +26,7 @@ export default class Header extends Component {
           <div className="menu">
             <ul className="navlinks">
               {/* <Link className="linksss" to="/login"> */}
-                <LoginLogout />
+                <SignInOut />
               {/* </Link> */}
               <Link className="linksss" to="/register">
                 <li>Register</li>
