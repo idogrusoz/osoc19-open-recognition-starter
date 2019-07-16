@@ -17,7 +17,7 @@ class App extends Component {
           <MyRoutes />
           {/* <Skills /> */}
           {/* <Search /> */}
-          <Layout />
+          {/* <Layout /> */}
         </div>
       </React.Fragment>
     );

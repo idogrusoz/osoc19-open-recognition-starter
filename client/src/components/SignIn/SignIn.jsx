@@ -24,15 +24,14 @@ export default class SignIn extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const checkUser = () =>
-      fetch(`http://localhost:3000/users/${this.state.login}/${this.state.password}`, {
+    fetch(`http://localhost:3000/users/${this.state.login}/${this.state.password}`, {
         method: "GET",
         headers: {'Content-Type': 'application/json'}
-      });
-    checkUser()
+      })
       .then(res => {
         res.status === 200 ? this.setState({ mistake: false }) : this.setState({ mistake: true });
       })
+      .catch(err => console.log("Error:", err))
   };
 
   render() {
@@ -70,16 +69,18 @@ export default class SignIn extends Component {
 
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button
+            
+            <Button 
+              variant="outline-primary"
               type="submit"
               onClick={this.handleSubmit}
               disabled={!this.validateForm()}
-            >
-              Sign in
-            </Button>
+              >
+                Sign in
+              </Button>
           </Col>
           <div>
-          {this.state.mistake ? <p>Incorrect UserId or Password</p> : <p></p>}
+          {this.state.mistake ? <p style={{"color":"red"}}>*Incorrect Login or Password</p> : <p></p>}
           </div>
         </Form.Group>
       </Form>
