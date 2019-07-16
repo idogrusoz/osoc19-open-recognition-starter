@@ -8,6 +8,7 @@ router.post("/", controller.insert);
 router.get("/:id", controller.getUser);
 
 router.get("/search/:name", controller.getUserByName);
+
 router.get("/:login/:password", controller.checkUser);
 
 module.exports = router;
