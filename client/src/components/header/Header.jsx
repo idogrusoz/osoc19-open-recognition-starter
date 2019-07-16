@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut"
  
 export default class Header extends Component {
+
+hello=()=>{
+console.log('hello');
+}
+
+
+
   render(){
     return (
       <div className="header">
@@ -21,7 +28,7 @@ export default class Header extends Component {
               id="search"
 
             />
-            <Button>Search</Button>
+            <Button onClick={()=>this.hello()}>Search</Button>
           </div>
           <div className="menu">
             <ul className="navlinks">
@@ -29,7 +36,10 @@ export default class Header extends Component {
                 <SignInOut />
               </Link>
               <Link className="linksss" to="/register">
-               <Button>Register</Button>
+               <Button
+               variant="outline-primary">
+               Register
+               </Button>
               </Link>
             </ul>
 
