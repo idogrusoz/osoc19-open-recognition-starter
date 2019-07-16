@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
 import Header from "../header/Header";
-import { compose } from "@material-ui/system";
-import { Redirect } from "react-router";
-import { withRouter } from "react-router-dom";
 
 export default class SignIn extends Component {
   constructor() {
@@ -29,7 +26,6 @@ export default class SignIn extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const { history } = this.props;
-    let user = {}
     fetch(
       `http://localhost:3000/users/${this.state.login}/${this.state.password}`,
       {
