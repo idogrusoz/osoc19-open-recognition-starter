@@ -33,7 +33,9 @@ class Profile extends Component {
           <Card.Text>
             <p>{x.last_name} </p>
             <p>{x.email} </p>
-            <p>{x.city}</p>
+            <p>
+              <em>{x.city}</em>
+            </p>
           </Card.Text>
         </Card.Body>
       </Card>
