@@ -25,11 +25,11 @@ export default class Header extends Component {
           </div>
           <div className="menu">
             <ul className="navlinks">
-              {/* <Link className="linksss" to="/login"> */}
+              <Link className="linksss" to="/signin">
                 <SignInOut />
-              {/* </Link> */}
+              </Link>
               <Link className="linksss" to="/register">
-                <li>Register</li>
+               <Button>Register</Button>
               </Link>
             </ul>
 
