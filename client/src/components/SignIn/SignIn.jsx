@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Row, Col } from "react-bootstrap";
+import Header from '../header/Header'
 
 export default class SignIn extends Component {
   constructor() {
@@ -36,6 +37,9 @@ export default class SignIn extends Component {
 
   render() {
     return (
+      <div>
+       
+      <Header/>
       <Form>
         <Form.Group as={Row} controlId="formHorizontalEmail">
           <Form.Label column sm={2}>
@@ -84,6 +88,7 @@ export default class SignIn extends Component {
           </div>
         </Form.Group>
       </Form>
+      </div>
     );
   }
 }

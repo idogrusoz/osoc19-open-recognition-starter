@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Form, Button, Col } from "react-bootstrap";
+import Header from '../header/Header'
 
 export default class Register extends Component {
   constructor() {
@@ -53,6 +54,8 @@ export default class Register extends Component {
 
   render() {
     return (
+      <div>
+      <Header/>
       <div className="form-outline">
         <Form>
           <Form.Row>
@@ -178,6 +181,7 @@ export default class Register extends Component {
             Register
           </Button>
         </Form>
+      </div>
       </div>
     );
   }
