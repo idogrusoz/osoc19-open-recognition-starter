@@ -12,7 +12,7 @@ class Profile extends Component {
     };
   }
   async componentDidMount() {
-    const fullName = await fetch("http://localhost:3000/users/2").then(function(
+    const fullName = await fetch(`http://localhost:3000/users/${localStorage.getItem('id')}`).then(function(
       response
     ) {
       console.log(response);
