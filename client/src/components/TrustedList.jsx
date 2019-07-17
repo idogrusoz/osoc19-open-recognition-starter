@@ -3,6 +3,15 @@ import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
 
 export default class TrustedList extends Component {
+  state = {
+    trustedpeople: [{}]
+  };
+  componentDidMount = () => {
+    fetch(`http://localhost:3000/trust/people/${localStorage.id}`)
+      .then(res => res.json())
+      .then(data => this.setState({ trustedpeople: data }));
+  };
+
   render() {
     return (
       <Card border="danger">
@@ -59,6 +68,7 @@ export default class TrustedList extends Component {
           </Card.Text>
         </Card.Body>
       </Card>
+
     );
   }
 }

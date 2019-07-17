@@ -37,4 +37,13 @@ controller.getTrust = (req, res) => {
   .catch(error => console.log("Error:", error));
 };
 
+controller.getTrustpeople = (req, res) => {
+  const id = req.params.id;
+  const response = trusttable.getTrustpeople(id);
+  response.then(trusts => {
+    const data = trusts.rows;
+    res.send(data);
+  });
+};
+
 module.exports = controller;

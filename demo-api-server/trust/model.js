@@ -43,10 +43,10 @@ const insertTrust = data => {
       ${data.user1approval},
       ${data.user2approval}
     )
-  `)
-}
+  `);
+};
 
-const getTrustRelation = id => (
+const getTrustRelation = id =>
   database.query(SQL`
     SELECT
     *
@@ -54,8 +54,16 @@ const getTrustRelation = id => (
     trust
     WHERE
     userrequesting = ${id} OR userrecieving = ${id};
-  `)
-)
+  `);
+
+
+const getTrustpeople = id =>
+  database.query(SQL`
+  select id,first_name from users WHERE id IN
+  (select userrequesting as temp2 from trust where userrecieving=${id} 
+  UNION
+  select userrecieving from trust where userrequesting=${id});
+  `);
 
 const getPendingRealation = id => (
   database.query(SQL`
@@ -73,17 +81,22 @@ const approveTrust = data => (
     UPDATE
     trust
     SET   dateapproving = ${data.dateapproving},
-          active = true
+          active = true,
           user2approval = true
     WHERE
     userrecieving = ${data.userrecieving} AND userrequesting = ${data.userrequesting}
   `)
 )
 
+
 module.exports = {
   createTable,
   insertTrust,
   getTrustRelation,
+
+  getTrustpeople,
+
   getPendingRealation,
   approveTrust
 };
+

@@ -14,6 +14,7 @@ class Profile extends Component {
     const fullName = await fetch(
       `http://localhost:3000/users/${localStorage.getItem("id")}`
     ).then(function(response) {
+
       console.log(response);
       return response.json();
     });
@@ -37,6 +38,7 @@ class Profile extends Component {
           </Card.Text>
         </Card.Body>
       </Card>
+
     ));
   }
 }
