@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom'
     
 
      signOut =() => {
-        // const { history } = this.props
          localStorage.removeItem('id')
      }
     
@@ -16,7 +15,7 @@ import { Link } from 'react-router-dom'
     render(){
         return(
             localStorage.getItem("id") ? 
-            <Link to='/home'>
+            <Link to='/'>
             <Button variant="outline-primary" onClick = {this.signOut}>Sign-out</Button> 
             </Link>:
             <Button variant="outline-primary" onClick = {this.signIn}>Sign-in</Button>            
