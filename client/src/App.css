@@ -13,7 +13,9 @@
   justify-content: space-between;
   align-items: center;
   min-height: 10vh;
-  background: rgb(127, 208, 248); 
+r
+  background: #477477;
+
 }
 ul.navlinks {
   display: flex;

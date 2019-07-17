@@ -24,20 +24,24 @@ class Profile extends Component {
   render() {
     return this.state.name.map(x => (
 
-      <div>
-        <div className="card" style={{ width: "270px" }}>
-          <img src={x.picture} alt="prof pic" />
-          <div className="card-body">
-            <h5 className="card-title">{x.first_name}</h5>
-            <p className="card-text">
-              <p>{x.last_name} </p>
-              <p>{x.email} </p>
-              <p>{x.city}</p>
-              <TrustButton id={x.id}/>
+      <Card border="info" style={{ width: "18rem" }}>
+        <Card.Body>
+          <Image
+            src={x.picture}
+            alt="prof pic"
+            roundedCircle
+            width="150"
+            height="150"
+          />
+          <Card.Text>
+            <p>{x.last_name} </p>
+            <p>{x.email} </p>
+            <p>
+              <em>{x.city}</em>
             </p>
-          </div>
-        </div>
-      </div>
+          </Card.Text>
+        </Card.Body>
+      </Card>
 
     ));
   }
