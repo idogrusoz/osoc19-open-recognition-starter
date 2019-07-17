@@ -1,24 +1,25 @@
 import React, { Component } from 'react'
 import { Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
  export default class SignInOut extends Component {
-    constructor(props) {
-        super()
-    }
 
-     signIn = () => {
-         console.log(localStorage.getItem('id'))
-         localStorage.setItem("id",2);
-         console.log(`signed in :${localStorage.getItem('id')}`)
 
+    
+
+     signOut =() => {
+        // const { history } = this.props
+         localStorage.removeItem('id')
      }
     
 
     render(){
         return(
             localStorage.getItem("id") ? 
-            <Button variant="outline-primary" onClick = {this.signIn}>Sign-out</Button> :
-            <Button variant="outline-primary" onClick = {this.signIn}>Sign-in</Button>
+            <Link to='/home'>
+            <Button variant="outline-primary" onClick = {this.signOut}>Sign-out</Button> 
+            </Link>:
+            <Button variant="outline-primary" onClick = {this.signIn}>Sign-in</Button>            
         )
     }
 }

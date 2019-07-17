@@ -8,6 +8,11 @@ import TrustedList from "./TrustedList";
 import Header from "./header/Header";
 import Skills from "./Skill/skills";
 
+import TrustNotification from './trust-components/TrustNotification'
+import Header from '../components/header/Header'
+import Skills from './Skill/skills'
+
+
 class Layout extends Component {
   render() {
     return (
@@ -17,12 +22,15 @@ class Layout extends Component {
           <Row>
             <Col>
               <Profile />
+
               <Skills />
+
             </Col>
             <Col>
               <Comments />
             </Col>
             <Col>
+              <TrustNotification/>
               <TrustedList />
             </Col>
           </Row>

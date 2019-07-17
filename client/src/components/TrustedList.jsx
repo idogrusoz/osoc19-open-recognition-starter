@@ -14,7 +14,7 @@ export default class TrustedList extends Component {
   render() {
     return (
       <div>
-        <Modal.Dialog>
+        <Modal.Dialog bg="primary">
           <Modal.Header closeButton>
             <Modal.Title>Trusted List</Modal.Title>
           </Modal.Header>

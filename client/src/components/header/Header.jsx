@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
-import Skill from "../Skill/skills";
 export default class Header extends Component {
   constructor(props) {
     super(props);
@@ -23,19 +22,15 @@ export default class Header extends Component {
       });
   };
 
-  loginhandle = e => {
-    this.setState({
-      [e.target.id]: e.target.value
-    });
-  };
 
   render() {
+
     return (
       <div className="header">
         <div className="nav">
           <div className="ilogo">
             <span>Logo Here</span>
-          </div>
+
           <div className="sera">
             <FormControl
               type="text"
@@ -46,14 +41,23 @@ export default class Header extends Component {
             />
             <Button onClick={this.ssearch}>Search</Button>
           </div>
+
           <div className="menu">
             <ul className="navlinks">
               <Link className="linksss" to="/signin">
                 <SignInOut />
               </Link>
+             
+              {localStorage.getItem("id") ? 
+              <div></div> :
               <Link className="linksss" to="/register">
-                <Button>Register</Button>
-              </Link>
+
+               <Button
+               variant="outline-primary">
+               Register
+               </Button>
+              </Link>  }
+              
             </ul>
           </div>
         </div>

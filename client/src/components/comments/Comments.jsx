@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import Moment from "react-moment";
 import AddComment from "../AddComponent/addComponent";
+
 class Comments extends Component {
   constructor() {
     super();
@@ -16,6 +17,7 @@ class Comments extends Component {
   };
 
   async componentDidMount() {
+
     const comment = await fetch("http://localhost:3000/comment/1")
       .then(response => response.json())
       .then(data =>
@@ -29,6 +31,7 @@ class Comments extends Component {
         )
       );
     console.log(comment);
+
     this.setState({ comments: comment });
   }
 
@@ -49,6 +52,7 @@ class Comments extends Component {
                 </p>
               </div>
             </div>
+
           </div>
         ))}
         }
