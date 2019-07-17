@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import SkillItem from "./skillitem";
+import Table from "react-bootstrap/Table";
+import Card from "react-bootstrap/Card";
+
 class Skills extends Component {
   state = {
     skills: [{}]
@@ -22,11 +24,8 @@ class Skills extends Component {
 
   render() {
     return (
-      <div className="sskillcontainer">
-        <div className="card">
-          <div className="card-header">Skills</div>
-        </div>
-        <table class="table table-borderless">
+      <Card border="warning">
+        <Table striped bordered hover>
           <thead>
             <tr>
               <th scope="col">skillname</th>
@@ -42,8 +41,8 @@ class Skills extends Component {
               </tr>
             ))}
           </tbody>
-        </table>
-      </div>
+        </Table>
+      </Card>
     );
   }
 }

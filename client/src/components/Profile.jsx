@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import TrustButton from './trust-components/TrustButton'
+
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
-
 
 class Profile extends Component {
   constructor() {
@@ -12,9 +11,9 @@ class Profile extends Component {
     };
   }
   async componentDidMount() {
-    const fullName = await fetch(`http://localhost:3000/users/${localStorage.getItem('id')}`).then(function(
-      response
-    ) {
+    const fullName = await fetch(
+      `http://localhost:3000/users/${localStorage.getItem("id")}`
+    ).then(function(response) {
       console.log(response);
       return response.json();
     });
@@ -23,8 +22,7 @@ class Profile extends Component {
 
   render() {
     return this.state.name.map(x => (
-
-      <Card border="info" style={{ width: "18rem" }}>
+      <Card border="danger">
         <Card.Body>
           <Image
             src={x.picture}
@@ -36,13 +34,9 @@ class Profile extends Component {
           <Card.Text>
             <p>{x.last_name} </p>
             <p>{x.email} </p>
-            <p>
-              <em>{x.city}</em>
-            </p>
           </Card.Text>
         </Card.Body>
       </Card>
-
     ));
   }
 }

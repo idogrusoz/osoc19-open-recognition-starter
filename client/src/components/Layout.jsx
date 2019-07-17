@@ -5,11 +5,9 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import TrustedList from "./TrustedList";
-
-import TrustNotification from './trust-components/TrustNotification'
-import Header from '../components/header/Header'
-import Skills from './Skill/skills'
-
+import TrustNotification from "./trust-components/TrustNotification";
+import Header from "../components/header/Header";
+import Skills from "./Skill/skills";
 
 class Layout extends Component {
   render() {
@@ -22,13 +20,12 @@ class Layout extends Component {
               <Profile />
 
               <Skills />
-
             </Col>
-            <Col>
+            <Col xs={5}>
               <Comments />
             </Col>
             <Col>
-              <TrustNotification/>
+              <TrustNotification />
               <TrustedList />
             </Col>
           </Row>
