@@ -2,6 +2,15 @@ import React, { Component } from "react";
 import Modal from "react-bootstrap/Modal";
 
 export default class TrustedList extends Component {
+  state = {
+    trustedpeople: [{}]
+  };
+  componentDidMount = () => {
+    fetch(`http://localhost:3000/trust/people/${localStorage.id}`)
+      .then(res => res.json())
+      .then(data => this.setState({ trustedpeople: data }));
+  };
+
   render() {
     return (
       <div>
@@ -11,12 +20,9 @@ export default class TrustedList extends Component {
           </Modal.Header>
 
           <Modal.Body>
-            <p>1 Modal body text goes here.</p>
-            <p>2 Modal body text goes here.</p>
-            <p> 3 Modal body text goes here.</p>
-            <p> 4Modal body text goes here.</p>
-            <p>Modal body text goes here.</p>
-            <p>Modal body text goes here.</p>
+            {this.state.trustedpeople.map(x => (
+              <p>{x.first_name}</p>
+            ))}
           </Modal.Body>
         </Modal.Dialog>
       </div>

@@ -43,10 +43,10 @@ const insertTrust = data => {
       ${data.user1approval},
       ${data.user2approval}
     )
-  `)
-}
+  `);
+};
 
-const getTrustRelation = id => (
+const getTrustRelation = id =>
   database.query(SQL`
     SELECT
     *
@@ -54,12 +54,19 @@ const getTrustRelation = id => (
     trust
     WHERE
     userrequesting = ${id} OR userrecieving = ${id};
-  `)
-)
+  `);
 
+const getTrustpeople = id =>
+  database.query(SQL`
+  select id,first_name from users WHERE id IN
+  (select userrequesting as temp2 from trust where userrecieving=${id} 
+  UNION
+  select userrecieving from trust where userrequesting=${id});
+  `);
 
 module.exports = {
   createTable,
   insertTrust,
-  getTrustRelation
+  getTrustRelation,
+  getTrustpeople
 };

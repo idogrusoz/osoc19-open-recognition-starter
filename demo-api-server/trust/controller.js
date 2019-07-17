@@ -18,4 +18,13 @@ controller.getTrust = (req, res) => {
   });
 };
 
+controller.getTrustpeople = (req, res) => {
+  const id = req.params.id;
+  const response = trusttable.getTrustpeople(id);
+  response.then(trusts => {
+    const data = trusts.rows;
+    res.send(data);
+  });
+};
+
 module.exports = controller;

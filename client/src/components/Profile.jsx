@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 
-
 class Profile extends Component {
   constructor() {
     super();
@@ -12,9 +11,9 @@ class Profile extends Component {
     };
   }
   async componentDidMount() {
-    const fullName = await fetch("http://localhost:3000/users/2").then(function(
-      response
-    ) {
+    const fullName = await fetch(
+      `http://localhost:3000/users/${localStorage.id}`
+    ).then(function(response) {
       console.log(response);
       return response.json();
     });
@@ -23,9 +22,8 @@ class Profile extends Component {
 
   render() {
     return this.state.name.map(x => (
-
       <div>
-        <div className="card" style={{ width: "270px" }}>
+        <div className="card">
           <img src={x.picture} alt="prof pic" />
           <div className="card-body">
             <h5 className="card-title">{x.first_name}</h5>
@@ -37,7 +35,6 @@ class Profile extends Component {
           </div>
         </div>
       </div>
-
     ));
   }
 }
