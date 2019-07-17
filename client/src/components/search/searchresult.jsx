@@ -6,6 +6,7 @@ class SearchResult extends Component {
   };
 
   render() {
+    console.log(this.props.users);
     return (
       <div className="sskillcontainer">
         <Header />
@@ -21,7 +22,7 @@ class SearchResult extends Component {
           <tbody>
             {this.state.users.map(item => (
               <tr>
-                <td>{item.first_name}</td>
+                <td>{}</td>
               </tr>
             ))}
           </tbody>

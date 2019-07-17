@@ -14,7 +14,7 @@ controller.getUser = (req, res) => {
   const response = usertable.getUserById(id);
   response.then(user => {
     const data = user.rows;
-    console.log(data);
+    console.log("in controller getuser");
     res.send(data);
   });
 };
@@ -28,7 +28,7 @@ controller.checkUser = (req, res) => {
     if (x.rows.length === 0) {
       res.status(403).send("Wrong login or password");
     } else {
-      res.status(200).send(x.rows)
+      res.status(200).send(x.rows);
     }
   });
 };

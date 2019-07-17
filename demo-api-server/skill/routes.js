@@ -3,8 +3,8 @@ const router = express.Router();
 
 const controller = require("./controller");
 
-router.get("/:id", controller.getSkills)
+router.get("/:id", controller.getSkills);
 
-router.post("/", controller.addSkill)
+router.post("/", controller.addSkill);
 
 module.exports = router;

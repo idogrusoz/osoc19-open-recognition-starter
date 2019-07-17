@@ -3,9 +3,11 @@ const router = express.Router();
 
 const controller = require("./controller");
 
-router.get("/:id", controller.getTrust)
+router.get("/people/:id", controller.getTrustpeople);
+router.get("/:id", controller.getTrust);
 
-router.post("/", controller.addTrust)
+
+router.post("/", controller.addTrust);
 
 router.get("/pending/:id", controller.getPendingTrust)
 
