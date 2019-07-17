@@ -73,7 +73,7 @@ const approveTrust = data => (
     UPDATE
     trust
     SET   dateapproving = ${data.dateapproving},
-          active = true
+          active = true,
           user2approval = true
     WHERE
     userrecieving = ${data.userrecieving} AND userrequesting = ${data.userrequesting}
