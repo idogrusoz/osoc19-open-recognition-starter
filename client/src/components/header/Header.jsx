@@ -1,54 +1,40 @@
-import React, { Component } from "react";
+
+import React, { Component } from 'react'
 import { FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-class Header extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: "test"
-    };
-  }
+import SignInOut from "./SignInOut"
+ 
+export default class Header extends Component {
 
-  ssearch = () => {
-    fetch(`http://localhost:3000/users/search/${this.state.search}`)
-      .then(response => response.json())
-      .then(data => {
-        this.props.history.push("/search");
-        console.log(data);
-        // this.setState({ skills: data });
-      });
-  };
 
-  loginhandle = e => {
-    this.setState({
-      search: e.target.value
-    });
-  };
 
-  render() {
+  render(){
     return (
       <div className="header">
         <div className="nav">
+          <div className="ilogo">
+            <span>Logo Here</span>
+
+          </div>
+
           <div className="menu">
             <ul className="navlinks">
-              <Link className="linksss" to="/login">
-                <li>Login</li>
+              <Link className="linksss" to="/signin">
+                <SignInOut />
               </Link>
+             
+              {localStorage.getItem("id") ? 
+              <div></div> :
               <Link className="linksss" to="/register">
-                <li>Register</li>
-              </Link>
+               <Button
+               variant="outline-primary">
+               Register
+               </Button>
+              </Link>  }
+              
             </ul>
-          </div>
-          <div className="sera">
-            <FormControl
-              type="text"
-              placeholder="Search"
-              className="mr-sm-2"
-              id="search"
-              onChange={this.loginhandle}
-            />
-            <Button onClick={this.ssearch}>Search</Button>
+
           </div>
         </div>
       </div>
@@ -56,4 +42,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+

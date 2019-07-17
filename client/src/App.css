@@ -3,8 +3,9 @@
   text-align: right;
   color: white;
   width: 100%;
-  margin: auto;
-  border: 2px solid red;
+  margin: 10px auto;
+
+  /* border: 2px solid red; */
 }
 .nav {
   display: flex;
@@ -12,13 +13,17 @@
   justify-content: space-between;
   align-items: center;
   min-height: 10vh;
+r
   background: #477477;
+
 }
-.navlinks {
+ul.navlinks {
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
+  padding:0;
+  margin: auto
 }
 .menu {
   width: 40%;
@@ -28,13 +33,28 @@
   margin: auto;
   display: flex;
   flex-direction: column;
-  border: 2px solid green;
+  /* border: 2px solid green; */
 }
 .sera {
   display: flex;
   flex-direction: row;
 }
-.sskillcontainer {
-  border: 2px solid black;
-  /* width: 20%; */
+
+.landing-container {
+  height: 80vh;
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+.background-image {
+  position: relative;
+  height: 80vh
+}
+
+.centered-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%)
 }

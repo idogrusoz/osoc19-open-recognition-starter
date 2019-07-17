@@ -13,7 +13,7 @@ const createTable = () => {
       first_name VARCHAR(30) NOT NULL,
       last_name VARCHAR(30)  NOT NULL,
       email VARCHAR(30)  NOT NULL,
-      picture VARCHAR(300) NOT NULL,
+      picture VARCHAR(300) ,
       profession VARCHAR(30) NOT NULL,
       employment VARCHAR(30) NOT NULL,
       city VARCHAR(30) NOT NULL,
@@ -63,8 +63,27 @@ const getUserById = id =>
   id = ${id}
   `);
 
+
+  const checkUser = (login, password) => (
+    database.query(SQL`
+
+    SELECT
+    *
+    FROM
+    users
+    WHERE
+
+    login = ${login} AND password = ${password};
+
+    `)
+  )
+
+
+
+
 const getUserByName = name =>
   database.query(SQL`
+
     SELECT
     *
     FROM
@@ -77,5 +96,7 @@ module.exports = {
   createTable,
   insert,
   getUserById,
-  getUserByName
+  getUserByName,
+   checkUser
 };
+

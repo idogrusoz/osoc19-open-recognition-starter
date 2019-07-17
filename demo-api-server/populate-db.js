@@ -222,21 +222,21 @@ const generateComments = (array) => {
 
 const populate = function () {
 
-    users.createTable()
+    // users.createTable()
 
-    generateUsers(usersArray);
+    // generateUsers(usersArray);
 
     trust.createTable()
 
     generateTrust(trustArray);
 
-    skill.createTable()
+    // skill.createTable()
     
-     generateSkills(skillsArray);
+    //  generateSkills(skillsArray);
 
-    comment.createTable()
+    // comment.createTable()
     
-    generateComments(commentsArray);
+    // generateComments(commentsArray);
 }
 
 
