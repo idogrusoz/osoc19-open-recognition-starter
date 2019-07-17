@@ -36,7 +36,7 @@ class Comments extends Component {
     console.log(this.state.comments);
     return (
       <div>
-        {localStorage.id === "2" ? <AddComment /> : null}
+        {localStorage.id === "1" ? <AddComment /> : null}
         {this.state.comments.map(x => (
           <div className="col">
             <div className="card mb-4 shadow-sm">

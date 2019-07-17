@@ -31,20 +31,12 @@ export default class Myroutes extends React.Component {
       <div>
         <Router>
           <Switch>
-<<<<<<< HEAD
             <Route exact path="/" component={Header} />
             <Route exact path="/profile" component={Layout} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/addcomment" component={AddComment} />
 
-=======
-            <Route
-              exact
-              path="/"
-              render={props => <Header getuser={this.getuser} />}
-            />
->>>>>>> trying to get the code on master
             <Route
               exact
               path="/search"
