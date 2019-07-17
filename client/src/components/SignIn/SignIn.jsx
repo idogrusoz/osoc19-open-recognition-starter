@@ -87,6 +87,13 @@ export default class SignIn extends Component {
 
           <Form.Group as={Row}>
             <Col sm={{ span: 10, offset: 2 }}>
+              <div>
+                {this.state.mistake ? (
+                  <p style={{ color: "red" }}>*Incorrect Login or Password</p>
+                ) : (
+                  <p />
+                )}
+              </div>
               <Button
                 variant="outline-primary"
                 type="submit"
@@ -96,13 +103,6 @@ export default class SignIn extends Component {
                 Sign in
               </Button>
             </Col>
-            <div>
-              {this.state.mistake ? (
-                <p style={{ color: "red" }}>*Incorrect Login or Password</p>
-              ) : (
-                <p />
-              )}
-            </div>
           </Form.Group>
         </Form>
       </div>

@@ -9,10 +9,10 @@ const createTable = () => {
     trust
     (
       id SERIAL PRIMARY KEY,
-      userrequesting INTEGER NOT NULL REFERENCES users(id),
-      userrecieving INTEGER NOT NULL REFERENCES users(id),
+      userrequesting INTEGER NOT NULL ,
+      userrecieving INTEGER NOT NULL ,
       daterequesting DATE  NOT NULL,
-      dateapproving DATE NOT NULL,
+      dateapproving DATE ,
       active BOOLEAN NOT NULL,
       datecancelling DATE ,
       user1approval BOOLEAN NOT NULL,
@@ -57,9 +57,33 @@ const getTrustRelation = id => (
   `)
 )
 
+const getPendingRealation = id => (
+  database.query(SQL`
+    SELECT
+    *
+    FROM
+    trust
+    WHERE
+    userrecieving = ${id} AND user2approval = false
+  `)
+)
+
+const approveTrust = data => (
+  database.query(SQL`
+    UPDATE
+    trust
+    SET   dateapproving = ${data.dateapproving},
+          active = true
+          user2approval = true
+    WHERE
+    userrecieving = ${data.userrecieving} AND userrequesting = ${data.userrequesting}
+  `)
+)
 
 module.exports = {
   createTable,
   insertTrust,
-  getTrustRelation
+  getTrustRelation,
+  getPendingRealation,
+  approveTrust
 };
