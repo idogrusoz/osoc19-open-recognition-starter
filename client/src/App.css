@@ -14,17 +14,15 @@
   justify-content: space-between;
   align-items: center;
   min-height: 10vh;
-r
-  background: #477477;
-
+  background: #91cfd3;
 }
 ul.navlinks {
   display: flex;
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  padding:0;
-  margin: auto
+  padding: 0;
+  margin: auto;
 }
 .menu {
   width: 40%;
@@ -50,13 +48,13 @@ ul.navlinks {
 
 .background-image {
   position: relative;
-  height: 80vh
+  height: 80vh;
 }
 
 .centered-text {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%)
+  transform: translate(-50%, -50%);
 }
 

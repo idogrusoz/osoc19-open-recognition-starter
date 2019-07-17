@@ -17,7 +17,6 @@ class Comments extends Component {
   };
 
   async componentDidMount() {
-
     const comment = await fetch("http://localhost:3000/comment/1")
       .then(response => response.json())
       .then(data =>
@@ -36,6 +35,7 @@ class Comments extends Component {
   }
 
   render() {
+
     console.log(this.state.comments);
     return (
       <div>

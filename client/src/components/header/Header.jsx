@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
@@ -31,6 +32,7 @@ export default class Header extends Component {
           <div className="ilogo">
             <span>Logo Here</span>
 
+
           <div className="sera">
             <FormControl
               type="text"
@@ -40,6 +42,7 @@ export default class Header extends Component {
               onChange={this.loginhandle}
             />
             <Button onClick={this.ssearch}>Search</Button>
+
           </div>
 
           <div className="menu">
@@ -47,6 +50,7 @@ export default class Header extends Component {
               <Link className="linksss" to="/signin">
                 <SignInOut />
               </Link>
+
              
               {localStorage.getItem("id") ? 
               <div></div> :
@@ -57,7 +61,7 @@ export default class Header extends Component {
                Register
                </Button>
               </Link>  }
-              
+     
             </ul>
           </div>
         </div>
