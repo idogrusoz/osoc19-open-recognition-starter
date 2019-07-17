@@ -1,6 +1,5 @@
 import React from "react";
 import "../index.css";
-import Header from "../components/header/Header";
 import Search from "../components/search/searchresult";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Register from "../components/register/Register";

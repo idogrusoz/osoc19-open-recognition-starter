@@ -63,7 +63,7 @@ export default class Register extends Component {
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control
                   name="last_name"
-                  type="file"
+                  type="string"
                   placeholder=""
                   onChange={this.handleChange}
                 />
