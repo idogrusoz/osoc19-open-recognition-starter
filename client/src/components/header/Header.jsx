@@ -23,15 +23,13 @@ export default class Header extends Component {
       });
   };
 
-
   render() {
-
     return (
       <div className="header">
         <div className="nav">
           <div className="ilogo">
             <span>Logo Here</span>
-
+          </div>
 
           <div className="sera">
             <FormControl
@@ -42,7 +40,6 @@ export default class Header extends Component {
               onChange={this.loginhandle}
             />
             <Button onClick={this.ssearch}>Search</Button>
-
           </div>
 
           <div className="menu">
@@ -51,21 +48,16 @@ export default class Header extends Component {
                 <SignInOut />
               </Link>
 
-             
-              {localStorage.getItem("id") ? 
-              <div></div> :
-              <Link className="linksss" to="/register">
-
-               <Button
-               variant="outline-primary">
-               Register
-               </Button>
-              </Link>  }
-     
+              {localStorage.getItem("id") ? (
+                <div />
+              ) : (
+                <Link className="linksss" to="/register">
+                  <Button variant="outline-primary">Register</Button>
+                </Link>
+              )}
             </ul>
           </div>
         </div>
-      </div>
       </div>
     );
   }
