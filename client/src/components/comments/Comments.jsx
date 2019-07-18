@@ -35,27 +35,26 @@ class Comments extends Component {
   }
 
   render() {
-
     console.log(this.state.comments);
     return (
       <div>
         {localStorage.id === "1" ? <AddComment /> : null}
         {this.state.comments.map(x => (
-          <div className="col">
-            <div className="card mb-4 shadow-sm">
-              <div className="card-body">
-                <p className="card-text">
-                  <strong>Comments:</strong>
-                  <p>{x.author}</p>
-                  <Moment format="YYYY/MM/DD">{x.creationdate}</Moment>
-                  <p> {x.message} </p>
-                </p>
-              </div>
-            </div>
+          <Card>
+            <Card.Body>
+              <Card.Text>
+                <p className="author">{x.author}</p>
+                <p> {x.message} </p>
 
-          </div>
+                <small>
+                  <b>
+                    <Moment format="YYYY/MM/DD">{x.creationdate}</Moment>
+                  </b>
+                </small>
+              </Card.Text>
+            </Card.Body>
+          </Card>
         ))}
-        }
       </div>
     );
   }

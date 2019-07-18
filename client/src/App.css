@@ -5,6 +5,7 @@
   width: 100%;
 
   margin: auto;
+  padding: 10px;
 
   /* border: 2px solid red; */
 }
@@ -59,3 +60,6 @@ ul.navlinks {
   transform: translate(-50%, -50%);
 }
 
+p.author {
+  font-family: "DM Serif Text", serif;
+}

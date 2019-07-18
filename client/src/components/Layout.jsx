@@ -9,7 +9,6 @@ import TrustNotification from "./trust-components/TrustNotification";
 import Header from "../components/header/Header";
 import Skills from "./Skill/skills";
 
-
 class Layout extends Component {
   render() {
     return (
@@ -22,7 +21,8 @@ class Layout extends Component {
 
               <Skills />
             </Col>
-            <Col xs={5}>
+            <Col sm={{ span: 7 }}>
+              <strong>Comments:</strong>
               <Comments />
             </Col>
             <Col>
