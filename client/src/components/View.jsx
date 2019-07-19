@@ -9,7 +9,15 @@ import TrustNotification from "./trust-components/TrustNotification";
 import Header from "../components/header/Header";
 import Skills from "./Skill/skills";
 
-class Layout extends Component {
+class View extends Component {
+  constructor(props) {
+    super(props);
+    const pat = props.location.pathname.split("/");
+    this.state = {
+      loc: pat[pat.length - 1]
+    };
+  }
+
   render() {
     return (
       <div>
@@ -17,16 +25,16 @@ class Layout extends Component {
         <Container>
           <Row>
             <Col>
-              <Profile />
+              <Profile id={this.state.loc} />
 
-              <Skills />
+              <Skills loc={this.state.loc} />
             </Col>
             <Col xs={5}>
-              <Comments id="2" />
+              <Comments loc={this.state.loc} />
             </Col>
             <Col>
               <TrustNotification />
-              <TrustedList />
+              <TrustedList loc={this.state.loc} />
             </Col>
           </Row>
         </Container>
@@ -35,4 +43,4 @@ class Layout extends Component {
   }
 }
 
-export default Layout;
+export default View;
