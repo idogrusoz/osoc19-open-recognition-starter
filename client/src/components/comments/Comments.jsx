@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
 import AddComment from "../AddComponent/addComponent";
+// import { Button } from "react-bootstrap";
+// import NewWindow from "react-new-window";
+
+// import { Form, Button } from "react-bootstrap";
 
 class Comments extends Component {
   constructor(props) {
@@ -18,6 +22,16 @@ class Comments extends Component {
       localStorage.getItem("id") !== this.props.loc
     );
   };
+
+  // make = () => (
+  //   <NewWindow>
+  //     <Form.Group controlId="exampleForm.ControlTextarea1">
+  //       <Form.Label>Add comment</Form.Label>
+  //       <Form.Control as="textarea" rows="3" />
+  //       <Button type="submit">Add comment</Button>
+  //     </Form.Group>
+  //   </NewWindow>
+  // );
 
   async componentDidMount() {
     if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
@@ -60,6 +74,7 @@ class Comments extends Component {
   render() {
     return (
       <div>
+        {/* <Button onClick={this.make}>Add Comment</Button> */}
         {this.verificationConnectionIdentity() ? <AddComment /> : null}
         {this.state.comments.map((x, i) => (
           <div className="col" key={i}>

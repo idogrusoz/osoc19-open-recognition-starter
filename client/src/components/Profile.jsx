@@ -11,8 +11,13 @@ class Profile extends Component {
     };
   }
   async componentDidMount() {
+
+    
     if (localStorage.getItem("id") && typeof this.props.id === "undefined") {
       console.log(typeof this.props.id === "undefined");
+
+
+
       const fullName = await fetch(
         `http://localhost:3000/users/${localStorage.getItem("id")}`
       ).then(function(response) {
