@@ -46,6 +46,9 @@ class Skills extends Component {
           <tbody>
             {this.state.skills.map((item, i) => (
               <tr key={i}>
+                <td>
+                  <button>+</button>
+                </td>
                 <td>{item.name}</td>
                 <td>{item.count}</td>
               </tr>
