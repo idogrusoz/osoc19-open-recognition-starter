@@ -8,7 +8,9 @@ class Comments extends Component {
     super();
     this.state = {
       comments: [{}],
-      person: "test"
+      person: "test",
+      path: window.location.pathname.split('/')
+
     };
   }
 
@@ -17,7 +19,8 @@ class Comments extends Component {
   };
 
   async componentDidMount() {
-    const comment = await fetch("http://localhost:3000/comment/1")
+    const exactPath = this.state.path[this.state.path.length -1]
+    const comment = await fetch(`http://localhost:3000/comment/${exactPath}`)
       .then(response => response.json())
       .then(data =>
         Promise.all(
@@ -54,7 +57,7 @@ class Comments extends Component {
             </div>
 
           </div>
-        ))}
+        ))
         }
       </div>
     );

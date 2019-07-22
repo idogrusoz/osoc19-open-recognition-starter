@@ -17,8 +17,11 @@ import { Link } from 'react-router-dom'
             localStorage.getItem("id") ? 
             <Link to='/'>
             <Button variant="outline-primary" onClick = {this.signOut}>Sign-out</Button> 
-            </Link>:
-            <Button variant="outline-primary" onClick = {this.signIn}>Sign-in</Button>            
+            </Link>
+            : 
+            <Link to='/signin'>
+            <Button variant="outline-primary" onClick = {this.signIn}>Sign-in</Button>  
+            </Link>          
         )
     }
 }
