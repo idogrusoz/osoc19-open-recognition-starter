@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import { FormControl, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
-import image from "./logo6.jpg";
-import Image from "react-bootstrap/Image";
+import logo from "./logo.svg";
 
 export default class Header extends Component {
   constructor(props) {
@@ -29,11 +28,9 @@ export default class Header extends Component {
     return (
       <div className="header">
         <div className="nav">
-          <div className="ilogo">
-            <span>
-              <Image src={image} roundedCircle width="70px" height="70px" />
-            </span>
-          </div>
+          <img src={logo} alt="Logo" width="70px" height="70px" />
+          {/* <Image src={image} width="150px" height="150px" /> */}
+
           <div className="sera">
             <FormControl
               type="text"
@@ -41,7 +38,13 @@ export default class Header extends Component {
               className="mr-sm-2"
               id="search"
             />
-            <Button onClick={this.ssearch}>Search</Button>
+            <Button
+              onClick={this.ssearch}
+              variant="outline-primary"
+              style={{ color: "#6d609e" }}
+            >
+              Search
+            </Button>
           </div>
 
           <div className="menu">

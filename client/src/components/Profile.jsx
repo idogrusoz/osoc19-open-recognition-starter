@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 
@@ -14,7 +13,6 @@ class Profile extends Component {
     const fullName = await fetch(
       `http://localhost:3000/users/${localStorage.getItem("id")}`
     ).then(function(response) {
-
       console.log(response);
       return response.json();
     });
@@ -23,7 +21,7 @@ class Profile extends Component {
 
   render() {
     return this.state.name.map(x => (
-      <Card border="danger">
+      <Card style={{ margin: "0px 0px 25px 0px" }}>
         <Card.Body>
           <Image
             src={x.picture}
@@ -38,7 +36,6 @@ class Profile extends Component {
           </Card.Text>
         </Card.Body>
       </Card>
-
     ));
   }
 }
