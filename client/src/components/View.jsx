@@ -18,16 +18,6 @@ class View extends Component {
       loc: pat[pat.length - 1],
       trustRelation: []
     };
-
-
-// class View extends Component {
-//     constructor(){
-//         super()
-//         this.state ={
-//             trustRelation: [],
-//             viewedProfile: ''
-//         }
-//     }
   }
   componentDidMount = async () => {
       const viewedProfile = this.state.loc
@@ -48,7 +38,6 @@ class View extends Component {
             console.log(this.state)
         })
     } 
-
   }
 
   render() {
@@ -58,7 +47,6 @@ class View extends Component {
         <Container>
           <Row>
             <Col>
-
               <Profile id={this.state.loc} trustRelation={this.state.trustRelation} />
 
               <Skills loc={this.state.loc} />
@@ -69,18 +57,6 @@ class View extends Component {
             <Col>
               <TrustNotification />
               <TrustedList loc={this.state.loc} />
-{/* =======
-              <Profile trustRelation={this.state.trustRelation}/>
-
-              <Skills />
-            </Col>
-            <Col xs={5}>
-              <Comments />
-            </Col>
-            <Col>
-              <TrustNotification />
-              <TrustedList />
->>>>>>> temporary */}
             </Col>
           </Row>
         </Container>

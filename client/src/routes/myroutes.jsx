@@ -38,8 +38,6 @@ export default class Myroutes extends React.Component {
             <Route exact path="/addcomment" component={AddComment} />
             <Route exact path="/profile/:id" component={View} />
             <Route exact path="/profile" component={Layout} />
-
-
             <Route
 
               exact

@@ -2,16 +2,20 @@ import React, { Component } from "react";
 import TrustButton from './trust-components/TrustButton'
 import Image from "react-bootstrap/Image";
 import { Card, Button } from "react-bootstrap";
+
 import TrustedLogo from './trust-components/TrustedLogo'
+
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: [{}]
+      name: [{}],
+      path: window.location.pathname.split('/')
     };
   }
   async componentDidMount() {
+
     
     if (localStorage.getItem("id") && typeof this.props.id === "undefined") {
       console.log(typeof this.props.id === "undefined");
@@ -32,12 +36,10 @@ class Profile extends Component {
       });
       this.setState({ name: fullName });
     }
-
   }
 
   renderTrustButton = (id) => {
     const trusted = this.props.trustRelation
-
     if(localStorage.getItem('id') !== null){
       console.log('id not null');
       if (localStorage.getItem('id') !== this.props.id){
@@ -56,33 +58,8 @@ class Profile extends Component {
     }
   }
 }
-    //   if(trusted === undefined){
-  //     console.log('takilip kaldi')
-  //     return /*<TrustButton id={id}/>*/null
-  //   }else {
-  //   if (localStorage.getItem('id') !== null) {
-  //     console.log('takilmadi')
-  //     if (trusted.active) {
-  //       return <h3>trusted</h3>
-  //     } else if (trusted.user1approval) {
-  //         return <Button>Pending<span class="spinner-border spinner-border-sm"></span></Button>
-  //     } else {
-  //       console.log('id:', id)
-  //       return <TrustButton id={id}/>
-  //     }
-  //   } else {
-  //     return null
-  //   }
-  // }
-  // }
-  // trustCheck = () => {
-  //   if (localStorage.getItem("id")  == x.id) {
-  //     return false
-  //    } if (localStorage.getItem("id") !== x.id) {
-  //     return true
-  //    } ? null : render()<TrustButton id={x.id}/> 
+ 
 
-  // }
 
   render() {
     return this.state.name.map((x, i) => (
