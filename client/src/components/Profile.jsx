@@ -1,17 +1,16 @@
-import React, { Component } from "react"
-import TrustButton from './trust-components/TrustButton'
+import React, { Component } from "react";
+import TrustButton from "./trust-components/TrustButton";
 import Image from "react-bootstrap/Image";
 import { Card, Button } from "react-bootstrap";
 
-import TrustedLogo from './trust-components/TrustedLogo'
-
+import TrustedLogo from "./trust-components/TrustedLogo";
 
 class Profile extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: [{}],
-      path: window.location.pathname.split('/')
+      path: window.location.pathname.split("/")
     };
   }
   async componentDidMount() {
@@ -30,30 +29,37 @@ class Profile extends Component {
       });
       this.setState({ name: fullName });
     }
+
+    // const rel = fetch(
+    //   `http://localhost:3000/trust/relationship/${
+    //     this.props.loc
+    //   }/${localStorage.getItem("id")}`
+    // );
   }
 
-  renderTrustButton = (id) => {
-    const trusted = this.props.trustRelation
-    if(localStorage.getItem('id') !== null){
-      console.log('id not null');
-      if (localStorage.getItem('id') !== this.props.id){
-        if(trusted !== undefined){
-          console.log(trusted)
-          if(trusted.active === true){
-            return <TrustedLogo />
-          } else if (trusted.active === false && trusted.user2approval === false){
-            return <Button variant='success'>Pending</Button>
+  renderTrustButton = id => {
+    const trusted = this.props.trustRelation;
+    if (localStorage.getItem("id") !== null) {
+      // console.log("id not null");
+      if (localStorage.getItem("id") !== this.props.id) {
+        if (trusted !== undefined) {
+          // console.log(trusted);
+          if (trusted.active === true) {
+            return <TrustedLogo />;
+          } else if (
+            trusted.active === false &&
+            trusted.user2approval === false
+          ) {
+            return <Button variant="success">Pending</Button>;
           }
-        }else{
-          return <TrustButton id={id}/>
+        } else {
+          return <TrustButton id={id} />;
         }
-    }else{
-      return null
+      } else {
+        return null;
+      }
     }
-  }
-}
- 
-
+  };
 
   render() {
     return this.state.name.map((x, i) => (
@@ -71,7 +77,9 @@ class Profile extends Component {
             {x.last_name} <br />
             {x.email} <br />
           </Card.Text>
-          {parseInt(localStorage.getItem("id")) === x.id  ? null : this.renderTrustButton(this.props.id)} 
+          {parseInt(localStorage.getItem("id")) === x.id
+            ? null
+            : this.renderTrustButton(this.props.id)}
         </Card.Body>
       </Card>
     ));

@@ -29,11 +29,21 @@ controller.approveTrust = (req, res) => {
   res.send(data);
 };
 
+controller.getRelationship = (req, res) => {
+  const id1 = req.params.id1;
+  const id2 = req.params.id2;
+  const response = trusttable.relationExist(id1, id2);
+  response.then(skills => {
+    const data = skills.rows;
+    res.send(data);
+  });
+};
+
 controller.rejectTrust = (req, res) => {
   const data = req.body;
   trusttable.rejectTrust(data);
-  res.send(data)
-}
+  res.send(data);
+};
 
 controller.getTrust = (req, res) => {
   const id = req.params.id;
@@ -47,14 +57,15 @@ controller.getTrust = (req, res) => {
 };
 
 controller.getMutualTrust = (req, res) => {
-  const data = req.body
-  const response = trusttable.getMutualTrust(data)
-  response.then(trusted => {
-    const data = trusted.rows;
-    res.send(data);
-  })
-  .catch(error => console.log("Error:", error));
-}
+  const data = req.body;
+  const response = trusttable.getMutualTrust(data);
+  response
+    .then(trusted => {
+      const data = trusted.rows;
+      res.send(data);
+    })
+    .catch(error => console.log("Error:", error));
+};
 
 controller.getTrustpeople = (req, res) => {
   const id = req.params.id;

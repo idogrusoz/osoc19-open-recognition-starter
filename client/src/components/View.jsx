@@ -30,7 +30,7 @@ class View extends Component {
         .then(response => response.json())
         .then(data => {
           data.forEach(item => {
-            console.log("in filter");
+            // console.log("in filter");
             if (
               item.userrequesting === viewingUser ||
               item.userreceiving === viewingUser
@@ -39,7 +39,7 @@ class View extends Component {
             }
           });
           this.setState({ trustRelation: trustStatus[0] });
-          console.log(this.state.trustRelation);
+          // console.log(this.state.trustRelation);
         });
     }
   };
