@@ -56,16 +56,16 @@ const getTrustRelation = id =>
     userrequesting = ${id} OR userrecieving = ${id};
   `);
 
-const relationExiste = (id1, id2) =>
+const relationExist = (id1, id2) =>
   database.query(SQL`
   SELECT
     *
     FROM
     trust
     WHERE
-    (userrequesting = 1 and userrecieving = 2 and active=true) 
+    (userrequesting = ${id1} and userrecieving = ${id2} ) 
 	OR 
-	(userrecieving = 1 and userrequesting=2 and active=true);
+	(userrecieving = ${id1} and userrequesting=${id2} );
 `);
 
 const getTrustpeople = id =>
@@ -118,5 +118,5 @@ module.exports = {
   getPendingRealation,
   approveTrust,
   rejectTrust,
-  relationExiste
+  relationExist
 };

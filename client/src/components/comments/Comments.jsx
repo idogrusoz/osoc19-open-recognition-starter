@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-import AddComment from "../AddComponent/addComponent";
+// import AddComment from "../AddComponent/addComponent";
 // import { Button } from "react-bootstrap";
 // import NewWindow from "react-new-window";
 import Popup from "reactjs-popup";
