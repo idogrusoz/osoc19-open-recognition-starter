@@ -38,7 +38,7 @@ export default class SignIn extends Component {
           res.json().then(data => {
             const user = data;
             localStorage.setItem("id", `${user[0].id}`);
-            history.push("/profile");
+            history.push(`/profile/${user[0].id}`);
           });
         } else {
           this.setState({ mistake: true });

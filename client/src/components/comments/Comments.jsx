@@ -11,7 +11,9 @@ class Comments extends Component {
     super(props);
     this.state = {
       comments: [{}],
-      person: "test"
+      person: "test",
+      path: window.location.pathname.split('/')
+
     };
   }
 
@@ -34,6 +36,7 @@ class Comments extends Component {
   // );
 
   async componentDidMount() {
+
     if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
       const comment = await fetch(
         `http://localhost:3000/comment/${localStorage.getItem("id")}`
@@ -89,7 +92,9 @@ class Comments extends Component {
               </div>
             </div>
           </div>
+
         ))}
+
       </div>
     );
   }

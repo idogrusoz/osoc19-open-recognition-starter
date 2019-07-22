@@ -21,7 +21,9 @@ export default class TrustButton extends Component {
     sendTrustRequest = () => {
         const reqDate = new Date();
         const user1 = parseInt(localStorage.getItem('id'))
+        console.log(this.props)
         const user2 = this.props.id
+        console.log(user2)
         this.setState( 
             {
                 userrequesting: user1,

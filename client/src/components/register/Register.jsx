@@ -8,7 +8,8 @@ export default class Register extends Component {
     this.state = {
       first_name: "",
       last_name: "",
-      login: ""
+      login: "",
+      password:""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,6 +27,7 @@ export default class Register extends Component {
 
   handleSubmit = () => {
     const data = this.state;
+    const { history } = this.props;
     console.log(data);
     fetch("http://localhost:3000/users/", {
       method: "POST",
@@ -34,7 +36,10 @@ export default class Register extends Component {
         "Content-Type": "application/json"
       }
     })
-      .then(res => console.log("A new user added"))
+      .then(res => {
+        console.log("A new user added")
+        history.push("/signin");
+      })
       .catch(error => console.log("Error:", error));
   };
 
