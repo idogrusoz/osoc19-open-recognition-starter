@@ -74,26 +74,32 @@ const getPendingRealation = id =>
     userrecieving = ${id} AND user2approval = false
   `);
 
-const approveTrust = data =>
+const approveTrust = data => {
   database.query(SQL`
     UPDATE
-    trust
+    public.trust
     SET   dateapproving = ${data.dateapproving},
           active = true,
           user2approval = true
     WHERE
-    userrecieving = ${data.userrecieving} AND userrequesting = ${
-    data.userrequesting
-  }
-  `);
+    userrecieving = ${data.userrecieving} AND userrequesting = ${data.userrequesting}
+  `)
+}
+
+const rejectTrust = data => {
+  database.query(SQL`
+    DELETE FROM trust
+    WHERE
+    userrecieving = ${data.userrecieving} AND userrequesting = ${data.userrequesting}
+  `)
+}
 
 module.exports = {
   createTable,
   insertTrust,
   getTrustRelation,
-
   getTrustpeople,
-
   getPendingRealation,
-  approveTrust
+  approveTrust,
+  rejectTrust
 };

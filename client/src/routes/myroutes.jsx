@@ -8,7 +8,6 @@ import Layout from "../components/Layout";
 import AddComment from "../components/AddComponent/addComponent";
 import Landing from "../components/landing/Landing";
 import View from "../components/View";
-
 export default class Myroutes extends React.Component {
   constructor() {
     super();
@@ -39,8 +38,8 @@ export default class Myroutes extends React.Component {
             <Route exact path="/addcomment" component={AddComment} />
             <Route exact path="/profile/:id" component={View} />
             <Route exact path="/profile" component={Layout} />
-
             <Route
+
               exact
               path="/search"
               render={props => <Search users={this.state.users} />}

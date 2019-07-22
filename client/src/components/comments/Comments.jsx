@@ -11,7 +11,9 @@ class Comments extends Component {
     super(props);
     this.state = {
       comments: [{}],
-      person: "test"
+      person: "test",
+      path: window.location.pathname.split('/')
+
     };
   }
 
@@ -90,6 +92,7 @@ class Comments extends Component {
             </div>
           </div>
         ))}
+
       </div>
     );
   }

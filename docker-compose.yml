@@ -4,13 +4,13 @@ services:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=idogrusoz@gmail.com
-      - PGADMIN_DEFAULT_PASSWORD=pgadmin
+      - PGADMIN_DEFAULT_PASSWORD=postgres
     ports:
       - 8000:80
   postgresql:
     image: postgres:11
     ports:
-      - 5432:5432
+      - 4321:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres

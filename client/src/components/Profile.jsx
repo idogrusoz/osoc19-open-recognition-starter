@@ -1,13 +1,17 @@
-import React, { Component } from "react";
-import TrustButton from "./trust-components/TrustButton";
+import React, { Component } from "react"
+import TrustButton from './trust-components/TrustButton'
 import Image from "react-bootstrap/Image";
-import Card from "react-bootstrap/Card";
+import { Card, Button } from "react-bootstrap";
+
+import TrustedLogo from './trust-components/TrustedLogo'
+
 
 class Profile extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      name: [{}]
+      name: [{}],
+      path: window.location.pathname.split('/')
     };
   }
   async componentDidMount() {
@@ -28,6 +32,29 @@ class Profile extends Component {
     }
   }
 
+  renderTrustButton = (id) => {
+    const trusted = this.props.trustRelation
+    if(localStorage.getItem('id') !== null){
+      console.log('id not null');
+      if (localStorage.getItem('id') !== this.props.id){
+        if(trusted !== null){
+          console.log(trusted)
+          if(trusted.active === true){
+            return <TrustedLogo />
+          } else if (trusted.active === false && trusted.user2approval === false){
+            return <Button variant='success'>Pending</Button>
+          }
+        }else{
+          return <TrustButton id={id}/>
+        }
+    }else{
+      return null
+    }
+  }
+}
+ 
+
+
   render() {
     return this.state.name.map((x, i) => (
       <Card key={i} border="danger">
@@ -44,7 +71,7 @@ class Profile extends Component {
             {x.last_name} <br />
             {x.email} <br />
           </Card.Text>
-          <TrustButton id={x.id} />
+          {parseInt(localStorage.getItem("id")) === x.id  ? null : this.renderTrustButton(this.props.id)} 
         </Card.Body>
       </Card>
     ));
