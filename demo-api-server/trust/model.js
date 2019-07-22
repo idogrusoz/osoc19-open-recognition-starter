@@ -56,7 +56,6 @@ const getTrustRelation = id =>
     userrequesting = ${id} OR userrecieving = ${id};
   `);
 
-
 const getTrustpeople = id =>
   database.query(SQL`
   select id,first_name from users WHERE id IN
@@ -65,7 +64,7 @@ const getTrustpeople = id =>
   select userrecieving from trust where userrequesting=${id});
   `);
 
-const getPendingRealation = id => (
+const getPendingRealation = id =>
   database.query(SQL`
     SELECT
     *
@@ -73,10 +72,9 @@ const getPendingRealation = id => (
     trust
     WHERE
     userrecieving = ${id} AND user2approval = false
-  `)
-)
+  `);
 
-const approveTrust = data => (
+const approveTrust = data =>
   database.query(SQL`
     UPDATE
     trust
@@ -84,10 +82,10 @@ const approveTrust = data => (
           active = true,
           user2approval = true
     WHERE
-    userrecieving = ${data.userrecieving} AND userrequesting = ${data.userrequesting}
-  `)
-)
-
+    userrecieving = ${data.userrecieving} AND userrequesting = ${
+    data.userrequesting
+  }
+  `);
 
 module.exports = {
   createTable,
@@ -99,4 +97,3 @@ module.exports = {
   getPendingRealation,
   approveTrust
 };
-

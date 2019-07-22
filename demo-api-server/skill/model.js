@@ -42,6 +42,15 @@ const getSkillsOfOneUser = id =>
     WHERE
     reciever = ${id};
   `);
+
+const getNumberOfPros = (id, skill) =>
+  database.query(SQL`
+  select COUNT (*) from (select distinct author from skill where reciever=${id} and name =${skill})AS yd
+  inner join
+  (select distinct reciever from skill where name =${skill}) y2
+  on yd.author=y2.reciever;
+  `);
+
 const getSkillsGrouped = id => {
   return database.query(SQL`
     SELECT name,count(*)
@@ -54,5 +63,6 @@ module.exports = {
   createTable,
   insertSkill,
   getSkillsOfOneUser,
+  getNumberOfPros,
   getSkillsGrouped
 };
