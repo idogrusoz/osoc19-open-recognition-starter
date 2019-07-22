@@ -29,7 +29,6 @@ export default class Header extends Component {
       <div className="header">
         <div className="nav">
           <img src={logo} alt="Logo" width="70px" height="70px" />
-          {/* <Image src={image} width="150px" height="150px" /> */}
 
           <div className="sera">
             <FormControl
