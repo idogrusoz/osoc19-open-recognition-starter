@@ -9,11 +9,10 @@ router.get("/:id", controller.getTrust);
 
 router.post("/", controller.addTrust);
 
-router.get("/pending/:id", controller.getPendingTrust)
-
-router.put("/approve/:id", controller.approveTrust )
+router.get("/pending/:id", controller.getPendingTrust);
 
 router.delete("/reject/:id", controller.rejectTrust)
 
+router.put("/approve/:id", controller.approveTrust);
 
 module.exports = router;

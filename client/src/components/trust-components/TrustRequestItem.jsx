@@ -17,8 +17,8 @@ function TrustRequestItem(props) {
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     })
-    .then(res => console.log("Trust request is approved", res))
-    .catch(err => console.log("Error:", err))
+      .then(res => console.log("Trust request is approved", res))
+      .catch(err => console.log("Error:", err));
   };
 
   const handleReject = async () => {
@@ -32,25 +32,40 @@ function TrustRequestItem(props) {
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     })
-    .then(res => {console.log("Trust request is rejected", res) })
-    .catch(err => console.log("Error:", err));
+      .then(res => {
+        console.log("Trust request is rejected", res);
+      })
+      .catch(err => console.log("Error:", err));
   };
 
   return (
     <Card>
       <Card.Body>
-        {console.log(props.item)}
         <Card.Text>
           {props.item.first_name} {props.item.last_name} trusts you
         </Card.Text>
         <Row>
           <Col>
-            <Button variant="primary" size="sm" onClick={() => {handleAccept(); props.handleUpdate(props.item.id)}}>
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => {
+                handleAccept();
+                props.handleUpdate(props.item.id);
+              }}
+            >
               Accept
             </Button>
           </Col>
           <Col>
-            <Button variant="primary" size="sm" onClick={() => {handleReject(); props.handleUpdate(props.item.id)}}>
+            <Button
+              variant="primary"
+              size="sm"
+              onClick={() => {
+                handleReject();
+                props.handleUpdate(props.item.id);
+              }}
+            >
               Reject
             </Button>
           </Col>

@@ -64,7 +64,7 @@ const getTrustpeople = id =>
   select userrecieving from trust where userrequesting=${id});
   `);
 
-const getPendingRealation = id => (
+const getPendingRealation = id =>
   database.query(SQL`
     SELECT
     *
@@ -72,8 +72,7 @@ const getPendingRealation = id => (
     trust
     WHERE
     userrecieving = ${id} AND user2approval = false
-  `)
-)
+  `);
 
 const approveTrust = data => {
   database.query(SQL`
@@ -95,7 +94,6 @@ const rejectTrust = data => {
   `)
 }
 
-
 module.exports = {
   createTable,
   insertTrust,
@@ -105,4 +103,3 @@ module.exports = {
   approveTrust,
   rejectTrust
 };
-
