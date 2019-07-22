@@ -16,6 +16,11 @@ class Skills extends Component {
     return names;
   };
 
+  verifications = () =>
+    localStorage.getItem("id") && localStorage.getItem("id") !== this.props.loc
+      ? true
+      : false;
+
   givetrust = trust => {
     const data = {
       name: trust,
@@ -52,12 +57,14 @@ class Skills extends Component {
         .then(response => response.json())
         .then(data => {
           this.setState({ skills: data });
+          let user;
+          if (localStorage.getItem("id")) {
+            user = localStorage.getItem("id");
+          } else {
+            user = this.props.loc;
+          }
           data.map(item =>
-            fetch(
-              `http://localhost:3000/skill/pros/${localStorage.getItem("id")}/${
-                item.name
-              }`
-            )
+            fetch(`http://localhost:3000/skill/pros/${user}/${item.name}`)
               .then(response => response.json())
               .then(data => {
                 let pro = this.state.pros;
@@ -80,7 +87,7 @@ class Skills extends Component {
               <th scope="col">skillname</th>
               <th scope="col">given</th>
               <th scope="col">Pro</th>
-              <th scope="col">give</th>
+              {this.verifications() ? <th scope="col">give</th> : null}
             </tr>
           </thead>
           <tbody>
@@ -89,11 +96,13 @@ class Skills extends Component {
                 <td>{item.name}</td>
                 <td>{item.count}</td>
                 <td>{this.state.pros[i]}</td>
-                <td>
-                  <button onClick={() => this.givetrust(item.name)}>
-                    I trust you
-                  </button>
-                </td>
+                {this.verifications() ? (
+                  <td>
+                    <button onClick={() => this.givetrust(item.name)}>
+                      I trust you
+                    </button>
+                  </td>
+                ) : null}
               </tr>
             ))}
           </tbody>

@@ -3,7 +3,7 @@ import Moment from "react-moment";
 import AddComment from "../AddComponent/addComponent";
 // import { Button } from "react-bootstrap";
 // import NewWindow from "react-new-window";
-
+import Popup from "reactjs-popup";
 // import { Form, Button } from "react-bootstrap";
 
 class Comments extends Component {
@@ -12,8 +12,7 @@ class Comments extends Component {
     this.state = {
       comments: [{}],
       person: "test",
-      path: window.location.pathname.split('/')
-
+      path: window.location.pathname.split("/")
     };
   }
 
@@ -77,7 +76,11 @@ class Comments extends Component {
     return (
       <div>
         {/* <Button onClick={this.make}>Add Comment</Button> */}
-        {this.verificationConnectionIdentity() ? <AddComment /> : null}
+        {this.verificationConnectionIdentity() ? (
+          <Popup trigger={<button> Trigger</button>} position="right center">
+            <div>Popup content here !!</div>
+          </Popup>
+        ) : null}
         {this.state.comments.map((x, i) => (
           <div className="col" key={i}>
             <div className="card mb-4 shadow-sm">
@@ -92,7 +95,6 @@ class Comments extends Component {
             </div>
           </div>
         ))}
-
       </div>
     );
   }

@@ -9,7 +9,6 @@ import TrustNotification from "./trust-components/TrustNotification";
 import Header from "../components/header/Header";
 import Skills from "./Skill/skills";
 
-
 class View extends Component {
   constructor(props) {
     super(props);
@@ -20,25 +19,30 @@ class View extends Component {
     };
   }
   componentDidMount = async () => {
-      const viewedProfile = this.state.loc
-      if((localStorage.getItem('id') !== null) & (viewedProfile !== localStorage.getItem('id'))){
-      const viewingUser = parseInt(localStorage.getItem('id'))
-      let trustStatus =[]
+    const viewedProfile = this.state.loc;
+    if (
+      (localStorage.getItem("id") !== null) &
+      (viewedProfile !== localStorage.getItem("id"))
+    ) {
+      const viewingUser = parseInt(localStorage.getItem("id"));
+      let trustStatus = [];
       await fetch(`http://localhost:3000/trust/${viewedProfile}`)
         .then(response => response.json())
         .then(data => {
-            data.forEach(item => {
-                console.log("in filter")
-                if((item.userrequesting === viewingUser) || (item.userreceiving === viewingUser)){
-                    trustStatus.push(item)
-                } 
-            })
-            // Delete [0]
-            this.setState({ trustRelation : trustStatus[0] })
-            console.log(this.state)
-        })
-    } 
-  }
+          data.forEach(item => {
+            console.log("in filter");
+            if (
+              item.userrequesting === viewingUser ||
+              item.userreceiving === viewingUser
+            ) {
+              trustStatus.push(item);
+            }
+          });
+          this.setState({ trustRelation: trustStatus[0] });
+          console.log(this.state.trustRelation);
+        });
+    }
+  };
 
   render() {
     return (
@@ -47,7 +51,10 @@ class View extends Component {
         <Container>
           <Row>
             <Col>
-              <Profile id={this.state.loc} trustRelation={this.state.trustRelation} />
+              <Profile
+                id={this.state.loc}
+                trustRelation={this.state.trustRelation}
+              />
 
               <Skills loc={this.state.loc} />
             </Col>
