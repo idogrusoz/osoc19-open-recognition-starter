@@ -3,23 +3,33 @@ import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 
 class Skills extends Component {
-  state = {
-    skills: [{}]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      skills: [{}]
+    };
+  }
   getnames = list => {
     let names = [];
-    list.map(item => {
-      names.push(item.name);
-    });
+    list.map(item => names.push(item.name));
     return names;
   };
 
   componentDidMount() {
-    fetch(`http://localhost:3000/skill/${localStorage.getItem("id")}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ skills: data });
-      });
+    if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
+      console.log("ici");
+      fetch(`http://localhost:3000/skill/${localStorage.getItem("id")}`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ skills: data });
+        });
+    } else {
+      fetch(`http://localhost:3000/skill/${this.props.loc}`)
+        .then(response => response.json())
+        .then(data => {
+          this.setState({ skills: data });
+        });
+    }
   }
 
   render() {
@@ -34,8 +44,8 @@ class Skills extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.skills.map(item => (
-              <tr>
+            {this.state.skills.map((item, i) => (
+              <tr key={i}>
                 <td>{item.name}</td>
                 <td>{item.count}</td>
               </tr>

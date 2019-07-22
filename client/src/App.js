@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MyRoutes from "./routes/myroutes";
-import Layout from "./components/Layout";
 import "./App.css";
 
 class App extends Component {

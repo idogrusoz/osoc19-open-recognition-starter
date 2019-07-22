@@ -1,74 +1,40 @@
 import React, { Component } from "react";
-import Card from "react-bootstrap/Card";
-import Media from "react-bootstrap/Media";
+import Modal from "react-bootstrap/Modal";
 
 export default class TrustedList extends Component {
-  state = {
-    trustedpeople: [{}]
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      trustedpeople: [{}]
+    };
+  }
   componentDidMount = () => {
-    fetch(`http://localhost:3000/trust/people/${localStorage.id}`)
-      .then(res => res.json())
-      .then(data => this.setState({ trustedpeople: data }));
+    if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
+      fetch(`http://localhost:3000/trust/people/${localStorage.id}`)
+        .then(res => res.json())
+        .then(data => this.setState({ trustedpeople: data }));
+    } else {
+      fetch(`http://localhost:3000/trust/people/${this.props.loc}`)
+        .then(res => res.json())
+        .then(data => this.setState({ trustedpeople: data }));
+    }
   };
 
   render() {
     return (
-      <Card border="danger">
-        <Card.Body>
-          <Card.Title>Trusted List:</Card.Title>
-          <Card.Text>
-            <ul className="list-unstyled">
-              <Media as="li">
-                <img
-                  width={55}
-                  height={55}
-                  className="mr-1"
-                  src="https://picsum.photos/id/633/100/101"
-                  alt="Generic placeholder"
-                />
-                <Media.Body>
-                  <h5>List-based media object</h5>
-                  <p>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                  </p>
-                </Media.Body>
-              </Media>
-              <hr />
-              <Media as="li">
-                <img
-                  width={64}
-                  height={64}
-                  className="mr-3"
-                  src="https://picsum.photos/id/638/100/101"
-                  alt="Generic placeholder"
-                />
-                <Media.Body>
-                  <h5>List-based media object</h5>
-                  <p>
-                    Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-                  </p>
-                </Media.Body>
-              </Media>
-              <hr />
-              <Media as="li">
-                <img
-                  width={64}
-                  height={64}
-                  className="mr-3"
-                  src="https://picsum.photos/id/623/100/101"
-                  alt="Generic placeholder"
-                />
-                <Media.Body>
-                  <h5>List-based media object</h5>
-                  <p>Donec lacinia congue felis in faucibus.</p>
-                </Media.Body>
-              </Media>
-            </ul>
-          </Card.Text>
-        </Card.Body>
-      </Card>
+      <div>
+        <Modal.Dialog bg="primary">
+          <Modal.Header closeButton>
+            <Modal.Title>Trusted List</Modal.Title>
+          </Modal.Header>
 
+          <Modal.Body>
+            {this.state.trustedpeople.map((x, i) => (
+              <p key={i}>{x.first_name}</p>
+            ))}
+          </Modal.Body>
+        </Modal.Dialog>
+      </div>
     );
   }
 }

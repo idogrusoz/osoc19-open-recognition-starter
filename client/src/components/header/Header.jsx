@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormControl, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
 
@@ -29,8 +29,8 @@ export default class Header extends Component {
         <div className="nav">
           <div className="ilogo">
             <span>Logo Here</span>
-            </div>
-            <div className="sera">
+          </div>
+          {/* <div className="sera">
               <FormControl
                 type="text"
                 placeholder="Search"
@@ -38,26 +38,25 @@ export default class Header extends Component {
                 id="search"
               />
               <Button onClick={this.ssearch}>Search</Button>
-            </div>
+            </div> */}
 
-            <div className="menu">
-              <ul className="navlinks">
-                <Link className="linksss" to="/signin">
-                  <SignInOut />
+          <div className="menu">
+            <ul className="navlinks">
+              <Link className="linksss" to="/signin">
+                <SignInOut />
+              </Link>
+
+              {localStorage.getItem("id") ? (
+                <div />
+              ) : (
+                <Link className="linksss" to="/register">
+                  <Button variant="outline-primary">Register</Button>
                 </Link>
-
-                {localStorage.getItem("id") ? (
-                  <div />
-                ) : (
-                  <Link className="linksss" to="/register">
-                    <Button variant="outline-primary">Register</Button>
-                  </Link>
-                )}
-              </ul>
-            </div>
+              )}
+            </ul>
           </div>
         </div>
-      
+      </div>
     );
   }
 }

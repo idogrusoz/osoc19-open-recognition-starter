@@ -11,19 +11,32 @@ class Profile extends Component {
     };
   }
   async componentDidMount() {
-    const fullName = await fetch(
-      `http://localhost:3000/users/${localStorage.getItem("id")}`
-    ).then(function(response) {
 
-      console.log(response);
-      return response.json();
-    });
-    this.setState({ name: fullName });
+    
+    if (localStorage.getItem("id") && typeof this.props.id === "undefined") {
+      console.log(typeof this.props.id === "undefined");
+
+
+
+      const fullName = await fetch(
+        `http://localhost:3000/users/${localStorage.getItem("id")}`
+      ).then(function(response) {
+        return response.json();
+      });
+      this.setState({ name: fullName });
+    } else {
+      const fullName = await fetch(
+        `http://localhost:3000/users/${this.props.id}`
+      ).then(function(response) {
+        return response.json();
+      });
+      this.setState({ name: fullName });
+    }
   }
 
   render() {
-    return this.state.name.map(x => (
-      <Card border="danger">
+    return this.state.name.map((x, i) => (
+      <Card key={i} border="danger">
         <Card.Body>
           <Image
             src={x.picture}
@@ -33,12 +46,12 @@ class Profile extends Component {
             height="150"
           />
           <Card.Text>
-            <p>{x.last_name} </p>
-            <p>{x.email} </p>
+            <br />
+            {x.last_name} <br />
+            {x.email} <br />
           </Card.Text>
         </Card.Body>
       </Card>
-
     ));
   }
 }
