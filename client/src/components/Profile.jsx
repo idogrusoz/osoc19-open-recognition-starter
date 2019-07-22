@@ -37,7 +37,7 @@ class Profile extends Component {
     if(localStorage.getItem('id') !== null){
       console.log('id not null');
       if (localStorage.getItem('id') !== this.props.id){
-        if(trusted !== null){
+        if(trusted !== undefined){
           console.log(trusted)
           if(trusted.active === true){
             return <TrustedLogo />
