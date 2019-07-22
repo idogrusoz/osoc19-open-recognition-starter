@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import TrustButton from "./trust-components/TrustButton";
 import Image from "react-bootstrap/Image";
 import Card from "react-bootstrap/Card";
 
@@ -11,13 +11,7 @@ class Profile extends Component {
     };
   }
   async componentDidMount() {
-
-    
     if (localStorage.getItem("id") && typeof this.props.id === "undefined") {
-      console.log(typeof this.props.id === "undefined");
-
-
-
       const fullName = await fetch(
         `http://localhost:3000/users/${localStorage.getItem("id")}`
       ).then(function(response) {
@@ -50,6 +44,7 @@ class Profile extends Component {
             {x.last_name} <br />
             {x.email} <br />
           </Card.Text>
+          <TrustButton id={x.id} />
         </Card.Body>
       </Card>
     ));

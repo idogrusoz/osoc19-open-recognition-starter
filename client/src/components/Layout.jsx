@@ -18,11 +18,10 @@ class Layout extends Component {
           <Row>
             <Col>
               <Profile />
-
-              <Skills />
+              <Skills loc={localStorage.getItem("id")} />
             </Col>
             <Col xs={5}>
-              <Comments id="2" />
+              <Comments />
             </Col>
             <Col>
               <TrustNotification />
