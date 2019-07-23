@@ -1,20 +1,17 @@
 .header {
-  height: 8%;
   text-align: right;
-  color: white;
   width: 100%;
-
-  margin: auto;
-
-  /* border: 2px solid red; */
+  margin: 0px;
+  padding: 10px;
+  border: 0.5px solid red;
 }
 .nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  min-height: 10vh;
-  background: #91cfd3;
+  /* min-height: 5vh; */
+  background: #d6eaf9;
 }
 
 ul.navlinks {
@@ -59,3 +56,6 @@ ul.navlinks {
   transform: translate(-50%, -50%);
 }
 
+p.author {
+  font-family: "DM Serif Text", serif;
+}

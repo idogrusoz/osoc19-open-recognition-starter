@@ -12,7 +12,7 @@ import Skills from "./Skill/skills";
 class Layout extends Component {
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: "#D6EAF9" }}>
         <Header />
         <Container>
           <Row>
@@ -20,7 +20,8 @@ class Layout extends Component {
               <Profile />
               <Skills loc={localStorage.getItem("id")} />
             </Col>
-            <Col xs={5}>
+            <Col sm={{ span: 7 }}>
+              <strong>Comments:</strong>
               <Comments />
             </Col>
             <Col>

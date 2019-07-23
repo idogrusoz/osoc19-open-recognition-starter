@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
+import logo from "./logo.svg";
 
 export default class Header extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class Header extends Component {
       <div className="header">
         <div className="nav">
           <div className="ilogo">
-            <span>Logo Here</span>
+            <img src={logo} alt="Logo" width="70px" height="70px" />
           </div>
           {/* <div className="sera">
               <FormControl
