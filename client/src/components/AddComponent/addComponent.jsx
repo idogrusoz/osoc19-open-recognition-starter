@@ -37,9 +37,27 @@ function Example(props) {
     setLgShow(false);
   };
 
+  const renderButton = () => {
+    const trusted = props.trust;
+    if (trusted.length < 1) {
+      return null;
+    } else {
+      if (trusted[0].active) {
+        return <Button onClick={() => setLgShow(true)}>Add comment</Button>;
+      } else {
+        return null;
+      }
+    }
+  };
+
   return (
     <ButtonToolbar>
-      <Button onClick={() => setLgShow(true)}>Add comment</Button>
+      {props.user !==
+      parseInt(
+        localStorage.getItem("id") && localStorage.getItem("id") !== undefined
+      )
+        ? renderButton()
+        : null}
 
       <Modal
         size="lg"
