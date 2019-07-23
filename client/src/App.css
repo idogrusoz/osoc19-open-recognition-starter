@@ -6,6 +6,8 @@ body {
   width: 100%;
   margin: 0px;
   padding: 0px;
+  /* background: #caf3f0; */
+  border: solid 1px #d4bad8;
 }
 .nav {
   display: flex;

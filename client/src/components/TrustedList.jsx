@@ -22,7 +22,9 @@ export default class TrustedList extends Component {
 
   render() {
     return (
-      <Card border="danger">
+      <Card
+        style={{ margin: "27px 0px 0px 0px", border: " solid 1px #d4bad8" }}
+      >
         <Card.Body>
           <Card.Title>Trusted List</Card.Title>
           <Card.Text>

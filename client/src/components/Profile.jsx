@@ -35,11 +35,11 @@ class Profile extends Component {
     if (localStorage.getItem("id") !== null) {
       console.log(localStorage.getItem("id") === id);
       if (localStorage.getItem("id") !== id) {
-        console.log(trusted)
+        console.log(trusted);
         if (trusted.length > 0) {
           console.log(trusted);
           if (trusted[0].active === true) {
-            return <TrustedLogo  id={id}/>
+            return <TrustedLogo id={id} />;
           } else if (
             trusted.active === false &&
             trusted.user2approval === false
@@ -57,7 +57,10 @@ class Profile extends Component {
 
   render() {
     return this.state.name.map((x, i) => (
-      <Card key={i} border="danger">
+      <Card
+        key={i}
+        style={{ margin: "27px 0px 20px 0px", border: " solid 1px #d4bad8" }}
+      >
         <Card.Body>
           <Image
             src={x.picture}

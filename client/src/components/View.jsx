@@ -23,13 +23,16 @@ class View extends Component {
     if (
       (localStorage.getItem("id") !== null) &
       (this.state.loc !== localStorage.getItem("id"))
-      ) {
-        const viewingUser = parseInt(localStorage.getItem("id"))
-        const viewedProfile = parseInt(this.state.loc)
-        await fetch(`http://localhost:3000/trust/relationship/${viewedProfile}/${viewingUser}`)
-          .then(response => response.json())
-          .then(data => this.setState({trustRelation : data}))
-      }}
+    ) {
+      const viewingUser = parseInt(localStorage.getItem("id"));
+      const viewedProfile = parseInt(this.state.loc);
+      await fetch(
+        `http://localhost:3000/trust/relationship/${viewedProfile}/${viewingUser}`
+      )
+        .then(response => response.json())
+        .then(data => this.setState({ trustRelation: data }));
+    }
+  };
 
   render() {
     return (
@@ -37,7 +40,7 @@ class View extends Component {
         <Header />
         <Container>
           <Row>
-            <Col>
+            <Col lg="4">
               <Profile
                 id={this.state.loc}
                 trustRelation={this.state.trustRelation}
@@ -45,6 +48,7 @@ class View extends Component {
 
               <Skills loc={this.state.loc} />
             </Col>
+
             <Col xs={7}>
             {(this.state.loc === localStorage.getItem("id")) ? <CommentNotification/> : null}
 
@@ -53,6 +57,7 @@ class View extends Component {
             <Col>
             {(this.state.loc === localStorage.getItem("id")) ?<TrustNotification />: null}
               
+
               <TrustedList loc={this.state.loc} />
             </Col>
           </Row>
