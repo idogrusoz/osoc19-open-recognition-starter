@@ -80,7 +80,7 @@ class Skills extends Component {
 
   render() {
     return (
-      <Card border="warning">
+      <Card style={{ border: "solid 1px #d4bad8" }}>
         <Table striped bordered hover>
           <thead>
             <tr>

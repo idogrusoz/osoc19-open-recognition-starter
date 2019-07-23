@@ -61,9 +61,9 @@ const relationExist = (id1, id2) =>
     FROM
     trust
     WHERE
-    (userrequesting = ${id1} and userrecieving = ${id2} ) 
-	OR 
-	(userrecieving = ${id1} and userrequesting=${id2} );
+    (userrecieving = ${id1} and userrequesting=${id2} )
+    OR 
+    (userrequesting = ${id1} and userrecieving = ${id2} ) ;
 `);
 
 const getTrustpeople = id =>
@@ -98,13 +98,13 @@ const approveTrust = data => {
   `);
 };
 
-const rejectTrust = data => {
+const rejectTrust = (id1, id2) => {
   database.query(SQL`
     DELETE FROM trust
     WHERE
-    userrecieving = ${data.userrecieving} AND userrequesting = ${
-    data.userrequesting
-  }
+    (userrecieving = ${id1} AND userrequesting = ${id2})
+    OR
+    (userrecieving = ${id2} AND userrequesting = ${id1})
   `);
 };
 

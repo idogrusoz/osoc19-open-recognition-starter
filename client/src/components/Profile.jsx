@@ -54,10 +54,13 @@ class Profile extends Component {
 
   render() {
     return this.state.name.map((x, i) => (
-      <Card key={i} border="danger">
+      <Card
+        key={i}
+        style={{ margin: "27px 0px 20px 0px", border: " solid 1px #d4bad8" }}
+      >
         <Card.Body>
           <Image
-            src={x.picture}
+            src={process.env.PUBLIC_URL + x.picture}
             alt="prof pic"
             roundedCircle
             width="150"
@@ -67,10 +70,11 @@ class Profile extends Component {
             <br />
             {x.last_name} <br />
             {x.email} <br />
+            <br />
+            {parseInt(localStorage.getItem("id")) === x.id
+              ? null
+              : this.renderTrustButton(this.props.id)}
           </Card.Text>
-          {parseInt(localStorage.getItem("id")) === x.id
-            ? null
-            : this.renderTrustButton(this.props.id)}
         </Card.Body>
       </Card>
     ));

@@ -14,13 +14,14 @@ export default class SignInOut extends Component {
   render() {
     return localStorage.getItem("id") ? (
       <Link to="/">
-        <Button variant="outline-primary" onClick={this.signOut}>
+        <Button variant="info" onClick={this.signOut}>
+
           Sign-out
         </Button>
       </Link>
     ) : (
       <Link to="/signin">
-        <Button variant="outline-primary" onClick={this.signIn}>
+        <Button variant="info" onClick={this.signIn}>
           Sign-in
         </Button>
       </Link>

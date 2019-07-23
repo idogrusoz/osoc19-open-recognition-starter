@@ -28,9 +28,15 @@ export default class Header extends Component {
     return (
       <div className="header">
         <div className="nav">
-          <div className="ilogo">
-            <img src={logo} alt="Logo" width="70px" height="70px" />
-          </div>
+          <img
+            src={logo}
+            alt="Logo"
+            width="70px"
+            height="70px"
+            padding="50px"
+            margin="50px"
+          />
+
           {/* <div className="sera">
               <FormControl
                 type="text"
@@ -49,7 +55,7 @@ export default class Header extends Component {
 
               {localStorage.getItem("id") ? null : (
                 <Link className="linksss" to="/register">
-                  <Button variant="outline-primary">Register</Button>
+                  <Button variant="info">Register</Button>
                 </Link>
               )}
             </ul>
