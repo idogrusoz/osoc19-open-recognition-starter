@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormControl, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
 import logo from "./logo.svg";
@@ -28,23 +28,18 @@ export default class Header extends Component {
     return (
       <div className="header">
         <div className="nav">
-          <img src={logo} alt="Logo" width="70px" height="70px" />
-
-          <div className="sera">
-            <FormControl
-              type="text"
-              placeholder="Search"
-              className="mr-sm-2"
-              id="search"
-            />
-            <Button
-              onClick={this.ssearch}
-              variant="outline-primary"
-              style={{ color: "#6d609e" }}
-            >
-              Search
-            </Button>
+          <div className="ilogo">
+            <img src={logo} alt="Logo" width="70px" height="70px" />
           </div>
+          {/* <div className="sera">
+              <FormControl
+                type="text"
+                placeholder="Search"
+                className="mr-sm-2"
+                id="search"
+              />
+              <Button onClick={this.ssearch}>Search</Button>
+            </div> */}
 
           <div className="menu">
             <ul className="navlinks">

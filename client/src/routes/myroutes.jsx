@@ -7,7 +7,7 @@ import SignIn from "../components/SignIn/SignIn";
 import Layout from "../components/Layout";
 import AddComment from "../components/AddComponent/addComponent";
 import Landing from "../components/landing/Landing";
-
+import View from "../components/View";
 export default class Myroutes extends React.Component {
   constructor() {
     super();
@@ -27,7 +27,6 @@ export default class Myroutes extends React.Component {
   };
 
   render() {
-    console.log(this.props.test);
     return (
       <div>
         <Router>
@@ -37,8 +36,10 @@ export default class Myroutes extends React.Component {
             <Route exact path="/register" component={Register} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/addcomment" component={AddComment} />
+            <Route exact path="/profile/:id" component={View} />
             <Route exact path="/profile" component={Layout} />
-           <Route
+            <Route
+
               exact
               path="/search"
               render={props => <Search users={this.state.users} />}

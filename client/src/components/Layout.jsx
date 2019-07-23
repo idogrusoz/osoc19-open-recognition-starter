@@ -18,8 +18,7 @@ class Layout extends Component {
           <Row>
             <Col>
               <Profile />
-
-              <Skills />
+              <Skills loc={localStorage.getItem("id")} />
             </Col>
             <Col sm={{ span: 7 }}>
               <strong>Comments:</strong>

@@ -12,12 +12,12 @@ const createTable = () => {
       id SERIAL PRIMARY KEY NOT NULL,
       first_name VARCHAR(30) NOT NULL,
       last_name VARCHAR(30)  NOT NULL,
-      email VARCHAR(30)  NOT NULL,
+      email VARCHAR(30)  NULL,
       picture VARCHAR(300) ,
-      profession VARCHAR(30) NOT NULL,
-      employment VARCHAR(30) NOT NULL,
-      city VARCHAR(30) NOT NULL,
-      country VARCHAR(30) NOT NULL,
+      profession VARCHAR(30) NULL,
+      employment VARCHAR(30) NULL,
+      city VARCHAR(30) NULL,
+      country VARCHAR(30) NULL,
       login VARCHAR(30) NOT NULL,
       password VARCHAR(100) NOT NULL
     );
