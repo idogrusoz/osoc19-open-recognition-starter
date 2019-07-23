@@ -18,6 +18,7 @@ controller.getUserComments = (req,res) => {
 
 controller.addNewComment = (req, res) => {
     const data = req.body;
+    console.log(data)
     commenttable.insertComment(data);
     res.send(data);
 }

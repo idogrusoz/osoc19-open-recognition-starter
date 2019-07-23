@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
-// import AddComment from "../AddComponent/addComponent";
-// import { Button } from "react-bootstrap";
-// import NewWindow from "react-new-window";
-import Popup from "reactjs-popup";
-// import { Form, Button } from "react-bootstrap";
+import Example from "../AddComponent/addComponent";
 
 class Comments extends Component {
   constructor(props) {
@@ -77,24 +73,24 @@ class Comments extends Component {
       <div>
         {/* <Button onClick={this.make}>Add Comment</Button> */}
         {this.verificationConnectionIdentity() ? (
-          <Popup trigger={<button> Trigger</button>} position="right center">
-            <div>Popup content here !!</div>
-          </Popup>
+          <Example user={this.props.loc} />
         ) : null}
-        {this.state.comments.map((x, i) => (
-          <div className="col" key={i}>
-            <div className="card mb-4 shadow-sm">
-              <div className="card-body">
-                <div className="card-text">
-                  <strong>Comments:</strong>
-                  <p>{x.author}</p>
-                  <Moment format="YYYY/MM/DD">{x.creationdate}</Moment>
-                  <p> {x.message} </p>
+        {this.state.comments.map((x, i) =>
+          x.published ? (
+            <div className="col" key={i}>
+              <div className="card mb-4 shadow-sm">
+                <div className="card-body">
+                  <div className="card-text">
+                    <p>author : {x.author}</p>
+                    <p>relation : {x.relationship}</p>
+                    <Moment format="YYYY/MM/DD">{x.creationdate}</Moment>
+                    <p> {x.message} </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          ) : null
+        )}
       </div>
     );
   }
