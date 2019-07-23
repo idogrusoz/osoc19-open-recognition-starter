@@ -16,6 +16,17 @@ controller.getUserComments = (req,res) => {
   )
 }
 
+controller.getPendingComments = (req,res) => {
+  const id = req.params.id
+  const response = commenttable.getPendingComments(id)
+  response.then(
+    comments =>{
+    const data = comments.rows
+    res.send(data)
+    }
+  ).catch(err => console.log('Error:', err))
+}
+
 controller.addNewComment = (req, res) => {
     const data = req.body;
     console.log(data)
@@ -23,6 +34,17 @@ controller.addNewComment = (req, res) => {
     res.send(data);
 }
 
+controller.updateComment = (req, res) => {
+  const id = req.params.id
+  commenttable.updateComment(id)
+  res.status(200).send('published')
+}
+
+controller.rejectComment = (req, res) => {
+  const id = req.params.id
+  commenttable.rejectComment(id);
+  res.status(200).send("delted")
+}
 
 
 module.exports = controller;

@@ -22,14 +22,11 @@ function TrustRequestItem(props) {
   };
 
   const handleReject = async () => {
-    const id = localStorage.getItem("id");
-    const data = {
-      user1: `${props.item.id}`,
-      user2: parseInt(id)
-    };
-    await fetch(`http://localhost:3000/trust/reject/${id}`, {
+    const id1 = localStorage.getItem("id");
+    const id2 = props.item.id
+     
+    await fetch(`http://localhost:3000/trust/reject/${id1}/${id2}`, {
       method: "DELETE",
-      body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     })
       .then(res => {

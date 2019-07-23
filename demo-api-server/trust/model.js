@@ -100,13 +100,13 @@ const approveTrust = data => {
   `);
 };
 
-const rejectTrust = data => {
+const rejectTrust = (id1, id2) => {
   database.query(SQL`
     DELETE FROM trust
     WHERE
-    (userrecieving = ${data.user1} AND userrequesting = ${data.user2})
+    (userrecieving = ${id1} AND userrequesting = ${id2})
     OR
-    (userrecieving = ${data.user2} AND userrequesting = ${data.user1})
+    (userrecieving = ${id2} AND userrequesting = ${id1})
   `);
 };
 

@@ -40,9 +40,10 @@ controller.getRelationship = (req, res) => {
 };
 
 controller.rejectTrust = (req, res) => {
-  const data = req.body;
-  trusttable.rejectTrust(data);
-  res.send(data);
+  const id1 = req.params.id1;
+  const id2 = req.params.id2;
+  trusttable.rejectTrust(id1, id2);
+  res.send("Trust relation is terminated");
 };
 
 controller.getTrust = (req, res) => {
