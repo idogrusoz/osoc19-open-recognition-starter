@@ -22,17 +22,20 @@ class View extends Component {
     if (
       (localStorage.getItem("id") !== null) &
       (this.state.loc !== localStorage.getItem("id"))
-      ) {
-        const viewingUser = parseInt(localStorage.getItem("id"))
-        const viewedProfile = parseInt(this.state.loc)
-        await fetch(`http://localhost:3000/trust/relationship/${viewedProfile}/${viewingUser}`)
-          .then(response => response.json())
-          .then(data => this.setState({trustRelation : data}))
-      }}
+    ) {
+      const viewingUser = parseInt(localStorage.getItem("id"));
+      const viewedProfile = parseInt(this.state.loc);
+      await fetch(
+        `http://localhost:3000/trust/relationship/${viewedProfile}/${viewingUser}`
+      )
+        .then(response => response.json())
+        .then(data => this.setState({ trustRelation: data }));
+    }
+  };
 
   render() {
     return (
-      <div>
+      <div className="tout">
         <Header />
         <Container>
           <Row>

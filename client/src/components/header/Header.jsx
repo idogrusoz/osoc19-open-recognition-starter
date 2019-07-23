@@ -43,13 +43,11 @@ export default class Header extends Component {
 
           <div className="menu">
             <ul className="navlinks">
-              <Link className="linksss" to="/signin">
-                <SignInOut />
-              </Link>
+              {/* <Link className="linksss" to="/signin"> */}
+              <SignInOut />
+              {/* </Link> */}
 
-              {localStorage.getItem("id") ? (
-                null
-              ) : (
+              {localStorage.getItem("id") ? null : (
                 <Link className="linksss" to="/register">
                   <Button variant="outline-primary">Register</Button>
                 </Link>

@@ -30,7 +30,9 @@ export default class TrustedList extends Component {
 
           <Modal.Body>
             {this.state.trustedpeople.map((x, i) => (
-              <p key={i}>{x.first_name}</p>
+              <p key={i}>
+                <a href={`/profile/${x.id}`}>{x.first_name}</a>
+              </p>
             ))}
           </Modal.Body>
         </Modal.Dialog>

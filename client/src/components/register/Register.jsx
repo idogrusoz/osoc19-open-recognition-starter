@@ -9,10 +9,9 @@ export default class Register extends Component {
       first_name: "",
       last_name: "",
       login: "",
-      password:""
+      password: ""
       // picture: ""
     };
-
   }
 
   validateForm = () => {
@@ -36,7 +35,7 @@ export default class Register extends Component {
       }
     })
       .then(res => {
-        console.log("A new user added")
+        console.log("A new user added");
         history.push("/signin");
       })
       .catch(error => console.log("Error:", error));
@@ -94,7 +93,7 @@ export default class Register extends Component {
             </Form.Row> */}
 
             <Form.Row>
-              <Form.Group as={Col} controlId="formGridName">
+              <Form.Group as={Col} controlId="formGridLogin">
                 <Form.Label>Login</Form.Label>
                 <Form.Control
                   name="login"

@@ -2,7 +2,6 @@
 
 const database = require("../database");
 const SQL = require("pg-template-tag").default;
-console.log("usertable");
 const createTable = () => {
   database.query(`
   CREATE TABLE IF NOT EXISTS
@@ -17,7 +16,6 @@ const createTable = () => {
       published BOOLEAN NOT NULL
     );
 `);
-  console.log("comment table table created successfully!!!!!");
 };
 
 const insertComment = data => {

@@ -1,9 +1,10 @@
 .header {
   text-align: right;
-  width: 100%;
+  width: 80%;
+  top: 0%;
   margin: 0px;
-  padding: 10px;
-  border: 0.5px solid red;
+  z-index: 2;
+  position: fixed;
 }
 .nav {
   display: flex;
@@ -12,6 +13,7 @@
   align-items: center;
   /* min-height: 5vh; */
   background: #d6eaf9;
+  height: 10%;
 }
 
 ul.navlinks {
@@ -58,4 +60,7 @@ ul.navlinks {
 
 p.author {
   font-family: "DM Serif Text", serif;
+}
+a {
+  color: black;
 }
