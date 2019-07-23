@@ -9,7 +9,6 @@ class LandingImage extends Component {
       <Card className="text-white text-center ">
         <Card.Img src={image} alt="Card image" className="ta" />
         <Card.ImgOverlay>
-          <Card.Title />
           <Card.Text className="centered-text">
             <h2>
               <strong>Open Recognition</strong>
