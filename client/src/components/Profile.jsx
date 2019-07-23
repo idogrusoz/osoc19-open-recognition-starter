@@ -63,7 +63,7 @@ class Profile extends Component {
       >
         <Card.Body>
           <Image
-            src={x.picture}
+            src={process.env.PUBLIC_URL + x.picture}
             alt="prof pic"
             roundedCircle
             width="150"
