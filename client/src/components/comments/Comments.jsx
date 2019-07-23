@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Moment from "react-moment";
 import Example from "../AddComponent/addComponent";
+import Card from "react-bootstrap/Card";
 
 class Comments extends Component {
   constructor(props) {
@@ -76,21 +77,24 @@ class Comments extends Component {
         {this.verificationConnectionIdentity() ? (
           <Example user={this.props.loc} />
         ) : null}
-        
+
         {this.state.comments.map((x, i) =>
           x.published ? (
-            <div className="col" key={i}>
-              <div className="card mb-4 shadow-sm">
-                <div className="card-body">
-                  <div className="card-text">
-                    <p>author : {x.author}</p>
-                    <p>relation : {x.relationship}</p>
-                    <Moment format="YYYY/MM/DD">{x.creationdate}</Moment>
-                    <p> {x.message} </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <Card
+              style={{
+                margin: "0px 0px 20px 0px",
+                border: " solid 1px #d4bad8"
+              }}
+            >
+              <Card.Body>
+                <Card.Text>
+                  <p>author : {x.author}</p>
+                  <p>relation : {x.relationship}</p>
+                  <Moment format="YYYY/MM/DD">{x.creationdate}</Moment>
+                  <p> {x.message} </p>
+                </Card.Text>
+              </Card.Body>
+            </Card>
           ) : null
         )}
       </div>

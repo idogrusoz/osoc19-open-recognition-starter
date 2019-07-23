@@ -8,39 +8,38 @@ export default class SignInOut extends Component {
     return <Redirect to="/" />;
   };
 
-// <<<<<<< HEAD
-//   render() {
-//     return localStorage.getItem("id") ? (
-//       <Button variant="outline-primary" onClick={this.signOut}>
-//         Sign-out
-//       </Button>
-//     ) : (
-//       <Button variant="outline-primary" onClick={this.signIn}>
-//         Sign-in
-//       </Button>
-//     );
-//   }
-// }
-// =======
+  // <<<<<<< HEAD
+  //   render() {
+  //     return localStorage.getItem("id") ? (
+  //       <Button variant="outline-primary" onClick={this.signOut}>
+  //         Sign-out
+  //       </Button>
+  //     ) : (
+  //       <Button variant="outline-primary" onClick={this.signIn}>
+  //         Sign-in
+  //       </Button>
+  //     );
+  //   }
+  // }
+  // =======
 
-    
+  signOut = () => {
+    localStorage.removeItem("id");
+  };
 
-     signOut =() => {
-         localStorage.removeItem('id')
-     }
-    
-
-    render(){
-        return(
-            localStorage.getItem("id") ? 
-            <Link to='/'>
-            <Button variant="outline-primary" onClick = {this.signOut}>Sign-out</Button> 
-            </Link>
-            : 
-            <Link to='/signin'>
-            <Button variant="outline-primary" onClick = {this.signIn}>Sign-in</Button>  
-            </Link>          
-        )
-    }
+  render() {
+    return localStorage.getItem("id") ? (
+      <Link to="/">
+        <Button variant="info" onClick={this.signOut}>
+          Sign-out
+        </Button>
+      </Link>
+    ) : (
+      <Link to="/signin">
+        <Button variant="info" onClick={this.signIn}>
+          Sign-in
+        </Button>
+      </Link>
+    );
+  }
 }
-
