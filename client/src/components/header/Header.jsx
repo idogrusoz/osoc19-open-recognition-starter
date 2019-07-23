@@ -54,7 +54,7 @@ export default class Header extends Component {
               </Link>
 
               {localStorage.getItem("id") ? (
-                <div />
+                null
               ) : (
                 <Link className="linksss" to="/register">
                   <Button variant="info">Register</Button>

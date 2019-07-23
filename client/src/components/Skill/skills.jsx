@@ -87,7 +87,11 @@ class Skills extends Component {
               <th scope="col">skillname</th>
               <th scope="col">given</th>
               <th scope="col">Pro</th>
-              {this.verifications() ? <th scope="col">give</th> : null}
+              {this.verifications() ? (
+                <th scope="col" style={{ width: "50%" }}>
+                  give
+                </th>
+              ) : null}
             </tr>
           </thead>
           <tbody>
@@ -98,7 +102,12 @@ class Skills extends Component {
                 <td>{this.state.pros[i]}</td>
                 {this.verifications() ? (
                   <td>
-                    <button onClick={() => this.givetrust(item.name)}>
+                    <button
+                      style={{ width: "100%" }}
+                      type="button"
+                      class="btn btn-success"
+                      onClick={() => this.givetrust(item.name)}
+                    >
                       I trust you
                     </button>
                   </td>

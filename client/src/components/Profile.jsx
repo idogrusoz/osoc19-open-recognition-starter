@@ -28,23 +28,18 @@ class Profile extends Component {
       });
       this.setState({ name: fullName });
     }
-
-    // const rel = fetch(
-    //   `http://localhost:3000/trust/relationship/${
-    //     this.props.loc
-    //   }/${localStorage.getItem("id")}`
-    // );
   }
 
   renderTrustButton = id => {
     const trusted = this.props.trustRelation;
     if (localStorage.getItem("id") !== null) {
-      // console.log("id not null");
-      if (localStorage.getItem("id") !== this.props.id) {
-        if (trusted !== undefined) {
-          // console.log(trusted);
-          if (trusted.active === true) {
-            return <TrustedLogo />;
+      console.log(localStorage.getItem("id") === id);
+      if (localStorage.getItem("id") !== id) {
+        console.log(trusted)
+        if (trusted.length > 0) {
+          console.log(trusted);
+          if (trusted[0].active === true) {
+            return <TrustedLogo  id={id}/>
           } else if (
             trusted.active === false &&
             trusted.user2approval === false
