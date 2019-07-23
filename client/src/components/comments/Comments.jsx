@@ -12,7 +12,7 @@ class Comments extends Component {
       path: window.location.pathname.split("/")
     };
   }
-
+  
   verificationConnectionIdentity = () => {
     return (
       localStorage.getItem("id") &&
@@ -21,61 +21,50 @@ class Comments extends Component {
     );
   };
 
-  // make = () => (
-  //   <NewWindow>
-  //     <Form.Group controlId="exampleForm.ControlTextarea1">
-  //       <Form.Label>Add comment</Form.Label>
-  //       <Form.Control as="textarea" rows="3" />
-  //       <Button type="submit">Add comment</Button>
-  //     </Form.Group>
-  //   </NewWindow>
-  // );
-
   async componentDidMount() {
     if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
       const comment = await fetch(
         `http://localhost:3000/comment/${localStorage.getItem("id")}`
-      )
+        )
         .then(response => response.json())
         .then(data =>
           Promise.all(
             data.map(async x => {
               await fetch(`http://localhost:3000/users/${x.author}`)
-                .then(res => res.json())
-                .then(data2 => (x.author = data2[0].first_name));
+              .then(res => res.json())
+              .then(data2 => (x.author = data2[0].first_name));
               return x;
             })
-          )
-        );
-
-      this.setState({ comments: comment });
-    } else {
-      const comment = await fetch(
-        `http://localhost:3000/comment/${this.props.loc}`
-      )
-        .then(response => response.json())
-        .then(data =>
-          Promise.all(
-            data.map(async x => {
-              await fetch(`http://localhost:3000/users/${x.author}`)
-                .then(res => res.json())
-                .then(data2 => (x.author = data2[0].first_name));
-              return x;
-            })
-          )
-        );
-
-      this.setState({ comments: comment });
-    }
-  }
-
-  render() {
-    return (
-      <div>
+            )
+            );
+            
+            this.setState({ comments: comment });
+          } else {
+            const comment = await fetch(
+              `http://localhost:3000/comment/${this.props.loc}`
+              )
+              .then(response => response.json())
+              .then(data =>
+                Promise.all(
+                  data.map(async x => {
+                    await fetch(`http://localhost:3000/users/${x.author}`)
+                    .then(res => res.json())
+                    .then(data2 => (x.author = data2[0].first_name));
+                    return x;
+                  })
+                  )
+                  );
+                  
+                  this.setState({ comments: comment });
+                }
+              }
+              
+              render() {
+                return (
+                  <div>
         <strong>Comments:</strong>
-        {/* <Button onClick={this.make}>Add Comment</Button> */}
         {this.verificationConnectionIdentity() ? (
-          <Example user={this.props.loc} />
+          <Example user={this.props.loc} trust={this.props.trustRelation} />
         ) : null}
 
         {this.state.comments.map((x, i) =>

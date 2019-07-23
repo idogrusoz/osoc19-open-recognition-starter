@@ -40,19 +40,25 @@ class View extends Component {
         <Header />
         <Container>
           <Row>
-            <Col lg="4">
+            <Col >
               <Profile
                 id={this.state.loc}
                 trustRelation={this.state.trustRelation}
               />
 
-              <Skills loc={this.state.loc} />
+              <Skills 
+                loc={this.state.loc} 
+                trustRelation={this.state.trustRelation}
+              />
             </Col>
 
             <Col xs={7}>
             {(this.state.loc === localStorage.getItem("id")) ? <CommentNotification/> : null}
 
-              <Comments loc={this.state.loc} />
+              <Comments 
+                loc={this.state.loc}
+                trustRelation={this.state.trustRelation}
+              />
             </Col>
             <Col>
             {(this.state.loc === localStorage.getItem("id")) ?<TrustNotification />: null}

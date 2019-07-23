@@ -78,6 +78,26 @@ class Skills extends Component {
     }
   }
 
+  renderButton = (item) => {
+    const trusted = this.props.trustRelation
+    if(trusted.length < 1) {
+      return null
+    } else {
+      if(trusted[0].active) {
+        return <button
+        style={{ width: "100%" }}
+        type="button"
+        className="btn btn-success"
+        onClick={() => this.givetrust(item.name)}
+      >
+        I trust you
+      </button>
+      } else {
+        return null
+      }
+    }
+  }
+
   render() {
     return (
       <Card style={{ border: "solid 1px #d4bad8" }}>
@@ -102,14 +122,8 @@ class Skills extends Component {
                 <td>{this.state.pros[i]}</td>
                 {this.verifications() ? (
                   <td>
-                    <button
-                      style={{ width: "100%" }}
-                      type="button"
-                      className="btn btn-success"
-                      onClick={() => this.givetrust(item.name)}
-                    >
-                      I trust you
-                    </button>
+                    {this.renderButton(item)}
+                    
                   </td>
                 ) : null}
               </tr>
