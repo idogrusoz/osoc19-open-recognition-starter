@@ -3,19 +3,19 @@ body {
 }
 .header {
   text-align: right;
-  width: 100%;
+  width: 80%;
+  top: 0%;
   margin: 0px;
-  padding: 0px;
-  /* background: #caf3f0; */
-  border: solid 1px #d4bad8;
+  z-index: 2;
+  position: fixed;
 }
 .nav {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  /* min-height: 5vh; */
-  background: #f7f5f5;
+  background: #d6eaf9;
+  height: 10%;
 }
 
 ul.navlinks {
@@ -34,13 +34,7 @@ ul.navlinks {
   margin: auto;
   display: flex;
   flex-direction: column;
-
-  /* border: 2px solid green; */
 }
-/* .sera {
-  display: flex;
-  flex-direction: row;
-} */
 
 .landing-container {
   height: 80vh;
@@ -65,6 +59,11 @@ p.author {
   font-family: "DM Serif Text", serif;
 }
 
+a {
+  color: black;
+}
+
 .ta {
   opacity: 0.9;
+
 }

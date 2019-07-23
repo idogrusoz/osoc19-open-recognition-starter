@@ -2,9 +2,7 @@
 
 const database = require("../database");
 const SQL = require("pg-template-tag").default;
-console.log("usertable");
 const createTable = () => {
-  console.log("inside createtable");
   database.query(`
   CREATE TABLE IF NOT EXISTS
     users
@@ -22,7 +20,6 @@ const createTable = () => {
       password VARCHAR(100) NOT NULL
     );
 `);
-  console.log("users table created successfully!!!!!");
 };
 
 const insert = data => {
@@ -63,9 +60,8 @@ const getUserById = id =>
   id = ${id}
   `);
 
-
-  const checkUser = (login, password) => (
-    database.query(SQL`
+const checkUser = (login, password) =>
+  database.query(SQL`
 
     SELECT
     *
@@ -75,11 +71,7 @@ const getUserById = id =>
 
     login = ${login} AND password = ${password};
 
-    `)
-  )
-
-
-
+    `);
 
 const getUserByName = name =>
   database.query(SQL`
@@ -97,6 +89,5 @@ module.exports = {
   insert,
   getUserById,
   getUserByName,
-   checkUser
+  checkUser
 };
-

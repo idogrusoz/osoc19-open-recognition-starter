@@ -105,7 +105,7 @@ class Skills extends Component {
                     <button
                       style={{ width: "100%" }}
                       type="button"
-                      class="btn btn-success"
+                      className="btn btn-success"
                       onClick={() => this.givetrust(item.name)}
                     >
                       I trust you

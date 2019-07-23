@@ -7,22 +7,6 @@ export default class SignInOut extends Component {
     localStorage.removeItem("id");
     return <Redirect to="/" />;
   };
-
-  // <<<<<<< HEAD
-  //   render() {
-  //     return localStorage.getItem("id") ? (
-  //       <Button variant="outline-primary" onClick={this.signOut}>
-  //         Sign-out
-  //       </Button>
-  //     ) : (
-  //       <Button variant="outline-primary" onClick={this.signIn}>
-  //         Sign-in
-  //       </Button>
-  //     );
-  //   }
-  // }
-  // =======
-
   signOut = () => {
     localStorage.removeItem("id");
   };
@@ -31,6 +15,7 @@ export default class SignInOut extends Component {
     return localStorage.getItem("id") ? (
       <Link to="/">
         <Button variant="info" onClick={this.signOut}>
+
           Sign-out
         </Button>
       </Link>

@@ -22,6 +22,6 @@ const skill = require("./skill");
 app.use("/skill", skill);
 
 app.listen(3000, () => {
-  console.log("listenning........");
+  console.log("listenning on port 3000........");
 });
 module.exports = router;

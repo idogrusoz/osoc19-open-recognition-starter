@@ -13,7 +13,7 @@ import Skills from "./Skill/skills";
 class Layout extends Component {
   render() {
     return (
-      <div>
+      <div style={{ backgroundColor: "red" }}>
         <Header />
         <Container>
           <Row>

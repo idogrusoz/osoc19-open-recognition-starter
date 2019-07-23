@@ -29,7 +29,9 @@ export default class TrustedList extends Component {
           <Card.Title>Trusted List</Card.Title>
           <Card.Text>
             {this.state.trustedpeople.map((x, i) => (
-              <p key={i}>{x.first_name}</p>
+              <p key={i}>
+                <a href={`/profile/${x.id}`}>{x.first_name}</a>
+              </p>
             ))}
           </Card.Text>
         </Card.Body>
