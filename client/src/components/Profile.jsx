@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TrustButton from "./trust-components/TrustButton";
 import Image from "react-bootstrap/Image";
 import { Card, Button } from "react-bootstrap";
-
 import TrustedLogo from "./trust-components/TrustedLogo";
 
 class Profile extends Component {
@@ -76,10 +75,11 @@ class Profile extends Component {
             <br />
             {x.last_name} <br />
             {x.email} <br />
+            <br />
+            {parseInt(localStorage.getItem("id")) === x.id
+              ? null
+              : this.renderTrustButton(this.props.id)}
           </Card.Text>
-          {parseInt(localStorage.getItem("id")) === x.id
-            ? null
-            : this.renderTrustButton(this.props.id)}
         </Card.Body>
       </Card>
     ));

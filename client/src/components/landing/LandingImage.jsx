@@ -1,30 +1,27 @@
 import React, { Component } from "react";
 import "../../App.css";
-import image from './img2.jpg'
+import image from "./img2.jpg";
+import Card from "react-bootstrap/Card";
 
-export default class LandingImage extends Component {
+class LandingImage extends Component {
   render() {
     return (
-      <div className="landing">
-        <div className="landing-container">
-          <img
-            src={image}
-            className="background-image"
-            alt=""
-          />
-          <div className="centered-text">
-            <h1>
+      <Card className="text-white text-center ">
+        <Card.Img src={image} alt="Card image" className="ta" />
+        <Card.ImgOverlay>
+          <Card.Title />
+          <Card.Text className="centered-text">
+            <h2>
               <strong>Open Recognition</strong>
-            </h1>
-            <h2>Trust is the key</h2>
-
-            <p>
-              Open Recognition is a web app where your profile is made not by
-              you but by the other people you trust
-            </p>
-          </div>
-        </div>
-      </div>
+            </h2>
+            <h4>Trust is the key</h4>
+            Open Recognition is a web app where your profile is made not by you
+            but by the other people you trust
+          </Card.Text>
+        </Card.ImgOverlay>
+      </Card>
     );
   }
 }
+
+export default LandingImage;

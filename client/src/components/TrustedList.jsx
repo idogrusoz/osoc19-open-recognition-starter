@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Modal from "react-bootstrap/Modal";
+import Card from "react-bootstrap/Card";
 
 export default class TrustedList extends Component {
   constructor(props) {
@@ -22,19 +22,16 @@ export default class TrustedList extends Component {
 
   render() {
     return (
-      <div>
-        <Modal.Dialog bg="primary">
-          <Modal.Header closeButton>
-            <Modal.Title>Trusted List</Modal.Title>
-          </Modal.Header>
-
-          <Modal.Body>
+      <Card border="danger">
+        <Card.Body>
+          <Card.Title>Trusted List</Card.Title>
+          <Card.Text>
             {this.state.trustedpeople.map((x, i) => (
               <p key={i}>{x.first_name}</p>
             ))}
-          </Modal.Body>
-        </Modal.Dialog>
-      </div>
+          </Card.Text>
+        </Card.Body>
+      </Card>
     );
   }
 }
