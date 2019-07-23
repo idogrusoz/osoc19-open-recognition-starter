@@ -32,7 +32,6 @@ class Profile extends Component {
 
   renderTrustButton = id => {
     const trusted = this.props.trustRelation;
-    console.log(trusted);
     if (localStorage.getItem("id") !== null) {
       if (localStorage.getItem("id") !== id) {
         if (trusted.length > 0) {
