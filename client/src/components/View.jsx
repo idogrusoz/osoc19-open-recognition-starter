@@ -19,30 +19,16 @@ class View extends Component {
     };
   }
   componentDidMount = async () => {
-    const viewedProfile = this.state.loc;
     if (
       (localStorage.getItem("id") !== null) &
-      (viewedProfile !== localStorage.getItem("id"))
-    ) {
-      const viewingUser = parseInt(localStorage.getItem("id"));
-      let trustStatus = [];
-      await fetch(`http://localhost:3000/trust/${viewedProfile}`)
-        .then(response => response.json())
-        .then(data => {
-          data.forEach(item => {
-            // console.log("in filter");
-            if (
-              item.userrequesting === viewingUser ||
-              item.userreceiving === viewingUser
-            ) {
-              trustStatus.push(item);
-            }
-          });
-          this.setState({ trustRelation: trustStatus[0] });
-          // console.log(this.state.trustRelation);
-        });
-    }
-  };
+      (this.state.loc !== localStorage.getItem("id"))
+      ) {
+        const viewingUser = parseInt(localStorage.getItem("id"))
+        const viewedProfile = parseInt(this.state.loc)
+        await fetch(`http://localhost:3000/trust/relationship/${viewedProfile}/${viewingUser}`)
+          .then(response => response.json())
+          .then(data => this.setState({trustRelation : data}))
+      }}
 
   render() {
     return (

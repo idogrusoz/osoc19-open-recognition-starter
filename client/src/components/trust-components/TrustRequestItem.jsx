@@ -24,8 +24,8 @@ function TrustRequestItem(props) {
   const handleReject = async () => {
     const id = localStorage.getItem("id");
     const data = {
-      userrequesting: `${props.item.id}`,
-      userrecieving: parseInt(id)
+      user1: `${props.item.id}`,
+      user2: parseInt(id)
     };
     await fetch(`http://localhost:3000/trust/reject/${id}`, {
       method: "DELETE",
