@@ -50,8 +50,40 @@ const getCommentsOfOneUser = id =>
     reciever = ${id};
     `);
 
+const getPendingComments = id =>
+  database.query(SQL`
+    SELECT
+    *
+    FROM
+    comment
+    WHERE
+    (reciever = ${id} AND published = false)
+  `)
+
+  const updateComment = id => {
+    database.query(SQL`
+      UPDATE
+    comment
+    SET   
+          published = true
+    WHERE
+    id = ${id} 
+    `)
+  }
+
+  const rejectComment = id => { 
+  database.query(SQL`
+    DELETE FROM comment
+    WHERE
+    id = ${id}
+  `)
+  console.log('delete')
+  }
 module.exports = {
   createTable,
   insertComment,
-  getCommentsOfOneUser
+  getCommentsOfOneUser,
+  getPendingComments,
+  updateComment,
+  rejectComment
 };

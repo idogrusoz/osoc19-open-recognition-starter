@@ -13,7 +13,7 @@ router.post("/", controller.addTrust);
 
 router.get("/pending/:id", controller.getPendingTrust);
 
-router.delete("/reject/:id", controller.rejectTrust);
+router.delete("/reject/:id1/:id2", controller.rejectTrust);
 
 router.put("/approve/:id", controller.approveTrust);
 

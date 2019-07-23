@@ -53,8 +53,8 @@ export default class SignIn extends Component {
   render() {
     return (
       <div>
-        <Card>
           <Header />
+        <Card>
           <Card.Body>
             <Card.Img variant="bottom" src={image} />
 

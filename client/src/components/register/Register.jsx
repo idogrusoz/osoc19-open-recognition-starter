@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Form, Button, Col } from "react-bootstrap";
 import Header from "../header/Header";
+// import { writer } from "repl";
 
 export default class Register extends Component {
   constructor() {
@@ -48,8 +49,11 @@ export default class Register extends Component {
 
   // handlePicture = () => {
   //   console.log(1)
-  //   const formData = new FormData()
-  //   formData.append('picture', pic, ``)
+  //   const newFile = document.getElementById("formGridPicture").files
+  //   console.log(newFile[0])
+  //   const fileWriter = new write
+  //   // const formData = new FormData()
+  //   // formData.append('picture', pic, ``)
   // }
 
   render() {
@@ -79,22 +83,22 @@ export default class Register extends Component {
                 />
               </Form.Group>
             </Form.Row>
-
-            {/* <Form.Row>
-            <Form.Group as={Col} controlId="formGridSurname">
+{/* 
+            <Form.Row>
+            <Form.Group as={Col} controlId="formGridPicture">
                 <Form.Label>Choose a profile photo</Form.Label>
                 <Form.Control
                   name="picture"
                   type="file"
                   placeholder=""
-                  onchange={this.handlePicture}
+                  onChange={this.handlePicture}
                 />
               </Form.Group>
 
             </Form.Row> */}
 
             <Form.Row>
-              <Form.Group as={Col} controlId="formGridName">
+              <Form.Group as={Col} controlId="formGridLogin">
                 <Form.Label>Login</Form.Label>
                 <Form.Control
                   name="login"
