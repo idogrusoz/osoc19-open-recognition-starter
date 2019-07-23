@@ -46,11 +46,13 @@ export default class Register extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // handlePicture = () => {
-  //   console.log(1)
-  //   const formData = new FormData()
-  //   formData.append('picture', pic, ``)
-  // }
+  handlePicture = () => {
+    console.log(1)
+    const newFile = document.getElementById("formGridPicture").files
+    console.log(newFile[0])
+    // const formData = new FormData()
+    // formData.append('picture', pic, ``)
+  }
 
   render() {
     return (
@@ -80,21 +82,21 @@ export default class Register extends Component {
               </Form.Group>
             </Form.Row>
 
-            {/* <Form.Row>
-            <Form.Group as={Col} controlId="formGridSurname">
+            <Form.Row>
+            <Form.Group as={Col} controlId="formGridPicture">
                 <Form.Label>Choose a profile photo</Form.Label>
                 <Form.Control
                   name="picture"
                   type="file"
                   placeholder=""
-                  onchange={this.handlePicture}
+                  onChange={this.handlePicture}
                 />
               </Form.Group>
 
-            </Form.Row> */}
+            </Form.Row>
 
             <Form.Row>
-              <Form.Group as={Col} controlId="formGridName">
+              <Form.Group as={Col} controlId="formGridLogin">
                 <Form.Label>Login</Form.Label>
                 <Form.Control
                   name="login"
