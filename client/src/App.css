@@ -1,9 +1,11 @@
+body {
+  background-color: #f7f5f5;
+}
 .header {
   text-align: right;
   width: 100%;
   margin: 0px;
-  padding: 10px;
-  border: 0.5px solid red;
+  padding: 0px;
 }
 .nav {
   display: flex;
@@ -11,7 +13,7 @@
   justify-content: space-between;
   align-items: center;
   /* min-height: 5vh; */
-  background: #d6eaf9;
+  background: #f7f5f5;
 }
 
 ul.navlinks {
@@ -30,18 +32,19 @@ ul.navlinks {
   margin: auto;
   display: flex;
   flex-direction: column;
+
   /* border: 2px solid green; */
 }
-.sera {
+/* .sera {
   display: flex;
   flex-direction: row;
-}
+} */
 
 .landing-container {
   height: 80vh;
   position: relative;
   text-align: center;
-  color: white;
+  color: rgb(255, 255, 255);
 }
 
 .background-image {
@@ -58,4 +61,8 @@ ul.navlinks {
 
 p.author {
   font-family: "DM Serif Text", serif;
+}
+
+.ta {
+  opacity: 0.9;
 }

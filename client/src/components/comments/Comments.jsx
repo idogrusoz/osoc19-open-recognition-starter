@@ -71,10 +71,12 @@ class Comments extends Component {
   render() {
     return (
       <div>
+        <strong>Comments:</strong>
         {/* <Button onClick={this.make}>Add Comment</Button> */}
         {this.verificationConnectionIdentity() ? (
           <Example user={this.props.loc} />
         ) : null}
+        
         {this.state.comments.map((x, i) =>
           x.published ? (
             <div className="col" key={i}>

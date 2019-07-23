@@ -70,10 +70,11 @@ class Profile extends Component {
             <br />
             {x.last_name} <br />
             {x.email} <br />
+            <br />
+            {parseInt(localStorage.getItem("id")) === x.id
+              ? null
+              : this.renderTrustButton(this.props.id)}
           </Card.Text>
-          {parseInt(localStorage.getItem("id")) === x.id
-            ? null
-            : this.renderTrustButton(this.props.id)}
         </Card.Body>
       </Card>
     ));

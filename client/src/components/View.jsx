@@ -44,7 +44,7 @@ class View extends Component {
 
               <Skills loc={this.state.loc} />
             </Col>
-            <Col xs={5}>
+            <Col xs={7}>
               <Comments loc={this.state.loc} />
             </Col>
             <Col>
