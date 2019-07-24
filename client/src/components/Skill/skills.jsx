@@ -108,7 +108,7 @@ class Skills extends Component {
         return <Button
         id= {item.name}
         variant="info"
-        style={{ width: "100%" }}
+        style={{ width: "60%" }}
         type="button"
         className="btn btn-success"
         onClick={() => this.givetrust(item.name)}
@@ -134,12 +134,12 @@ class Skills extends Component {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th scope="col">name</th>
-              <th scope="col">given</th>
-              <th scope="col">Pro</th>
+              <th scope="col">Skill</th>
+              <th scope="col">Upvotes</th>
+              <th scope="col">By Pro</th>
               {this.verifications() ? (
-                <th scope="col" style={{ width: "50%" }}>
-                  give
+                <th scope="col" >
+                  Recognise
                 </th>
               ) : null}
             </tr>
