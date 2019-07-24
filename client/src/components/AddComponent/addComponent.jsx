@@ -39,7 +39,9 @@ function Example(props) {
 
   return (
     <ButtonToolbar>
-      <Button onClick={() => setLgShow(true)}>Add comment</Button>
+      <Button variant="info" onClick={() => setLgShow(true)}>
+        Add comment
+      </Button>
 
       <Modal
         size="lg"

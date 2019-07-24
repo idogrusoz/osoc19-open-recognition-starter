@@ -53,13 +53,37 @@ export default class SignIn extends Component {
   render() {
     return (
       <div>
-          <Header />
-        <Card>
+        <Header />
+        <Card
+          style={{
+            marginTop: "50px",
+            height: "80vh",
+            width: "100%"
+          }}
+        >
           <Card.Body>
-            <Card.Img variant="bottom" src={image} />
+            <img
+              alt=""
+              variant="bottom"
+              src={image}
+              style={{
+                height: "70vh"
+              }}
+            />
+            <div
+              style={{
+                position: "absolute",
+                top: "20%",
+                left: "10%",
+                fontFamily: "Amarante, cursive",
+                fontSize: "2em"
+              }}
+            >
+              Connect to build your trust network
+            </div>
 
             <Card.ImgOverlay>
-              <Row>
+              <Row style={{ marginLeft: "60%" }}>
                 <Form style={{ margin: "50px 50px" }}>
                   <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column>Login</Form.Label>

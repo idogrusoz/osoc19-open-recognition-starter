@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 class Skills extends Component {
   constructor(props) {
@@ -80,7 +81,14 @@ class Skills extends Component {
 
   render() {
     return (
-      <Card style={{ border: "solid 1px #d4bad8" }}>
+      <Card
+        style={{
+          border: "solid 1px #d4bad8",
+          WebkitBoxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)",
+          MozBoxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)",
+          boxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)"
+        }}
+      >
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -102,14 +110,15 @@ class Skills extends Component {
                 <td>{this.state.pros[i]}</td>
                 {this.verifications() ? (
                   <td>
-                    <button
+                    <Button
+                      variant="info"
                       style={{ width: "100%" }}
                       type="button"
                       className="btn btn-success"
                       onClick={() => this.givetrust(item.name)}
                     >
                       I trust you
-                    </button>
+                    </Button>
                   </td>
                 ) : null}
               </tr>
