@@ -99,7 +99,7 @@ class Skills extends Component {
       return null
     } else {
       if(trusted[0].active) {
-        return <button
+        return <Button
         id= {item.name}
         variant="info"
         style={{ width: "100%" }}
@@ -108,7 +108,7 @@ class Skills extends Component {
         onClick={() => this.givetrust(item.name)}
       >
         I trust you
-      </button>
+      </Button>
       } else {
         return null
       }

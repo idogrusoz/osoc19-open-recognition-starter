@@ -71,7 +71,7 @@ const getTrustpeople = id =>
   select id,first_name from users WHERE id IN
   (select userrequesting as temp2 from trust where userrecieving=${id} 
   UNION
-  select userrecieving from trust where userrequesting=${id});
+  select userrecieving from trust where userrequesting=${id} AND active=true);
   `);
 
 const getPendingRealation = id =>

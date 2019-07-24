@@ -52,7 +52,6 @@ function Example(props) {
 
   return (
     <ButtonToolbar>
-]
       {props.user !==
       parseInt(
         localStorage.getItem("id") && localStorage.getItem("id") !== undefined
