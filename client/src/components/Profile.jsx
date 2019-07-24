@@ -38,9 +38,9 @@ class Profile extends Component {
           if (trusted[0].active === true) {
             return <TrustedLogo id={id} />;
           } else if (
-            trusted.active === false &&
-            trusted.user2approval === false
-          ) {
+            trusted[0].active === false &&
+            trusted[0].user2approval === false
+            ) {
             return <Button variant="success">Pending</Button>;
           }
         } else {
