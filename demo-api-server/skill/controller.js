@@ -19,6 +19,15 @@ controller.getSkills = (req, res) => {
   });
 };
 
+controller.fetchSkills = (req, res) => {
+  const id = req.params.id
+  const response = skilltable.fetchSkillsOfOneUser(id)
+  response.then(skills => {
+    const data = skills.rows
+    res.send(data)
+  })
+}
+
 controller.getNumberOfPros = (req, res) => {
   const skill = req.params.skill;
   const id = req.params.id;
