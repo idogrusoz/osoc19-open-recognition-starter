@@ -74,7 +74,7 @@ class View extends Component {
       const viewingUser = parseInt(localStorage.getItem('id'))
       const viewedProfile = parseInt(this.state.name[0].id)
       await fetch(
-        `http://localhost:3000/trust/relationship/${viewedProfile}/${viewingUser}`
+        `http://${process.env.REACT_APP_BACKEND_URL}/trust/relationship/${viewedProfile}/${viewingUser}`
       )
         .then(response => response.json())
         .then(data => {

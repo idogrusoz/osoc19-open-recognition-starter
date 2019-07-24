@@ -16,7 +16,7 @@ export default class TrustedLogo extends Component {
     const user1 = parseInt(`${this.props.id}`)
     const user2 = parseInt(id)
 
-    await fetch(`http://localhost:3000/trust/reject/${user1}/${user2}`, {
+    await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/trust/reject/${user1}/${user2}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })

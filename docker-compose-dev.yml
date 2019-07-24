@@ -1,6 +1,14 @@
 version: "3"
 services:
-  postgresql-focus:
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=test@me.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    ports:
+      - 8000:80
+
+  postgresql:
     image: osoc19-focus/db
     build:
       context: ./db
@@ -9,7 +17,7 @@ services:
       - POSTGRES_PASSWORD=postgres
     restart: unless-stopped
   
-  client-focus:
+  client:
     image: osoc19-focus/frontend:0.1
     build:
       context: ./client
@@ -18,13 +26,13 @@ services:
     ports:
       - 3001:3000
     depends_on:
-      - api-server-focus
+      - api-server
 
-  api-server-focus:
+  api-server:
     image: osoc19-focus/backend:0.1
     build:
       context: ./demo-api-server
     ports:
       - 3000:3000
     depends_on:
-      - postgresql-focus
+      - postgresql

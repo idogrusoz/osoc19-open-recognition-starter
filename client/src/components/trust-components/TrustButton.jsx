@@ -26,7 +26,7 @@ export default class TrustButton extends Component {
         user1approval: true
       },
       () =>
-        fetch('http://localhost:3000/trust/', {
+        fetch(`http://${process.env.REACT_APP_BACKEND_URL}/trust/`, {
           method: 'POST',
           body: JSON.stringify(this.state),
           headers: { 'Content-Type': 'application/json' }

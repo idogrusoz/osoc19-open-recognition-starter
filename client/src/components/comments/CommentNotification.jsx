@@ -12,7 +12,7 @@ export default class CommentNotification extends Component {
   componentDidMount = async () => {
     console.log('Notification mounts')
     const id = localStorage.getItem('id')
-    await fetch(`http://localhost:3000/comment/pending/${id}`)
+    await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/comment/pending/${id}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ comments: data })

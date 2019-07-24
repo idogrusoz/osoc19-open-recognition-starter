@@ -24,10 +24,10 @@ export default class Register extends Component {
   }
 
   handleSubmit = () => {
-    const data = this.state
-    const { history } = this.props
-    fetch('http://localhost:3000/users/', {
-      method: 'POST',
+    const data = this.state;
+    const { history } = this.props;
+    fetch(`http://${process.env.REACT_APP_BACKEND_URL}/users/`, {
+      method: "POST",
       body: JSON.stringify(data),
       headers: {
         'Content-Type': 'application/json'

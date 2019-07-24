@@ -13,14 +13,14 @@ class Profile extends Component {
   async componentDidMount() {
     if (localStorage.getItem("id") && typeof this.props.id === "undefined") {
       const fullName = await fetch(
-        `http://localhost:3000/users/${localStorage.getItem("id")}`
+        `http://${process.env.REACT_APP_BACKEND_URL}/users/${localStorage.getItem("id")}`
       ).then(function(response) {
         return response.json();
       });
       this.setState({ name: fullName });
     } else {
       const fullName = await fetch(
-        `http://localhost:3000/users/${this.props.id}`
+        `http://${process.env.REACT_APP_BACKEND_URL}/users/${this.props.id}`
       ).then(function(response) {
         return response.json();
       });

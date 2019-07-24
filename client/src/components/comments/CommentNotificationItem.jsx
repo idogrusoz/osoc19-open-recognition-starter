@@ -10,7 +10,7 @@ export default class CommentNotificationItem extends Component {
 
   componentDidMount = async () => {
     const id = this.props.item.author
-    await fetch(`http://localhost:3000/users/${id}`)
+    await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/users/${id}`)
       .then(response => response.json())
       .then(data => {
         this.setState({
@@ -24,11 +24,11 @@ export default class CommentNotificationItem extends Component {
   handleReject = async id => {
     const user1 = this.props.item.author
     const user2 = this.props.item.reciever
-    await fetch(`http://localhost:3000/comment/reject/${id}`, {
+    await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/comment/reject/${id}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     }).then(res => console.log('Comment is deleted', res))
-    await fetch(`http://localhost:3000/trust/reject/${user1}/${user2}`, {
+      await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/trust/reject/${user1}/${user2}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -39,7 +39,7 @@ export default class CommentNotificationItem extends Component {
   }
 
   handleAccept = async id => {
-    await fetch(`http://localhost:3000/comment/approve/${id}`, {
+    await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/comment/approve/${id}`, {
       method: 'PUT'
     })
       .then(res => {
