@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
+import AddSkill from "./AddSkill"
 
 class Skills extends Component {
   constructor(props) {
@@ -130,6 +131,10 @@ class Skills extends Component {
             ))}
           </tbody>
         </Table>
+        <AddSkill 
+        trust={this.props.trustRelation}
+        user={this.props.loc}
+        />
       </Card>
     );
   }
