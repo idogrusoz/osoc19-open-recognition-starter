@@ -87,7 +87,7 @@ class Skills extends Component {
     .then(data => skillsList = data)
     .then(() => {
       skillsList.forEach(skill => {
-        if(skill.name === item.name && skill.author === parseInt(localStorage.getItem('id'))){
+        if(trusted.length > 0 && skill.name === item.name && skill.author === parseInt(localStorage.getItem('id'))){
           document.getElementById(item.name).disabled = "disabled"
         }
       })
