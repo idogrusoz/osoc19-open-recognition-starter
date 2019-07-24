@@ -103,19 +103,18 @@ class Skills extends Component {
     if (trusted.length < 1) {
       return null;
     } else {
-      if (trusted[0].active) {
-        return (
-          <button
-            id={item.name}
-            variant="info"
-            style={{ width: "100%" }}
-            type="button"
-            className="btn btn-success"
-            onClick={() => this.givetrust(item.name)}
-          >
-            I trust you
-          </button>
-        );
+
+      if(trusted[0].active) {
+        return <Button
+        id= {item.name}
+        variant="info"
+        style={{ width: "100%" }}
+        type="button"
+        className="btn btn-success"
+        onClick={() => this.givetrust(item.name)}
+      >
+        I trust you
+      </Button>
       } else {
         return null;
       }
