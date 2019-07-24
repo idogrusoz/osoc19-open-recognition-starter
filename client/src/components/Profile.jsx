@@ -63,16 +63,23 @@ class Profile extends Component {
         }}
       >
         <Card.Body>
+          {x.picture === null  || x.picture === undefined ? <Image
+            src= {process.env.PUBLIC_URL + '/img/blank-profile-picture-973460_640.png'}
+            alt="prof pic"
+            roundedCircle
+            width="150"
+            height="150"
+          /> :
           <Image
             src={process.env.PUBLIC_URL + x.picture}
             alt="prof pic"
             roundedCircle
             width="150"
             height="150"
-          />
+          />}
           <Card.Text>
             <br />
-            {x.last_name} <br />
+            {`${x.first_name} ${x.last_name}`} <br />
             {x.email} <br />
             <br />
             {parseInt(localStorage.getItem("id")) === x.id

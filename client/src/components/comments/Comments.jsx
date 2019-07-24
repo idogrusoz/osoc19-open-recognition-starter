@@ -49,7 +49,7 @@ class Comments extends Component {
                   data.map(async x => {
                     await fetch(`http://localhost:3000/users/${x.author}`)
                     .then(res => res.json())
-                    .then(data2 => (x.author = data2[0].first_name));
+                    .then(data2 => (x.author = `${data2[0].first_name} ${data2[0].last_name}`));
                     return x;
                   })
                   )
@@ -75,7 +75,7 @@ class Comments extends Component {
             }}
           >
             <Card.Body>
-              <Card.Text
+              <Card
                 style={{
                   webkitBoxShadow: "10px -4px 17px -7px rgba(61,53,166,0.69)",
                   mozBoxShadow: "10px -4px 17px -7px rgba(61,53,166,0.69)",
@@ -86,7 +86,7 @@ class Comments extends Component {
               >
                 <p>There is no comment on this profile yet! </p>
                 <p>Be the first one adding some good word on it.</p>
-              </Card.Text>
+              </Card>
             </Card.Body>
           </Card>
         ) : (
