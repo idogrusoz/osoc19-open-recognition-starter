@@ -30,7 +30,7 @@ const insertSkill = data => {
   `);
 };
 
-const getSkillsOfOneUser = id =>
+const fetchSkillsOfOneUser = id =>
   database.query(SQL`
     SELECT 
     *
@@ -59,7 +59,7 @@ const getSkillsGrouped = id => {
 module.exports = {
   createTable,
   insertSkill,
-  getSkillsOfOneUser,
+  fetchSkillsOfOneUser,
   getNumberOfPros,
   getSkillsGrouped
 };

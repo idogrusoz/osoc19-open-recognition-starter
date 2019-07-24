@@ -23,6 +23,7 @@ class Skills extends Component {
       : false;
 
   givetrust = trust => {
+    document.getElementById(trust).disabled="disabled"
     const data = {
       name: trust,
       author: localStorage.getItem("id"),
@@ -80,12 +81,24 @@ class Skills extends Component {
   }
 
   renderButton = (item) => {
+    let skillsList = []
+    fetch(`http://localhost:3000/skill/preventmultiple/${this.props.loc}`)
+    .then(response => response.json())
+    .then(data => skillsList = data)
+    .then(() => {
+      skillsList.forEach(skill => {
+        if(skill.name === item.name && skill.author === parseInt(localStorage.getItem('id'))){
+          document.getElementById(item.name).disabled = "disabled"
+        }
+      })
+    })
     const trusted = this.props.trustRelation
     if(trusted.length < 1) {
       return null
     } else {
       if(trusted[0].active) {
         return <button
+        id= {item.name}
         style={{ width: "100%" }}
         type="button"
         className="btn btn-success"
