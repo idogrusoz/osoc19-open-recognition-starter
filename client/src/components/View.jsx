@@ -45,12 +45,16 @@ class View extends Component {
                 marginTop: "50px"
               }}
             >
+
               <Profile
                 id={this.state.loc}
                 trustRelation={this.state.trustRelation}
               />
 
-              <Skills loc={this.state.loc} />
+              <Skills 
+                loc={this.state.loc} 
+                trustRelation={this.state.trustRelation}
+              />
             </Col>
 
             <Col xs={7} style={{ marginTop: "50px" }}>
@@ -58,7 +62,10 @@ class View extends Component {
                 <CommentNotification />
               ) : null}
 
-              <Comments loc={this.state.loc} />
+              <Comments 
+                loc={this.state.loc}
+                trustRelation={this.state.trustRelation}
+              />
             </Col>
             <Col style={{ marginTop: "50px" }}>
               {this.state.loc === localStorage.getItem("id") ? (

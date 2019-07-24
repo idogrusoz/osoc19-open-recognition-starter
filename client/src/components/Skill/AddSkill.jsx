@@ -6,25 +6,21 @@ import { useState } from "react";
 
 import React from "react";
 
-function Example(props) {
+function AddSkill(props) {
   const [lgShow, setLgShow] = useState(false);
 
-  const sayhello = () => {
-    const relation = document.getElementById("relation").value;
-    const message = document.getElementById("comment").value;
+  const addSkill = () => {
+    const skill = document.getElementById("skill").value;
     const author = localStorage.getItem("id");
     const reciever = props.user;
 
     const data = {
       author: author,
       reciever: reciever,
-      creationdate: new Date(),
-      message: message,
-      published: false,
-      relationship: relation
+      name: skill
     };
 
-    fetch(`http://localhost:3000/comment`, {
+    fetch(`http://localhost:3000/skill`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -32,7 +28,7 @@ function Example(props) {
         "Content-Type": "application/json"
       }
     })
-      .then(res => console.log("new comment added"))
+      .then(res => console.log("new skill added"))
       .catch(error => console.log("Error:", error));
     setLgShow(false);
   };
@@ -43,7 +39,7 @@ function Example(props) {
       return null;
     } else {
       if (trusted[0].active) {
-        return <Button variant="info" onClick={() => setLgShow(true)}>Add comment</Button>;
+        return <Button onClick={() => setLgShow(true)}>Add skill</Button>;
       } else {
         return null;
       }
@@ -52,14 +48,12 @@ function Example(props) {
 
   return (
     <ButtonToolbar>
-]
       {props.user !==
       parseInt(
         localStorage.getItem("id") && localStorage.getItem("id") !== undefined
       )
         ? renderButton()
         : null}
-
 
       <Modal
         size="lg"
@@ -69,23 +63,17 @@ function Example(props) {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-sm">
-            Add your comment
+            Please add a skill that you recognize
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="formBasicEmail">
-              <Form.Label>Relationship between you 2 :</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Relationship"
-                id="relation"
-              />
-              <Form.Label>Your comment :</Form.Label>
-              <Form.Control as="textarea" rows="5" id="comment" />
+              <Form.Label>Skill</Form.Label>
+              <Form.Control as="textarea" rows="1" id="skill" />
             </Form.Group>
 
-            <Button variant="primary" onClick={sayhello}>
+            <Button variant="primary" onClick={addSkill}>
               Submit
             </Button>
           </Form>
@@ -95,4 +83,4 @@ function Example(props) {
   );
 }
 
-export default Example;
+export default AddSkill;

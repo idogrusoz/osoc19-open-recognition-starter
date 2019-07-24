@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import AddSkill from "./AddSkill"
+
 
 class Skills extends Component {
   constructor(props) {
@@ -23,6 +25,7 @@ class Skills extends Component {
       : false;
 
   givetrust = trust => {
+    document.getElementById(trust).disabled="disabled"
     const data = {
       name: trust,
       author: localStorage.getItem("id"),
@@ -79,6 +82,39 @@ class Skills extends Component {
     }
   }
 
+  renderButton = (item) => {
+    let skillsList = []
+    fetch(`http://localhost:3000/skill/preventmultiple/${this.props.loc}`)
+    .then(response => response.json())
+    .then(data => skillsList = data)
+    .then(() => {
+      skillsList.forEach(skill => {
+        if(trusted.length > 0 && skill.name === item.name && skill.author === parseInt(localStorage.getItem('id'))){
+          document.getElementById(item.name).disabled = "disabled"
+        }
+      })
+    })
+    const trusted = this.props.trustRelation
+    if(trusted.length < 1) {
+      return null
+    } else {
+      if(trusted[0].active) {
+        return <button
+        id= {item.name}
+        variant="info"
+        style={{ width: "100%" }}
+        type="button"
+        className="btn btn-success"
+        onClick={() => this.givetrust(item.name)}
+      >
+        I trust you
+      </button>
+      } else {
+        return null
+      }
+    }
+  }
+
   render() {
     return (
       <Card
@@ -110,21 +146,19 @@ class Skills extends Component {
                 <td>{this.state.pros[i]}</td>
                 {this.verifications() ? (
                   <td>
-                    <Button
-                      variant="info"
-                      style={{ width: "100%" }}
-                      type="button"
-                      className="btn btn-success"
-                      onClick={() => this.givetrust(item.name)}
-                    >
-                      I trust you
-                    </Button>
+
+                    {this.renderButton(item)}
+
                   </td>
                 ) : null}
               </tr>
             ))}
           </tbody>
         </Table>
+        <AddSkill 
+        trust={this.props.trustRelation}
+        user={this.props.loc}
+        />
       </Card>
     );
   }
