@@ -56,7 +56,6 @@ class View extends Component {
                 trustRelation={this.state.trustRelation}
               />
             </Col>
-
             <Col xs={7} style={{ marginTop: "50px" }}>
               {this.state.loc === localStorage.getItem("id") ? (
                 <CommentNotification />
