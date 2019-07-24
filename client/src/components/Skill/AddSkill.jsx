@@ -70,7 +70,7 @@ function AddSkill(props) {
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Skill</Form.Label>
-              <Form.Control as="text" rows="5" id="skill" />
+              <Form.Control as="textarea" rows="1" id="skill" />
             </Form.Group>
 
             <Button variant="primary" onClick={addSkill}>
