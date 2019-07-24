@@ -49,9 +49,7 @@ export default class Header extends Component {
 
           <div className="menu">
             <ul className="navlinks">
-              {/* <Link className="linksss" to="/signin"> */}
               <SignInOut />
-              {/* </Link> */}
 
               {localStorage.getItem("id") ? null : (
                 <Link className="linksss" to="/register">

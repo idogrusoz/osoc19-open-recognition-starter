@@ -9,11 +9,10 @@ import TrustNotification from "./trust-components/TrustNotification";
 import Header from "../components/header/Header";
 import Skills from "./Skill/skills";
 
-
 class Layout extends Component {
   render() {
     return (
-      <div style={{ backgroundColor: "red" }}>
+      <div>
         <Header />
         <Container>
           <Row>
@@ -21,10 +20,10 @@ class Layout extends Component {
               <Profile />
               <Skills loc={localStorage.getItem("id")} />
             </Col>
-            <Col sm={{ span: 7 }}>
+            <Col xs={7} style={{ marginTop: "50px" }}>
               <Comments />
             </Col>
-            <Col>
+            <Col style={{ marginTop: "50px" }}>
               <TrustNotification />
               <TrustedList />
             </Col>

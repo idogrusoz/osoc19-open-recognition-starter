@@ -8,7 +8,7 @@ import TrustedList from "./TrustedList";
 import TrustNotification from "./trust-components/TrustNotification";
 import Header from "../components/header/Header";
 import Skills from "./Skill/skills";
-import CommentNotification from './comments/CommentNotification'
+import CommentNotification from "./comments/CommentNotification";
 
 class View extends Component {
   constructor(props) {
@@ -40,7 +40,12 @@ class View extends Component {
         <Header />
         <Container>
           <Row>
-            <Col >
+            <Col
+              style={{
+                marginTop: "50px"
+              }}
+            >
+
               <Profile
                 id={this.state.loc}
                 trustRelation={this.state.trustRelation}
@@ -52,17 +57,20 @@ class View extends Component {
               />
             </Col>
 
-            <Col xs={7}>
-            {(this.state.loc === localStorage.getItem("id")) ? <CommentNotification/> : null}
+            <Col xs={7} style={{ marginTop: "50px" }}>
+              {this.state.loc === localStorage.getItem("id") ? (
+                <CommentNotification />
+              ) : null}
 
               <Comments 
                 loc={this.state.loc}
                 trustRelation={this.state.trustRelation}
               />
             </Col>
-            <Col>
-            {(this.state.loc === localStorage.getItem("id")) ?<TrustNotification />: null}
-              
+            <Col style={{ marginTop: "50px" }}>
+              {this.state.loc === localStorage.getItem("id") ? (
+                <TrustNotification />
+              ) : null}
 
               <TrustedList loc={this.state.loc} />
             </Col>

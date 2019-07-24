@@ -11,7 +11,6 @@ export default class Register extends Component {
       last_name: "",
       login: "",
       password: ""
-      // picture: ""
     };
   }
 
@@ -46,20 +45,19 @@ export default class Register extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  // handlePicture = () => {
-  //   console.log(1)
-  //   const newFile = document.getElementById("formGridPicture").files
-  //   console.log(newFile[0])
-  //   const fileWriter = new write
-  //   // const formData = new FormData()
-  //   // formData.append('picture', pic, ``)
-  // }
-
   render() {
     return (
       <div>
         <Header />
-        <div className="form-outline">
+        <div
+          className="form-outline"
+          style={{
+            marginTop: "80px",
+            width: "80%",
+            marginLeft: "auto",
+            marginRight: "auto"
+          }}
+        >
           <Form>
             <Form.Row>
               <Form.Group as={Col} controlId="formGridName">
@@ -82,19 +80,6 @@ export default class Register extends Component {
                 />
               </Form.Group>
             </Form.Row>
-{/* 
-            <Form.Row>
-            <Form.Group as={Col} controlId="formGridPicture">
-                <Form.Label>Choose a profile photo</Form.Label>
-                <Form.Control
-                  name="picture"
-                  type="file"
-                  placeholder=""
-                  onChange={this.handlePicture}
-                />
-              </Form.Group>
-
-            </Form.Row> */}
 
             <Form.Row>
               <Form.Group as={Col} controlId="formGridLogin">
@@ -116,21 +101,6 @@ export default class Register extends Component {
                 />
               </Form.Group>
             </Form.Row>
-
-            {/* <Form.Row>
-            <Form.Group as={Col} controlId="formGridEmail">
-              <Form.Label>Confirm Email</Form.Label>
-              <Form.Control type="email" placeholder="Confirm your email" />
-            </Form.Group>
-
-            <Form.Group as={Col} controlId="formGridPassword">
-              <Form.Label>Confirm Password</Form.Label>
-              <Form.Control
-                type="password"
-                placeholder="Confirm your password"
-              />
-            </Form.Group>
-          </Form.Row> */}
 
             <Button
               variant="outline-primary"
