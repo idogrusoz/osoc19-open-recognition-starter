@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Table from "react-bootstrap/Table";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
-import AddSkill from "./AddSkill"
-
+import AddSkill from "./AddSkill";
 
 class Skills extends Component {
   constructor(props) {
@@ -20,12 +19,14 @@ class Skills extends Component {
   };
 
   verifications = () =>
-    localStorage.getItem("id") && localStorage.getItem("id") !== this.props.loc
+    localStorage.getItem("id") &&
+    localStorage.getItem("id") !== this.props.loc &&
+    this.props.trustRelation.length > 0
       ? true
       : false;
 
   givetrust = trust => {
-    document.getElementById(trust).disabled="disabled"
+    document.getElementById(trust).disabled = "disabled";
     const data = {
       name: trust,
       author: localStorage.getItem("id"),
@@ -82,22 +83,27 @@ class Skills extends Component {
     }
   }
 
-  renderButton = (item) => {
-    let skillsList = []
+  renderButton = item => {
+    let skillsList = [];
     fetch(`http://localhost:3000/skill/preventmultiple/${this.props.loc}`)
-    .then(response => response.json())
-    .then(data => skillsList = data)
-    .then(() => {
-      skillsList.forEach(skill => {
-        if(trusted.length > 0 && skill.name === item.name && skill.author === parseInt(localStorage.getItem('id'))){
-          document.getElementById(item.name).disabled = "disabled"
-        }
-      })
-    })
-    const trusted = this.props.trustRelation
-    if(trusted.length < 1) {
-      return null
+      .then(response => response.json())
+      .then(data => (skillsList = data))
+      .then(() => {
+        skillsList.forEach(skill => {
+          if (
+            trusted.length > 0 &&
+            skill.name === item.name &&
+            skill.author === parseInt(localStorage.getItem("id"))
+          ) {
+            document.getElementById(item.name).disabled = "disabled";
+          }
+        });
+      });
+    const trusted = this.props.trustRelation;
+    if (trusted.length < 1) {
+      return null;
     } else {
+
       if(trusted[0].active) {
         return <Button
         id= {item.name}
@@ -110,10 +116,10 @@ class Skills extends Component {
         I trust you
       </Button>
       } else {
-        return null
+        return null;
       }
     }
-  }
+  };
 
   render() {
     return (
@@ -128,7 +134,7 @@ class Skills extends Component {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th scope="col">skillname</th>
+              <th scope="col">name</th>
               <th scope="col">given</th>
               <th scope="col">Pro</th>
               {this.verifications() ? (
@@ -145,20 +151,13 @@ class Skills extends Component {
                 <td>{item.count}</td>
                 <td>{this.state.pros[i]}</td>
                 {this.verifications() ? (
-                  <td>
-
-                    {this.renderButton(item)}
-
-                  </td>
+                  <td>{this.renderButton(item)}</td>
                 ) : null}
               </tr>
             ))}
           </tbody>
         </Table>
-        <AddSkill 
-        trust={this.props.trustRelation}
-        user={this.props.loc}
-        />
+        <AddSkill trust={this.props.trustRelation} user={this.props.loc} />
       </Card>
     );
   }

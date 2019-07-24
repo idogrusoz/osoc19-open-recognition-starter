@@ -6,9 +6,9 @@ const comment = require("./comment/model");
 const usersArray = [
   {
     first_name: "Steve",
-    last_name: "Bitmoagira",
+    last_name: "Bitomagira",
     email: "steve@openrec.be",
-    picture: "https://api.adorable.io/avatars/285/abott@adorable.pngCopy",
+    picture: "/img/pic2.jpg",
     profession: "web developer",
     employment: "open-recognition",
     city: "Louvain la Neuve",
@@ -17,10 +17,10 @@ const usersArray = [
     password: "password"
   },
   {
-    first_name: "Tamara",
+    first_name: "Tamar",
     last_name: "Asashvili",
     email: "tamara@openrec.be",
-    picture: "https://api.adorable.io/avatars/285/abott@adorable.pngCopy",
+    picture: "/img/ti.jpg",
     profession: "web developer",
     employment: "open-recognition",
     city: "Brussels",
@@ -32,7 +32,7 @@ const usersArray = [
     first_name: "Ibrahim",
     last_name: "Dogrusoz",
     email: "ibrahim@openrec.be",
-    picture: "https://api.adorable.io/avatars/285/abott@adorable.pngCopy",
+    picture: "/img/IMG_4356.jpg",
     profession: "web developer",
     employment: "open-recognition",
     city: "Leuven",
@@ -44,7 +44,7 @@ const usersArray = [
     first_name: "Rami",
     last_name: "Prakat",
     email: "rami@openrec.be",
-    picture: "https://api.adorable.io/avatars/285/abott@adorable.pngCopy",
+    picture: "/img/blank-profile-picture-973460_640.png",
     profession: "web developer",
     employment: "open-recognition",
     city: "Antwerpen",
