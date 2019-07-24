@@ -9,14 +9,14 @@ class LandingImage extends Component {
       <Card className="text-white text-center ">
         <Card.Img src={image} alt="Card image" className="ta" />
         <Card.ImgOverlay>
-          <Card className="centered-text">
+          <div className="centered-text">
             <h2>
               <strong>Open Recognition</strong>
             </h2>
             <h4>Trust is the key</h4>
             Open Recognition is a web app where your profile is made not by you
             but by the other people you trust
-          </Card>
+          </div>
         </Card.ImgOverlay>
       </Card>
     );

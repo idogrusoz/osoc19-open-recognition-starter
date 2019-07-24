@@ -43,7 +43,11 @@ function Example(props) {
       return null;
     } else {
       if (trusted[0].active) {
-        return <Button variant="info" onClick={() => setLgShow(true)}>Add comment</Button>;
+        return (
+          <Button variant="info" onClick={() => setLgShow(true)}>
+            Add comment
+          </Button>
+        );
       } else {
         return null;
       }
@@ -52,14 +56,12 @@ function Example(props) {
 
   return (
     <ButtonToolbar>
-]
       {props.user !==
       parseInt(
         localStorage.getItem("id") && localStorage.getItem("id") !== undefined
       )
         ? renderButton()
         : null}
-
 
       <Modal
         size="lg"
