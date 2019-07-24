@@ -33,11 +33,8 @@ class Profile extends Component {
   renderTrustButton = id => {
     const trusted = this.props.trustRelation;
     if (localStorage.getItem("id") !== null) {
-      console.log(localStorage.getItem("id") === id);
       if (localStorage.getItem("id") !== id) {
-        console.log(trusted);
         if (trusted.length > 0) {
-          console.log(trusted);
           if (trusted[0].active === true) {
             return <TrustedLogo id={id} />;
           } else if (
@@ -59,11 +56,15 @@ class Profile extends Component {
     return this.state.name.map((x, i) => (
       <Card
         key={i}
-        style={{ margin: "27px 0px 20px 0px", border: " solid 1px #d4bad8" }}
+        style={{
+          WebkitBoxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)",
+          MozBoxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)",
+          boxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)"
+        }}
       >
         <Card.Body>
           <Image
-            src={x.picture}
+            src={process.env.PUBLIC_URL + x.picture}
             alt="prof pic"
             roundedCircle
             width="150"

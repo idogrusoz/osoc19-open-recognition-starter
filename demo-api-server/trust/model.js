@@ -2,7 +2,6 @@
 
 const database = require("../database");
 const SQL = require("pg-template-tag").default;
-console.log("usertable");
 const createTable = () => {
   database.query(`
   CREATE TABLE IF NOT EXISTS
@@ -19,7 +18,6 @@ const createTable = () => {
       user2approval BOOLEAN NOT NULL
     );
 `);
-  console.log("trust table created successfully!!!!!");
 };
 
 const insertTrust = data => {

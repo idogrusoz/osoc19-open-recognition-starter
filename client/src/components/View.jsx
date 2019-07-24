@@ -36,27 +36,37 @@ class View extends Component {
 
   render() {
     return (
-      <div>
+      <div className="tout">
         <Header />
         <Container>
           <Row>
-            <Col lg="4">
+            <Col
+              style={{
+                marginTop: "50px"
+              }}
+            >
+
               <Profile
                 id={this.state.loc}
                 trustRelation={this.state.trustRelation}
               />
 
-              <Skills loc={this.state.loc} />
+              <Skills 
+                loc={this.state.loc} 
+                trustRelation={this.state.trustRelation}
+              />
             </Col>
-
-            <Col xs={6}>
+            <Col xs={7} style={{ marginTop: "50px" }}>
               {this.state.loc === localStorage.getItem("id") ? (
                 <CommentNotification />
               ) : null}
 
-              <Comments loc={this.state.loc} />
+              <Comments 
+                loc={this.state.loc}
+                trustRelation={this.state.trustRelation}
+              />
             </Col>
-            <Col style={{ border: "solid 2px red" }}>
+            <Col style={{ marginTop: "50px" }}>
               {this.state.loc === localStorage.getItem("id") ? (
                 <TrustNotification />
               ) : null}

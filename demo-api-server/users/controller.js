@@ -14,7 +14,6 @@ controller.getUser = (req, res) => {
   const response = usertable.getUserById(id);
   response.then(user => {
     const data = user.rows;
-    console.log("in controller getuser");
     res.send(data);
   });
 };

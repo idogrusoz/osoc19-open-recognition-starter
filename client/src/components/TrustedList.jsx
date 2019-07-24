@@ -23,15 +23,21 @@ export default class TrustedList extends Component {
   render() {
     return (
       <Card
-        style={{ margin: "27px 0px 0px 0px", border: " solid 1px #d4bad8" }}
+        style={{
+          WebkitBoxShadow: "37px -23px 29px -6px rgba(29,117,47,0.58)",
+          MozBoxShadow: "37px -23px 29px -6px rgba(29,117,47,0.58)",
+          boxShadow: "37px -23px 29px -6px rgba(29,117,47,0.58)"
+        }}
       >
         <Card.Body>
-          <Card.Title>Trusted List</Card.Title>
-          <Card.Text>
-            {this.state.trustedpeople.map((x, i) => (
-              <p key={i}>{x.first_name}</p>
-            ))}
-          </Card.Text>
+          <Card.Title>Trusted By :</Card.Title>
+
+          {this.state.trustedpeople.map((x, i) => (
+            <div key={i}>
+              <a href={`/profile/${x.id}`}>{x.first_name}</a>
+              <br />
+            </div>
+          ))}
         </Card.Body>
       </Card>
     );

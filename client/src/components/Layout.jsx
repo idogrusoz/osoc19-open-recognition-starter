@@ -20,10 +20,10 @@ class Layout extends Component {
               <Profile />
               <Skills loc={localStorage.getItem("id")} />
             </Col>
-            <Col sm={{ span: 7 }}>
+            <Col xs={7} style={{ marginTop: "50px" }}>
               <Comments />
             </Col>
-            <Col>
+            <Col style={{ marginTop: "50px" }}>
               <TrustNotification />
               <TrustedList />
             </Col>

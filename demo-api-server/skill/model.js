@@ -2,10 +2,8 @@
 
 const database = require("../database");
 const SQL = require("pg-template-tag").default;
-console.log("usertable");
 
 const createTable = () => {
-  console.log("inside createtable");
   database.query(`
   CREATE TABLE IF NOT EXISTS
     skill
@@ -16,7 +14,6 @@ const createTable = () => {
       reciever INTEGER NOT NULL REFERENCES users(id)
     );
 `);
-  console.log("skill table created successfully!!!!!");
 };
 
 const insertSkill = data => {
@@ -33,7 +30,7 @@ const insertSkill = data => {
   `);
 };
 
-const getSkillsOfOneUser = id =>
+const fetchSkillsOfOneUser = id =>
   database.query(SQL`
     SELECT 
     *
@@ -62,7 +59,7 @@ const getSkillsGrouped = id => {
 module.exports = {
   createTable,
   insertSkill,
-  getSkillsOfOneUser,
+  fetchSkillsOfOneUser,
   getNumberOfPros,
   getSkillsGrouped
 };
