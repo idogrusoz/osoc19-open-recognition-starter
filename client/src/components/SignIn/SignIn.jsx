@@ -53,14 +53,14 @@ export default class SignIn extends Component {
   render() {
     return (
       <div>
-          <Header />
         <Card>
+          <Header />
           <Card.Body>
             <Card.Img variant="bottom" src={image} />
 
             <Card.ImgOverlay>
               <Row>
-                <Form style={{ margin: "50px 50px" }}>
+                <Form style={{ margin: "80px 80px" }}>
                   <Form.Group as={Row} controlId="formHorizontalEmail">
                     <Form.Label column>Login</Form.Label>
                     <Col sm={10}>

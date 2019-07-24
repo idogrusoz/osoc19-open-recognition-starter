@@ -8,7 +8,7 @@ import TrustedList from "./TrustedList";
 import TrustNotification from "./trust-components/TrustNotification";
 import Header from "../components/header/Header";
 import Skills from "./Skill/skills";
-import CommentNotification from './comments/CommentNotification'
+import CommentNotification from "./comments/CommentNotification";
 
 class View extends Component {
   constructor(props) {
@@ -49,14 +49,17 @@ class View extends Component {
               <Skills loc={this.state.loc} />
             </Col>
 
-            <Col xs={7}>
-            {(this.state.loc === localStorage.getItem("id")) ? <CommentNotification/> : null}
+            <Col xs={6}>
+              {this.state.loc === localStorage.getItem("id") ? (
+                <CommentNotification />
+              ) : null}
 
               <Comments loc={this.state.loc} />
             </Col>
-            <Col>
-            {(this.state.loc === localStorage.getItem("id")) ?<TrustNotification />: null}
-              
+            <Col style={{ border: "solid 2px red" }}>
+              {this.state.loc === localStorage.getItem("id") ? (
+                <TrustNotification />
+              ) : null}
 
               <TrustedList loc={this.state.loc} />
             </Col>

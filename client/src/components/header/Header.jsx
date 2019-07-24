@@ -53,9 +53,7 @@ export default class Header extends Component {
                 <SignInOut />
               </Link>
 
-              {localStorage.getItem("id") ? (
-                null
-              ) : (
+              {localStorage.getItem("id") ? null : (
                 <Link className="linksss" to="/register">
                   <Button variant="info">Register</Button>
                 </Link>
