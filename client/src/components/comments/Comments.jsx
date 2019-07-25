@@ -23,13 +23,13 @@ class Comments extends Component {
   async componentDidMount() {
     if (localStorage.getItem('id') && typeof this.props.loc === 'undefined') {
       const comment = await fetch(
-        `http://${process.env.REACT_APP_BACKEND_URL}/comment/${localStorage.getItem("id")}`
+        `${process.env.REACT_APP_BACKEND_URL}/comment/${localStorage.getItem("id")}`
       )
         .then(response => response.json())
         .then(data =>
           Promise.all(
             data.map(async x => {
-              await fetch(`http://localhost:3000/users/${x.author}`)
+              await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${x.author}`)
                 .then(res => res.json())
                 .then(data2 => (x.author = data2[0].first_name))
               return x
@@ -40,13 +40,13 @@ class Comments extends Component {
       this.setState({ comments: comment })
     } else {
       const comment = await fetch(
-        `http://localhost:3000/comment/${this.props.loc}`
+        `${process.env.REACT_APP_BACKEND_URL}/comment/${this.props.loc}`
       )
         .then(response => response.json())
         .then(data =>
           Promise.all(
             data.map(async x => {
-              await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/users/${x.author}`)
+              await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${x.author}`)
                 .then(res => res.json())
                 .then(
                   data2 =>

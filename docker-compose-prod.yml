@@ -13,10 +13,9 @@ services:
     image: osoc19-focus/frontend:0.1
     build:
       context: ./client
+      dockerfile: Dockerfile-prod
       args:
         - REACT_APP_BACKEND_URL=${REACT_APP_BACKEND_URL}
-    ports:
-      - 3001:3000
     depends_on:
       - api-server-focus
 

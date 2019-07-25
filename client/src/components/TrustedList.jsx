@@ -9,11 +9,11 @@ export default class TrustedList extends Component {
   }
   componentDidMount = () => {
     if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
-      fetch(`http://${process.env.REACT_APP_BACKEND_URL}/trust/people/${localStorage.id}`)
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/people/${localStorage.id}`)
         .then(res => res.json())
         .then(data => this.setState({ trustedpeople: data }))
     } else {
-      fetch(`http://${process.env.REACT_APP_BACKEND_URL}/trust/people/${this.props.loc}`)
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/people/${this.props.loc}`)
         .then(res => res.json())
         .then(data => {
           this.setState({ trustedpeople: data })

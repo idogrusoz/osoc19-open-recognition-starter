@@ -27,7 +27,7 @@ export default class SignIn extends Component {
     event.preventDefault()
     const { history } = this.props
     fetch(
-      `http://${process.env.REACT_APP_BACKEND_URL}/users/${this.state.login}/${this.state.password}`,
+      `${process.env.REACT_APP_BACKEND_URL}/users/${this.state.login}/${this.state.password}`,
       {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }

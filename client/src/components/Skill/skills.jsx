@@ -23,7 +23,7 @@ class Skills extends Component {
 
   renderButton = item => {
     let skillsList = []
-    fetch(`http://${process.env.REACT_APP_BACKEND_URL}/skill/preventmultiple/${this.props.loc}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/skill/preventmultiple/${this.props.loc}`)
       .then(response => response.json())
       .then(data => (skillsList = data))
       .then(() => {

@@ -9,14 +9,13 @@ export default class TrustedLogo extends Component {
       trust: true
     }
   }
-
   handleCancel = async () => {
     this.setState({ trust: false })
     const id = localStorage.getItem('id')
     const user1 = parseInt(`${this.props.id}`)
     const user2 = parseInt(id)
 
-    await fetch(`http://${process.env.REACT_APP_BACKEND_URL}/trust/reject/${user1}/${user2}`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/reject/${user1}/${user2}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
