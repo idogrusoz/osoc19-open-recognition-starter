@@ -40,33 +40,29 @@ class View extends Component {
         <Header />
         <Container>
           <Row>
-            <Col
-              style={{
-                marginTop: "50px"
-              }}
-            >
-
+            <Col xs={4} style={{ marginTop: "50px" }}>
               <Profile
                 id={this.state.loc}
                 trustRelation={this.state.trustRelation}
               />
+              <br />
 
-              <Skills 
-                loc={this.state.loc} 
-                trustRelation={this.state.trustRelation}
-              />
-            </Col>
-            <Col xs={7} style={{ marginTop: "50px" }}>
-              {this.state.loc === localStorage.getItem("id") ? (
-                <CommentNotification />
-              ) : null}
-
-              <Comments 
+              <Skills
                 loc={this.state.loc}
                 trustRelation={this.state.trustRelation}
               />
             </Col>
-            <Col style={{ marginTop: "50px" }}>
+            <Col xs={6} style={{ marginTop: "50px" }}>
+              {this.state.loc === localStorage.getItem("id") ? (
+                <CommentNotification />
+              ) : null}
+
+              <Comments
+                loc={this.state.loc}
+                trustRelation={this.state.trustRelation}
+              />
+            </Col>
+            <Col xs={2} style={{ marginTop: "50px" }}>
               {this.state.loc === localStorage.getItem("id") ? (
                 <TrustNotification />
               ) : null}

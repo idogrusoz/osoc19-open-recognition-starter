@@ -16,14 +16,14 @@ class Layout extends Component {
         <Header />
         <Container>
           <Row>
-            <Col>
+            <Col style={{ border: "2px solid green  " }} xs={4}>
               <Profile />
               <Skills loc={localStorage.getItem("id")} />
             </Col>
-            <Col xs={7} style={{ marginTop: "50px" }}>
+            <Col xs={6} style={{ marginTop: "50px" }}>
               <Comments />
             </Col>
-            <Col style={{ marginTop: "50px" }}>
+            <Col style={{ marginTop: "50px" }} xs={2}>
               <TrustNotification />
               <TrustedList />
             </Col>
