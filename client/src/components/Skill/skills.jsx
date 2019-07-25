@@ -103,18 +103,18 @@ class Skills extends Component {
     if (trusted.length < 1) {
       return null;
     } else {
-
-      if(trusted[0].active) {
-        return <Button
-        id= {item.name}
-        variant="info"
-        style={{ width: "60%" }}
-        type="button"
-        className="btn btn-success"
-        onClick={() => this.givetrust(item.name)}
-      >
-        I trust you
-      </Button>
+      if (trusted[0].active) {
+        return (
+          <Button
+            id={item.name}
+            variant="info"
+            type="button"
+            className="btn btn-success"
+            onClick={() => this.givetrust(item.name)}
+          >
+            +
+          </Button>
+        );
       } else {
         return null;
       }
@@ -131,17 +131,14 @@ class Skills extends Component {
           boxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)"
         }}
       >
-        <Table striped bordered hover>
+        <h2>Skills</h2>
+        <Table striped bordered hover style={{ width: "100%" }}>
           <thead>
             <tr>
-              <th scope="col">Skill</th>
-              <th scope="col">Upvotes</th>
+              <th scope="col">Name</th>
+              <th scope="col">Votes</th>
               <th scope="col">By Pro</th>
-              {this.verifications() ? (
-                <th scope="col" >
-                  Recognise
-                </th>
-              ) : null}
+              {this.verifications() ? <th scope="col">Reco</th> : null}
             </tr>
           </thead>
           <tbody>

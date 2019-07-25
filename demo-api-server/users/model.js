@@ -81,7 +81,7 @@ const getUserByName = name =>
     FROM
     users
     WHERE
-    first_name = ${name}
+    login = ${name}
     `);
 
 module.exports = {
