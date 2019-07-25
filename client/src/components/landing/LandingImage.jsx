@@ -9,7 +9,7 @@ class LandingImage extends Component {
       <Card className="text-white text-center ">
         <Card.Img src={image} alt="Card image" className="ta" />
         <Card.ImgOverlay style={{ height: "70%" }}>
-          <Card.Text className="centered-text">
+          <Card.Text className="centered-text ">
             <h2>
               <strong>Open Recognition</strong>
             </h2>
