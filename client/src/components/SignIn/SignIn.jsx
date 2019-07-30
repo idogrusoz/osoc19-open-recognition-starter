@@ -1,8 +1,6 @@
 import React, { Component } from "react";
-import { Form, Button, Row, Col } from "react-bootstrap";
-import Header from "../header/Header";
-import Card from "react-bootstrap/Card";
-import image from "./baner.jpg";
+import image from "../header/logo.svg";
+import { Link } from "react-router-dom"
 
 export default class SignIn extends Component {
   constructor() {
@@ -52,92 +50,51 @@ export default class SignIn extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <Card
-          style={{
-            marginTop: "50px",
-            height: "80vh",
-            width: "100%"
-          }}
-        >
-          <Card.Body>
-            <img
-              alt=""
-              variant="bottom"
-              src={image}
-              style={{
-                height: "70vh"
-              }}
+      <div className="form-body">
+        <div className="signin-form">
+          <img src={image} alt="logo" className={"signin-logo"} />
+          <form action="">
+            <p className={"form-name"}>Username</p>
+            <input
+              type="text"
+              placeholder="Enter Username"
+              name="login"
+              value={this.state.login}
+              onChange={this.handleChange}
             />
-            <div
-              style={{
-                position: "absolute",
-                top: "20%",
-                left: "10%",
-                fontFamily: "Amarante, cursive",
-                fontSize: "2em"
-              }}
-            >
-              Connect to build your trust network
-            </div>
-
-            <Card.ImgOverlay>
-              <Row style={{ marginLeft: "60%" }}>
-                <Form style={{ margin: "50px 50px" }}>
-                  <Form.Group as={Row} controlId="formHorizontalEmail">
-                    <Form.Label column>Login</Form.Label>
-                    <Col sm={10}>
-                      <Form.Control
-                        type="string"
-                        name="login"
-                        placeholder="User Login"
-                        value={this.state.login}
-                        onChange={this.handleChange}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="formHorizontalPassword">
-                    <Form.Label column>Password</Form.Label>
-                    <Col sm={10}>
-                      <Form.Control
-                        type="password"
-                        placeholder="Password"
-                        name="password"
-                        onChange={this.handleChange}
-                      />
-                    </Col>
-                  </Form.Group>
-                  <fieldset />
-
-                  <Form.Group as={Row}>
-                    <Col sm={{ span: 10, offset: 2 }}>
-                      <div>
-                        {this.state.mistake ? (
-                          <p style={{ color: "red" }}>
-                            *Incorrect Login or Password
-                          </p>
-                        ) : (
-                          <p />
-                        )}
-                      </div>
-                      <Button
-                        variant="info"
-                        type="submit"
-                        onClick={this.handleSubmit}
-                        disabled={!this.validateForm()}
-                      >
-                        Sign in
-                      </Button>
-                    </Col>
-                  </Form.Group>
-                </Form>
-              </Row>
-            </Card.ImgOverlay>
-          </Card.Body>
-        </Card>
+            <p className={"form-name"}>Password</p>
+            <input
+              type="password"
+              placeholder="Enter password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </form>
+        <div className="warning">
+          {this.state.mistake ? (
+            <p style={{ color: "red" }}>*Incorrect Login or Password</p>
+            ) : (
+              null
+              )}
+        <button
+          className="rect-button-on-white"
+          type="submit"
+          onClick={this.handleSubmit}
+          disabled={!this.validateForm()}
+          >
+          Sign in
+        </button>
+          </div>
+          </div>
+          <div className="question-white">Not a member yet?</div>
+          {localStorage.getItem("id") ? null : (
+            <Link className="linksss" to="/register">
+              <button className={"rect-button"}>Register</button>
+            </Link>
+          )}
       </div>
+
     );
   }
 }

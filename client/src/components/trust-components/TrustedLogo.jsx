@@ -1,38 +1,45 @@
-import React from "react"
+import React, { Component } from "react"
 import or from "./or.svg"
+import TrustButton from './TrustButton'
 
-function TrustedLogo(props) {
+export default class TrustedLogo extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      trust: true
+    }
+  }
+ 
 
- const handleCancel = async () => {
+ handleCancel = async () => {
+   this.setState({trust : false})
    console.log('in cancel');
     const id = localStorage.getItem("id");
-    const data = {
-      user1: parseInt(`${props.id}`),
-      user2: parseInt(id)
-    };
-    await fetch(`http://localhost:3000/trust/reject/${id}`, {
+    const user1 = parseInt(`${this.props.id}`)
+    const user2 = parseInt(id)
+    
+    await fetch(`http://localhost:3000/trust/reject/${user1}/${user2}`, {
       method: "DELETE",
-      body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" }
     })
       .then(res => {console.log('good');
       })
       .catch(err => console.log("Error:", err));
   };
-    return (
-      <div>
-        <img src={or} alt="open-recognition" width="70px" height="70px" />
+  render(){
+      return (
+      this.state.trust ? (
+      <div className="trusted-group">
+        <img src={or} alt="open-recognition" width="95px" height="95px" />
         <br />
         <button
-          variant="danger"
           width="20px"
-          style={{ backgroundColor: "#ee6e73", color: "white" }}
-          onClick={handleCancel}
+          style={{ backgroundColor: "white", color: "red", border: "none", borderBottom: "red 3px solid", marginBottom: "20" }}
+          onClick={this.handleCancel}
         >
           Cancel
         </button>
-      </div>
-    );
+      </div>) : <TrustButton/>
+    )
 }
-
-export default TrustedLogo
+}

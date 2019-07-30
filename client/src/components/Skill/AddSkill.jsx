@@ -1,7 +1,4 @@
 import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import { useState } from "react";
 
 import React from "react";
@@ -19,6 +16,8 @@ function AddSkill(props) {
       reciever: reciever,
       name: skill
     };
+
+
 
     fetch(`http://localhost:3000/skill`, {
       method: "POST",
@@ -39,15 +38,32 @@ function AddSkill(props) {
       return null;
     } else {
       if (trusted[0].active) {
-        return <Button onClick={() => setLgShow(true)}>Add skill</Button>;
+        return (
+          <div className="add-button">
+            <button
+              className="rect-button-on-white"
+              onClick={() => setLgShow(true)}
+            >
+              Add skill
+            </button>
+          </div>
+        );
       } else {
         return null;
       }
     }
   };
+   
+  // const handleChange = event => {
+  //   console.log(document.getElementById('submitButton').getAttribute('disabled'));
+    
+  //   if(event.target.value.length > 3) {
+  //     document.getElementById("submitButton").setAttribute('disabled', false)
+  //   }
+  // }
 
   return (
-    <ButtonToolbar>
+    <div>
       {props.user !==
       parseInt(
         localStorage.getItem("id") && localStorage.getItem("id") !== undefined
@@ -61,25 +77,26 @@ function AddSkill(props) {
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            Please add a skill that you recognize
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Skill</Form.Label>
-              <Form.Control as="textarea" rows="1" id="skill" />
-            </Form.Group>
+        <div className="pop-up-header">
+          <h3>Please add a skill that you recognize</h3>
+        </div>
 
-            <Button variant="primary" onClick={addSkill}>
-              Submit
-            </Button>
-          </Form>
-        </Modal.Body>
+        <form className="add-form">
+          <p className={"form-name"}>Skill:</p>
+          <input
+            type="text"
+            rows="1"
+            id="skill"
+            placeholder="e.g. Team player. / Honest reseller etc."
+            // onChange= {handleChange}
+          />
+        </form>
+
+        <button id="submitButton" className="rect-button-on-white" onClick={addSkill} /*disabled = 'true'*/ >
+          Submit
+        </button>
       </Modal>
-    </ButtonToolbar>
+    </div>
   );
 }
 

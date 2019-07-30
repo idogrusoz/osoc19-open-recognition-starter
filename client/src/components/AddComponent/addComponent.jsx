@@ -1,7 +1,6 @@
 import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import ButtonToolbar from "react-bootstrap/ButtonToolbar";
+
 import { useState } from "react";
 
 import React from "react";
@@ -44,9 +43,15 @@ function Example(props) {
     } else {
       if (trusted[0].active) {
         return (
-          <Button variant="info" onClick={() => setLgShow(true)}>
-            Add comment
-          </Button>
+          <div className="add-button">
+            <button
+              className="rect-button-on-white"
+              style={{ width: "140px" }}
+              onClick={() => setLgShow(true)}
+            >
+              Add a comment
+            </button>
+          </div>
         );
       } else {
         return null;
@@ -55,7 +60,7 @@ function Example(props) {
   };
 
   return (
-    <ButtonToolbar>
+    <div>
       {props.user !==
       parseInt(
         localStorage.getItem("id") && localStorage.getItem("id") !== undefined
@@ -69,31 +74,30 @@ function Example(props) {
         onHide={() => setLgShow(false)}
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-sm">
-            Add your comment
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Relationship between you 2 :</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Relationship"
-                id="relation"
-              />
-              <Form.Label>Your comment :</Form.Label>
-              <Form.Control as="textarea" rows="5" id="comment" />
-            </Form.Group>
-
-            <Button variant="primary" onClick={sayhello}>
-              Submit
-            </Button>
-          </Form>
-        </Modal.Body>
+        <div className="pop-up-header" closeButton>
+          <h3>Please add a comment to recognize this user's success</h3>
+        </div>
+        <form className="add-form">
+          <p className={"form-name"}>How do you know this user?</p>
+          <input
+            type="text"
+            placeholder="e.g. Colleagues. / Had a purchase. / I was her/his professor. etc."
+            id="relation"
+          />
+          <p className={"form-name"}>Comment:</p>
+          <textarea
+          className="comment-input"
+            type="text"
+            rows="5"
+            id="comment"
+            placeholder="Your comment here..."
+          ></textarea>
+        </form>
+        <button className="rect-button-on-white" onClick={sayhello}>
+          Submit
+        </button>
       </Modal>
-    </ButtonToolbar>
+    </div>
   );
 }
 

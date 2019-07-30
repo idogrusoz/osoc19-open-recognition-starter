@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
 import logo from "./logo.svg";
@@ -27,8 +26,9 @@ export default class Header extends Component {
   render() {
     return (
       <div className="header">
-        <div className="nav">
+        <div className="left-header">
           <img
+            className="header-logo"
             src={logo}
             alt="Logo"
             width="70px"
@@ -36,28 +36,20 @@ export default class Header extends Component {
             padding="50px"
             margin="50px"
           />
+          <h2 className="banner">OpenTrust</h2>
+        </div>
+        <div className="right-header">
+          <ul className="navlinks">
+            <SignInOut class={{ classname: "rect-button-on-white" }} />
 
-          {/* <div className="sera">
-              <FormControl
-                type="text"
-                placeholder="Search"
-                className="mr-sm-2"
-                id="search"
-              />
-              <Button onClick={this.ssearch}>Search</Button>
-            </div> */}
-
-          <div className="menu">
-            <ul className="navlinks">
-              <SignInOut />
-
-              {localStorage.getItem("id") ? null : (
-                <Link className="linksss" to="/register">
-                  <Button variant="info">Register</Button>
-                </Link>
-              )}
-            </ul>
-          </div>
+            {localStorage.getItem("id") ? null : (
+              <Link className="linksss" to="/register">
+                <button className="rect-button-on-white" variant="info">
+                  Register
+                </button>
+              </Link>
+            )}
+          </ul>
         </div>
       </div>
     );
