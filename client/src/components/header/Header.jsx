@@ -13,10 +13,14 @@ export default class Header extends Component {
 
   ssearch = () => {
     console.log(this.state.search);
-    fetch(`http://localhost:3000/users/search/${this.state.search}`)
+    fetch(
+      `http://localhost:3000/users/search/${
+        document.getElementById("search").value
+      }`
+    )
       .then(response => response.json())
       .then(data => {
-        this.props.history.push("/search");
+        this.props.router.push("/");
         console.log(data);
 
         // this.setState({ skills: data });
@@ -41,7 +45,7 @@ export default class Header extends Component {
         <div className="right-header">
           <ul className="navlinks">
             <SignInOut class={{ classname: "rect-button-on-white" }} />
-
+            
             {localStorage.getItem("id") ? null : (
               <Link className="linksss" to="/register">
                 <button className="rect-button-on-white" variant="info">
@@ -50,6 +54,7 @@ export default class Header extends Component {
               </Link>
             )}
           </ul>
+
         </div>
       </div>
     );

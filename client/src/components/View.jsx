@@ -62,6 +62,7 @@ class View extends Component {
             <TrustedList loc={this.state.loc} />
           </div>
         </div>
+
       </div>
     );
   }

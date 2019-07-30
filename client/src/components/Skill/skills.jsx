@@ -137,6 +137,7 @@ class Skills extends Component {
         </div>
         </div>
         {this.verifications() ? (
+
         <AddSkill trust={this.props.trustRelation} user={this.props.loc} />
         ) : null}
       </div>
