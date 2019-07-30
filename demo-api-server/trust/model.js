@@ -68,7 +68,7 @@ const relationExist = (id1, id2) =>
 
 const getTrustpeople = id =>
   database.query(SQL`
-  select id,first_name from users WHERE id IN
+  select id,first_name,last_name,picture from users WHERE id IN
   (select userrequesting as temp2 from trust where userrecieving=${id} 
   UNION
   select userrecieving from trust where userrequesting=${id} AND active=true);

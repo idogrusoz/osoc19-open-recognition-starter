@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Form, Button, Col } from "react-bootstrap";
-import Header from "../header/Header";
-// import { writer } from "repl";
+import image from "../header/logo.svg";
+import SignInOut from "../header/SignInOut"
 
 export default class Register extends Component {
   constructor() {
@@ -26,7 +25,6 @@ export default class Register extends Component {
   handleSubmit = () => {
     const data = this.state;
     const { history } = this.props;
-    console.log(data);
     fetch("http://localhost:3000/users/", {
       method: "POST",
       body: JSON.stringify(data),
@@ -47,70 +45,53 @@ export default class Register extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <div
-          className="form-outline"
-          style={{
-            marginTop: "80px",
-            width: "80%",
-            marginLeft: "auto",
-            marginRight: "auto"
-          }}
-        >
-          <Form>
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridName">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                  name="first_name"
-                  type="string"
-                  placeholder=""
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
+      <div className="form-body">
+        <div className="register-form">
+          <img src={image} alt="logo" className={"signin-logo"} />
+          <form action="">
+            <p>Username</p>
+            <input
+              type="text"
+              placeholder="Enter first name"
+              name="first_name"
+              onChange={this.handleChange}
+            />
+            <p className={"form-name"}>Password</p>
+            <input
+              type="text"
+              placeholder="Enter family name"
+              name="last-name"
+              onChange={this.handleChange}
+            />
+          </form>
+          <form action="">
+            <p className={"form-name"}>Username</p>
+            <input
+              type="text"
+              placeholder="Choose a username"
+              name="login"
+              onChange={this.handleChange}
+            />
+            <p className={"form-name"}>Password</p>
+            <input
+              type="password"
+              placeholder="Minimum 5 charachters"
+              name="password"
+              onChange={this.handleChange}
+            />
+          </form>
 
-              <Form.Group as={Col} controlId="formGridSurname">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  name="last_name"
-                  type="string"
-                  placeholder=""
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Form.Row>
-              <Form.Group as={Col} controlId="formGridLogin">
-                <Form.Label>Login</Form.Label>
-                <Form.Control
-                  name="login"
-                  type="string"
-                  placeholder="Choose a username"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-              <Form.Group as={Col} controlId="formGridPassword">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  name="password"
-                  type="password"
-                  placeholder="Minimum 5 characters"
-                  onChange={this.handleChange}
-                />
-              </Form.Group>
-            </Form.Row>
-
-            <Button
-              variant="outline-primary"
-              onClick={this.handleSubmit}
-              disabled={!this.validateForm()}
-            >
-              Register
-            </Button>
-          </Form>
+          <button
+            className="rect-button-on-white"
+            variant="outline-primary"
+            onClick={this.handleSubmit}
+            disabled={!this.validateForm()}
+          >
+            Register
+          </button>
         </div>
+          <div ><p className="question-white">Already a member?</p></div>
+          <SignInOut class={{classname: "rect-button"}}/>
       </div>
     );
   }

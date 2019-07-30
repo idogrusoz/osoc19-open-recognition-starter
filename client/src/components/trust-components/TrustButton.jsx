@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
 
 export default class TrustButton extends Component {
   constructor(props) {
@@ -45,9 +44,11 @@ export default class TrustButton extends Component {
 
   render() {
     return (
-      <Button variant="info" onClick={this.sendTrustRequest}>
+      <div className="trust-button">
+      <button className={"rect-button-no-hover"} style={{width: "100px"}} onClick={this.sendTrustRequest}>
         {this.state.buttonText}
-      </Button>
+      </button>
+      </div>
     );
   }
 }

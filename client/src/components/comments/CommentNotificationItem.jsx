@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Card, Button } from "react-bootstrap";
-import { Col, Row } from "react-bootstrap";
+// import { Card, Button } from "react-bootstrap";
+// import { Col, Row } from "react-bootstrap";
 
 export default class CommentNotificationItem extends Component {
   constructor(props) {
@@ -53,48 +53,71 @@ export default class CommentNotificationItem extends Component {
 
   render() {
     return this.state.render ? (
-      <Card>
-        <Card.Body>
-          <Card.Text>
-            <strong>
-              {this.state.user[0].first_name} {this.state.user[0].last_name}{" "}
+      <div className="notify-item-comment">
+        <div className="notify-item-header">
+        {this.state.user[0].first_name} {this.state.user[0].last_name}{" "}
               made a comment about you:
-            </strong>{" "}
-            <br />
-            {this.props.item.message}
-          </Card.Text>
-          <Row>
-            <Col>
-              <Button
-                variant="info"
-                size="sm"
-                onClick={() => {
+        </div>
+        <div className="notify-item-text">
+{this.props.item.message}
+        </div>
+        <div className="button-group">
+      <button className="rect-button-no-hover-small" onClick={() => {
                   this.handleAccept(this.props.item.id);
                   this.props.handleUpdate(this.props.item.id);
-                }}
-              >
-                Publish
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                variant="info"
-                size="sm"
-                onClick={() => {
+                }}>Publish</button>
+      <button className="rect-button-no-hover-small"onClick={() => {
                   this.handleReject(this.props.item.id);
                   this.props.handleUpdate(this.props.item.id);
-                }}
-              >
-                Reject
-              </Button>
-            </Col>
-          </Row>
-          <p style={{ color: "red" }}>
-            Warning! <br /> Rejection of comment will terminate your trust
+                }}>Reject</button>
+        </div>
+        <div className="warning-text">
+        Warning! Rejection of comment will terminate your trust
             relationship
-          </p>
-        </Card.Body>
-      </Card>
+        </div>
+      </div>
+      // <Card>
+      //   <Card.Body>
+      //     <Card.Text>
+      //       <strong>
+      //         {this.state.user[0].first_name} {this.state.user[0].last_name}{" "}
+      //         made a comment about you:
+      //       </strong>{" "}
+      //       <br />
+      //       {this.props.item.message}
+      //     </Card.Text>
+      //     <Row>
+      //       <Col>
+      //         <Button
+      //           variant="info"
+      //           size="sm"
+      //           onClick={() => {
+      //             this.handleAccept(this.props.item.id);
+      //             this.props.handleUpdate(this.props.item.id);
+      //           }}
+      //         >
+      //           Publish
+      //         </Button>
+      //       </Col>
+      //       <Col>
+      //         <Button
+      //           variant="info"
+      //           size="sm"
+      //           onClick={() => {
+      //             this.handleReject(this.props.item.id);
+      //             this.props.handleUpdate(this.props.item.id);
+      //           }}
+      //         >
+      //           Reject
+      //         </Button>
+      //       </Col>
+      //     </Row>
+      //     <p style={{ color: "red" }}>
+      //       Warning! <br /> Rejection of comment will terminate your trust
+      //       relationship
+      //     </p>
+      //   </Card.Body>
+      // </Card>
     ) : null;
   }
 }

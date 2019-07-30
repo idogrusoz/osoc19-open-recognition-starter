@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Profile from "./Profile";
 import Comments from "./comments/Comments";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import TrustedList from "./TrustedList";
 import TrustNotification from "./trust-components/TrustNotification";
 import Header from "../components/header/Header";
@@ -38,39 +35,34 @@ class View extends Component {
     return (
       <div className="tout">
         <Header />
-        <Container>
-          <Row>
-            <Col xs={4} style={{ marginTop: "50px" }}>
-              <Profile
-                id={this.state.loc}
-                trustRelation={this.state.trustRelation}
-              />
-              <br />
+        <div className="view-body">
+          <div className="left-column">
+            <Profile
+              id={this.state.loc}
+              trustRelation={this.state.trustRelation}
+            />
+            <Skills
+              loc={this.state.loc}
+              trustRelation={this.state.trustRelation}
+            />
+          </div>
+          <div className="center-column">
+            {this.state.loc === localStorage.getItem("id") ? (
+              <CommentNotification />
+            ) : null}
+            <Comments
+              loc={this.state.loc}
+              trustRelation={this.state.trustRelation}
+            />
+          </div>
+          <div className="right-column">
+            {this.state.loc === localStorage.getItem("id") ? (
+              <TrustNotification />
+            ) : null}
+            <TrustedList loc={this.state.loc} />
+          </div>
+        </div>
 
-              <Skills
-                loc={this.state.loc}
-                trustRelation={this.state.trustRelation}
-              />
-            </Col>
-            <Col xs={6} style={{ marginTop: "50px" }}>
-              {this.state.loc === localStorage.getItem("id") ? (
-                <CommentNotification />
-              ) : null}
-
-              <Comments
-                loc={this.state.loc}
-                trustRelation={this.state.trustRelation}
-              />
-            </Col>
-            <Col xs={2} style={{ marginTop: "50px" }}>
-              {this.state.loc === localStorage.getItem("id") ? (
-                <TrustNotification />
-              ) : null}
-
-              <TrustedList loc={this.state.loc} />
-            </Col>
-          </Row>
-        </Container>
       </div>
     );
   }

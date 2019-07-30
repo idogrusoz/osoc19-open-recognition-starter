@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Card from "react-bootstrap/Card";
 
 export default class TrustedList extends Component {
   constructor(props) {
@@ -16,30 +15,31 @@ export default class TrustedList extends Component {
     } else {
       fetch(`http://localhost:3000/trust/people/${this.props.loc}`)
         .then(res => res.json())
-        .then(data => this.setState({ trustedpeople: data }));
+        .then(data => {
+          this.setState({ trustedpeople: data });
+        });
     }
   };
 
   render() {
     return (
-      <Card
-        style={{
-          WebkitBoxShadow: "37px -23px 29px -6px rgba(29,117,47,0.58)",
-          MozBoxShadow: "37px -23px 29px -6px rgba(29,117,47,0.58)",
-          boxShadow: "37px -23px 29px -6px rgba(29,117,47,0.58)"
-        }}
-      >
-        <Card.Body>
-          <Card.Title>Trusted By :</Card.Title>
-
-          {this.state.trustedpeople.map((x, i) => (
-            <div key={i}>
-              <a href={`/profile/${x.id}`}>{x.first_name}</a>
-              <br />
-            </div>
-          ))}
-        </Card.Body>
-      </Card>
+      <div className="trusted-list">
+        <div className="part-header">
+          <h3>Trusted By :</h3>
+        </div>
+        {this.state.trustedpeople.map((x, i) => (
+          <div key={i}>
+            <a href={`/profile/${x.id}`}>
+              <img
+                alt="go to profile "
+                src={process.env.PUBLIC_URL + `${x.picture}`}
+                style={{ width: "40px", height: "40px", borderRadius: "100%", margin: "10px", objectFit:"cover" }}
+              />
+              {x.first_name} {x.last_name}
+            </a>
+          </div>
+        ))}
+      </div>
     );
   }
 }

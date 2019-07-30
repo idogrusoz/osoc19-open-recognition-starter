@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { Button, FormControl } from "react-bootstrap";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import SignInOut from "./SignInOut";
 import logo from "./logo.svg";
 
@@ -31,8 +30,9 @@ export default class Header extends Component {
   render() {
     return (
       <div className="header">
-        <div className="nav">
+        <div className="left-header">
           <img
+            className="header-logo"
             src={logo}
             alt="Logo"
             width="70px"
@@ -40,50 +40,21 @@ export default class Header extends Component {
             padding="50px"
             margin="50px"
           />
+          <h2 className="banner">OpenTrust</h2>
+        </div>
+        <div className="right-header">
+          <ul className="navlinks">
+            <SignInOut class={{ classname: "rect-button-on-white" }} />
+            
+            {localStorage.getItem("id") ? null : (
+              <Link className="linksss" to="/register">
+                <button className="rect-button-on-white" variant="info">
+                  Register
+                </button>
+              </Link>
+            )}
+          </ul>
 
-          <div className="searchdiv">
-            <FormControl
-              type="text"
-              placeholder="Search"
-              className="mr-sm-2"
-              id="search"
-            />
-            {/* <Button onClick={this.ssearch}>Search</Button> */}
-
-            <Route
-              render={({ history }) => (
-                <Button
-                  variant="info"
-                  type="button"
-                  onClick={() => {
-                    fetch(
-                      `http://localhost:3000/users/search/${
-                        document.getElementById("search").value
-                      }`
-                    )
-                      .then(response => response.json())
-                      .then(data => {
-                        history.push(`/profile/${data[0].id}`);
-                      });
-                  }}
-                >
-                  Search
-                </Button>
-              )}
-            />
-          </div>
-
-          <div className="menu">
-            <ul className="navlinks">
-              <SignInOut />
-
-              {localStorage.getItem("id") ? null : (
-                <Link className="linksss" to="/register">
-                  <Button variant="info">Register</Button>
-                </Link>
-              )}
-            </ul>
-          </div>
         </div>
       </div>
     );

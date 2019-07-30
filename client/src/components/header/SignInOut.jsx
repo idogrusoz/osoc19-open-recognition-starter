@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Button } from "react-bootstrap";
 import { Redirect, Link } from "react-router-dom";
 
 export default class SignInOut extends Component {
@@ -14,16 +13,16 @@ export default class SignInOut extends Component {
   render() {
     return localStorage.getItem("id") ? (
       <Link to="/">
-        <Button variant="info" onClick={this.signOut}>
+        <button className={this.props.class.classname} onClick={this.signOut}>
 
           Sign-out
-        </Button>
+        </button>
       </Link>
     ) : (
       <Link to="/signin">
-        <Button variant="info" onClick={this.signIn}>
+        <button className={this.props.class.classname} onClick={this.signIn}>
           Sign-in
-        </Button>
+        </button>
       </Link>
     );
   }

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import TrustButton from "./trust-components/TrustButton";
-import Image from "react-bootstrap/Image";
-import { Card, Button } from "react-bootstrap";
 import TrustedLogo from "./trust-components/TrustedLogo";
 
 class Profile extends Component {
@@ -40,8 +38,8 @@ class Profile extends Component {
           } else if (
             trusted[0].active === false &&
             trusted[0].user2approval === false
-            ) {
-            return <Button variant="success">Pending</Button>;
+          ) {
+            return <div className="trust-button"><button className="rect-button-no-hover trust-button">Pending</button></div>
           }
         } else {
           return <TrustButton id={id} />;
@@ -53,42 +51,41 @@ class Profile extends Component {
   };
 
   render() {
-    return this.state.name.map((x, i) => (
-      <Card
-        key={i}
-        style={{
-          WebkitBoxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)",
-          MozBoxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)",
-          boxShadow: "-16px -14px 29px -6px rgba(164,144,219,0.92)"
-        }}
-      >
-        <Card.Body>
-          {x.picture === null  || x.picture === undefined ? <Image
-            src= {process.env.PUBLIC_URL + '/img/blank-profile-picture-973460_640.png'}
+    const user = this.state.name[0]
+    return  (
+
+      <div className="profile" key={user.id}>
+
+      <div className="image-container">
+        {user.picture === null || user.picture === undefined ? (
+          <img
+            src={
+              process.env.PUBLIC_URL +
+              "/img/blank-profile-picture-973460_640.png"
+            }
             alt="prof pic"
-            roundedCircle
-            width="150"
-            height="150"
-          /> :
-          <Image
-            src={process.env.PUBLIC_URL + x.picture}
+            className={"profile-image"}
+          />
+        ) : (
+          <img
+            src={process.env.PUBLIC_URL + user.picture}
             alt="prof pic"
-            roundedCircle
-            width="150"
-            height="150"
-          />}
-          <Card.Text>
-            <br />
-            {`${x.first_name} ${x.last_name}`} <br />
-            {x.email} <br />
-            <br />
-            {parseInt(localStorage.getItem("id")) === x.id
-              ? null
-              : this.renderTrustButton(this.props.id)}
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    ));
+            className={"profile-image"}
+          />
+        )}
+        </div>
+        <div className="profile-text">
+        <p>
+          
+          {`${user.first_name} ${user.last_name}`} </p>
+          <p>{user.email} </p>
+          </div>
+
+          {parseInt(localStorage.getItem("id")) === user.id
+            ? null
+            : this.renderTrustButton(this.props.id)}
+      </div>
+    );
   }
 }
 

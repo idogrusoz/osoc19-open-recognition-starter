@@ -45,6 +45,5 @@ export default class TrustNotification extends Component {
         handleUpdate={this.handleUpdate}
       />
     ));
-    // return <h1>hello</h1>;
   }
 }
