@@ -7,28 +7,7 @@ function AddSkill(props) {
   const [lgShow, setLgShow] = useState(false);
 
   const addSkill = () => {
-    const skill = document.getElementById("skill").value;
-    const author = localStorage.getItem("id");
-    const reciever = props.user;
-
-    const data = {
-      author: author,
-      reciever: reciever,
-      name: skill
-    };
-
-
-
-    fetch(`http://localhost:3000/skill`, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => console.log("new skill added"))
-      .catch(error => console.log("Error:", error));
+    props.addSkill();
     setLgShow(false);
   };
 
@@ -53,14 +32,6 @@ function AddSkill(props) {
       }
     }
   };
-   
-  // const handleChange = event => {
-  //   console.log(document.getElementById('submitButton').getAttribute('disabled'));
-    
-  //   if(event.target.value.length > 3) {
-  //     document.getElementById("submitButton").setAttribute('disabled', false)
-  //   }
-  // }
 
   return (
     <div>
@@ -92,7 +63,11 @@ function AddSkill(props) {
           />
         </form>
 
-        <button id="submitButton" className="rect-button-on-white" onClick={addSkill} /*disabled = 'true'*/ >
+        <button
+          id="submitButton"
+          className="rect-button-on-white"
+          onClick={addSkill}
+        >
           Submit
         </button>
       </Modal>
