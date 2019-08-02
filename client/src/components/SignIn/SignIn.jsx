@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import image from "../header/logo.svg";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export default class SignIn extends Component {
   constructor() {
@@ -38,7 +38,8 @@ export default class SignIn extends Component {
           res.json().then(data => {
             const user = data;
             localStorage.setItem("id", `${user[0].id}`);
-            history.push(`/profile/${user[0].id}`);
+            // history.push(`/profile/${user[0].id}`);
+            history.push(`/profile/${user[0].login}`);
           });
         } else {
           this.setState({ mistake: true });
@@ -71,30 +72,27 @@ export default class SignIn extends Component {
               onChange={this.handleChange}
             />
           </form>
-        <div className="warning">
-          {this.state.mistake ? (
-            <p style={{ color: "red" }}>*Incorrect Login or Password</p>
-            ) : (
-              null
-              )}
-        <button
-          className="rect-button-on-white"
-          type="submit"
-          onClick={this.handleSubmit}
-          disabled={!this.validateForm()}
-          >
-          Sign in
-        </button>
+          <div className="warning">
+            {this.state.mistake ? (
+              <p style={{ color: "red" }}>*Incorrect Login or Password</p>
+            ) : null}
+            <button
+              className="rect-button-on-white"
+              type="submit"
+              onClick={this.handleSubmit}
+              disabled={!this.validateForm()}
+            >
+              Sign in
+            </button>
           </div>
-          </div>
-          <div className="question-white">Not a member yet?</div>
-          {localStorage.getItem("id") ? null : (
-            <Link className="linksss" to="/register">
-              <button className={"rect-button"}>Register</button>
-            </Link>
-          )}
+        </div>
+        <div className="question-white">Not a member yet?</div>
+        {localStorage.getItem("id") ? null : (
+          <Link className="linksss" to="/register">
+            <button className={"rect-button"}>Register</button>
+          </Link>
+        )}
       </div>
-
     );
   }
 }

@@ -41,11 +41,19 @@ export default class Header extends Component {
             margin="50px"
           />
           <h2 className="banner">OpenTrust</h2>
+          <input id="searchInput" />
+          <button
+            onClick={() =>
+              this.props.searchFn(document.getElementById("searchInput").value)
+            }
+          >
+            Search
+          </button>
         </div>
         <div className="right-header">
           <ul className="navlinks">
             <SignInOut class={{ classname: "rect-button-on-white" }} />
-            
+
             {localStorage.getItem("id") ? null : (
               <Link className="linksss" to="/register">
                 <button className="rect-button-on-white" variant="info">
@@ -54,7 +62,6 @@ export default class Header extends Component {
               </Link>
             )}
           </ul>
-
         </div>
       </div>
     );

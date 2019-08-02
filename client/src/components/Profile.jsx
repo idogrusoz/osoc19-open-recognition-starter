@@ -39,7 +39,13 @@ class Profile extends Component {
             trusted[0].active === false &&
             trusted[0].user2approval === false
           ) {
-            return <div className="trust-button"><button className="rect-button-no-hover trust-button">Pending</button></div>
+            return (
+              <div className="trust-button">
+                <button className="rect-button-no-hover trust-button">
+                  Pending
+                </button>
+              </div>
+            );
           }
         } else {
           return <TrustButton id={id} />;
@@ -51,39 +57,35 @@ class Profile extends Component {
   };
 
   render() {
-    const user = this.state.name[0]
-    return  (
-
+    const user = this.props.name[0];
+    return (
       <div className="profile" key={user.id}>
-
-      <div className="image-container">
-        {user.picture === null || user.picture === undefined ? (
-          <img
-            src={
-              process.env.PUBLIC_URL +
-              "/img/blank-profile-picture-973460_640.png"
-            }
-            alt="prof pic"
-            className={"profile-image"}
-          />
-        ) : (
-          <img
-            src={process.env.PUBLIC_URL + user.picture}
-            alt="prof pic"
-            className={"profile-image"}
-          />
-        )}
+        <div className="image-container">
+          {user.picture === null || user.picture === undefined ? (
+            <img
+              src={
+                process.env.PUBLIC_URL +
+                "/img/blank-profile-picture-973460_640.png"
+              }
+              alt="prof pic"
+              className={"profile-image"}
+            />
+          ) : (
+            <img
+              src={process.env.PUBLIC_URL + user.picture}
+              alt="prof pic"
+              className={"profile-image"}
+            />
+          )}
         </div>
         <div className="profile-text">
-        <p>
-          
-          {`${user.first_name} ${user.last_name}`} </p>
+          <p>{`${user.first_name} ${user.last_name}`} </p>
           <p>{user.email} </p>
-          </div>
+        </div>
 
-          {parseInt(localStorage.getItem("id")) === user.id
-            ? null
-            : this.renderTrustButton(this.props.id)}
+        {parseInt(localStorage.getItem("id")) === user.id
+          ? null
+          : this.renderTrustButton(user.id)}
       </div>
     );
   }

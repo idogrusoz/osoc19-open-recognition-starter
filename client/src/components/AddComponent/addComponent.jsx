@@ -1,8 +1,5 @@
 import Modal from "react-bootstrap/Modal";
-import Form from "react-bootstrap/Form";
-
 import { useState } from "react";
-
 import React from "react";
 
 function Example(props) {
@@ -86,12 +83,12 @@ function Example(props) {
           />
           <p className={"form-name"}>Comment:</p>
           <textarea
-          className="comment-input"
+            className="comment-input"
             type="text"
             rows="5"
             id="comment"
             placeholder="Your comment here..."
-          ></textarea>
+          />
         </form>
         <button className="rect-button-on-white" onClick={sayhello}>
           Submit
