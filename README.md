@@ -22,7 +22,7 @@ There are three different user types who can view a profile
   
  <h4>1.a UNREGISTERED USER</h4>
   
-   An unregistered user can view the user profiles, read comments, skills and skill counts, can see the trust network in the profile and navigate to the trusted users' profiles by clicking their names. It is also possible to search for a user by their user name.(More detailed search is not yet implemented. It is possible to register by submitting full name, a username and defining a password(A more detailed registiration and authentication should be added).
+   An unregistered user can view the user profiles, read comments, skills and skill counts, can see the trust network in the profile and navigate to the trusted users' profiles by clicking their names. It is also possible to search for a user by their user name. (More detailed search is not yet implemented. It is possible to register by submitting full name, a username and defining a password (A more detailed registration and authentication should be added).
     
   <h4>1.b REGISTERED USER WITHOUT A TRUST RELATIONSHIP</h4>
   
@@ -30,11 +30,11 @@ There are three different user types who can view a profile
     
    <h4>1.c REGISTERED USER WITH A TRUST RELATIONSHIP</h4>
    
-   Can add skills and comments for other user.
+   Can add skills and comments for another user.
     
  <h3>2. ESTABLISHING A TRUST RELATIONSHIP</h3>
  
-  A user can send a trust request to the other user. Receiving user is notified and can choose to approve or reject this request. After rejection users are allowed to make another attempt to establish a trust relationship. As a result of the approval trust relationship is established and users will be shown an "Add Trust"and an "Add Skill" button in order to contribute to the other user's profile. Users are also shown an upvote button in the list of existing skills of the user which allows them to recognise this skill for one time.
+  A user can send a trust request to the other user. Receiving user is notified and can choose to approve or reject this request. After rejection users are allowed to make another attempt to establish a trust relationship. As a result of the approval trust relationship is established and users will be shown an "Add Trust" and an "Add Skill" button in order to contribute to the other user's profile. Users are also shown an upvote button in the list of existing skills of the user which allows them to recognise this skill for one time.
   
   <h3>3. SUBMITTING A COMMENT</h3>
    
@@ -42,6 +42,6 @@ There are three different user types who can view a profile
    
    <h3>4. RECOGNISING A SKILL </h3>
    
-   A trusted user can recognise a skill for user which will be available for other users to upvote. I f the user that upvotes a skill is also recogniosed for this skill than the pro counter will be incremented(A predefined skill list can be added in this component).
+   A trusted user can recognise a skill for user which will be available for other users to upvote. If the user that upvotes a skill is also recognised for this skill than the pro counter will be incremented (A predefined skill list can be added in this component).
     
   
