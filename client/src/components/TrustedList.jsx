@@ -31,7 +31,7 @@ export default class TrustedList extends Component {
           <div key={i}>
             <a href={`/profile/${x.login}`}>
               <img
-                alt='go to profile '
+                alt=''
                 src={process.env.PUBLIC_URL + `${x.picture}`}
                 style={{
                   width: '40px',

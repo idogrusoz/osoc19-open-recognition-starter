@@ -9,7 +9,8 @@ export default class Register extends Component {
       first_name: '',
       last_name: '',
       login: '',
-      password: ''
+      password: '',
+      picture: '/img/blank-profile-picture-973460_640.png'
     }
   }
 

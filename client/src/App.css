@@ -11,6 +11,14 @@ a {
   color: black;
 }
 
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
 /* Landing Page */
 
 .landing {
@@ -41,6 +49,7 @@ a {
   color: white;
   padding: 10px;
   width: 90px;
+  outline: none;
 }
 
 .rect-button:hover {
@@ -64,6 +73,7 @@ a {
   color: white;
   padding: 5px;
   width: 60px;
+  outline: none;
 }
 
 .rect-button-on-white {
@@ -74,6 +84,7 @@ a {
   margin: 20px;
   padding: 8px;
   width: 90px;
+  outline: none;
 }
 
 .rect-button-on-white:hover {
@@ -86,6 +97,7 @@ a {
   display: flex;
   justify-content: center;
   height: 80px;
+  outline: none;
 }
 
 /* Forms */
@@ -137,6 +149,7 @@ input[type='password'] {
   background: transparent;
   color: black;
   height: 40px;
+  outline: none;
 }
 
 .register-form {
@@ -272,6 +285,7 @@ input[type='password'] {
   align-items: center;
   justify-content: center;
   margin: 0 0 20px 0;
+  outline: none;
 }
 
 /* Skills Component */
@@ -351,6 +365,7 @@ h3 {
   color: black;
   height: 40px;
   width: 100%;
+  outline: none;
 }
 
 .pop-up-header {
@@ -432,6 +447,7 @@ h3 {
   color: black;
   height: 40px;
   width: 280px;
+  outline: none;
 }
 
 @media only screen and (max-width: 768px) {

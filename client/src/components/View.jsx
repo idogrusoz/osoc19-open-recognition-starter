@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import Profile from './Profile'
 import Comments from './comments/Comments'
 import TrustedList from './TrustedList'
-// import TrustNotification from "./trust-components/TrustNotification";
-// import { useState } from "react";
 import Header from '../components/header/Header'
-import Skills from './Skill/skills'
+import Skills from './skill/Skills'
 import CommentNotification from './comments/CommentNotification'
 import TrustRequestItem from '../components/trust-components/TrustRequestItem'
 import Search from './search/Search'
@@ -54,6 +52,7 @@ class View extends Component {
               .then(res => res.json())
               .then(
                 data2 => (
+                  // eslint-disable-next-line no-sequences
                   (x.author = data2[0].first_name), (x.login = data2[0].login)
                 )
               )
@@ -278,7 +277,6 @@ class View extends Component {
             ) : null}
             <Profile
               name={this.state.name}
-              // id={this.state.loc}
               trustRelation={this.state.trustRelation}
             />
             <Skills
@@ -307,15 +305,11 @@ class View extends Component {
                   <TrustRequestItem
                     key={i}
                     item={user}
-                    // handleUpdate={this.handleUpdate}
                     handleAccept={this.handleAccept}
                   />
                 ))
               : null}
-            <TrustedList
-              trustedpeople={this.state.trustedpeople}
-              // loc={this.state.loc}
-            />
+            <TrustedList trustedpeople={this.state.trustedpeople} />
           </div>
         </div>
       </div>
