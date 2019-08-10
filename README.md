@@ -1,5 +1,9 @@
 # osoc19-open-recognition
-
+<div>
+<img src="https://2019.summerofcode.be/static/img/logo/logo-osoc-color.svg" height="200px" />
+<img src="https://2019.summerofcode.be/static/img/partners-svg/hackyourfuture.svg" height="200px"/>
+<img src="https://pbs.twimg.com/profile_images/1101803658893819904/xYuEus4g_400x400.png" height="200px" />
+</div>
 
 
 A web app based on the idea that users are not allowed to introduce themselves on their profile pages. They need to build a common trust relationship with another user. After the establishment of the trust realtionship a user can make comments recognize the skills of the other user.
