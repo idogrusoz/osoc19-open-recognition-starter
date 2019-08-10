@@ -27,7 +27,6 @@ function Header(props) {
       <div className='right-header'>
         <ul className='navlinks'>
           <SignInOut class={{ classname: 'rect-button-on-white' }} />
-
           {localStorage.getItem('id') ? null : (
             <Link className='linksss' to='/register'>
               <button className='rect-button-on-white' variant='info'>

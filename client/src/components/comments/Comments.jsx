@@ -59,7 +59,6 @@ class Comments extends Component {
             })
           )
         )
-
       this.setState({ comments: comment })
     }
   }

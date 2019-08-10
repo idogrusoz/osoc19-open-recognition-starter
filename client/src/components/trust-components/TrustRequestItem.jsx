@@ -29,7 +29,6 @@ function TrustRequestItem(props) {
           className='rect-button-no-hover-small'
           onClick={() => {
             props.handleAccept()
-            // props.handleUpdate(props.item.id);
           }}
         >
           Accept

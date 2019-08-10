@@ -1,78 +1,78 @@
-import Modal from "react-bootstrap/Modal";
-import { useState } from "react";
+import Modal from 'react-bootstrap/Modal'
+import { useState } from 'react'
 
-import React from "react";
+import React from 'react'
 
 function AddSkill(props) {
-  const [lgShow, setLgShow] = useState(false);
+  const [lgShow, setLgShow] = useState(false)
 
   const addSkill = () => {
-    props.addSkill();
-    setLgShow(false);
-  };
+    props.addSkill()
+    setLgShow(false)
+  }
 
   const renderButton = () => {
-    const trusted = props.trust;
+    const trusted = props.trust
     if (trusted.length < 1) {
-      return null;
+      return null
     } else {
       if (trusted[0].active) {
         return (
-          <div className="add-button">
+          <div className='add-button'>
             <button
-              className="rect-button-on-white"
+              className='rect-button-on-white'
               onClick={() => setLgShow(true)}
             >
               Add skill
             </button>
           </div>
-        );
+        )
       } else {
-        return null;
+        return null
       }
     }
-  };
+  }
 
   return (
     <div>
       {props.user !==
       parseInt(
-        localStorage.getItem("id") && localStorage.getItem("id") !== undefined
+        localStorage.getItem('id') && localStorage.getItem('id') !== undefined
       )
         ? renderButton()
         : null}
 
       <Modal
-        size="lg"
+        size='lg'
         show={lgShow}
         onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
+        aria-labelledby='example-modal-sizes-title-lg'
       >
-        <div className="pop-up-header">
+        <div className='pop-up-header'>
           <h3>Please add a skill that you recognize</h3>
         </div>
 
-        <form className="add-form">
-          <p className={"form-name"}>Skill:</p>
+        <form className='add-form'>
+          <p className={'form-name'}>Skill:</p>
           <input
-            type="text"
-            rows="1"
-            id="skill"
-            placeholder="e.g. Team player. / Honest reseller etc."
+            type='text'
+            rows='1'
+            id='skill'
+            placeholder='e.g. Team player. / Honest reseller etc.'
             // onChange= {handleChange}
           />
         </form>
 
         <button
-          id="submitButton"
-          className="rect-button-on-white"
+          id='submitButton'
+          className='rect-button-on-white'
           onClick={addSkill}
         >
           Submit
         </button>
       </Modal>
     </div>
-  );
+  )
 }
 
-export default AddSkill;
+export default AddSkill
