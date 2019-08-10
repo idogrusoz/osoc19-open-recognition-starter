@@ -12,31 +12,36 @@
 
 Open Trust is a web app based on the idea that users are not allowed to introduce themselves on their profile pages. They need to build a common trust relationship with another user. After the establishment of the trust realtionship a user can make comments recognize the skills of the other user.
 
-<strong>1. VIEWING A PROFILE</strong>
+<h3>1. VIEWING A PROFILE</h3>
 
-There are three different user types who view a profile
+There are three different user types who can view a profile
 
   a. Unregistered user
   b. Registered user whitout a trust relationship
   c. Registered user with a trust relationship
   
- <strong>1.a UNREGISTERED USER</strong>
+ <h4>1.a UNREGISTERED USER</h4>
   
-   Can view user profiles, read comments, skills and skill counts. Can see the trust network in the profile and navigate to the trusted users' profiles by clicking their names.
+   An unregistered user can view the user profiles, read comments, skills and skill counts, can see the trust network in the profile and navigate to the trusted users' profiles by clicking their names. It is also possible to search for a user by their user name.(More detailed search is not yet implemented. It is possible to register by submitting full name, a username and defining a password(A more detailed registiration and authentication should be added).
     
-  <strong>1.b REGISTERED USER WITHOUT A TRUST RELATIONSHIP</strong>
+  <h4>1.b REGISTERED USER WITHOUT A TRUST RELATIONSHIP</h4>
   
-   Can send a trust request in order to build a trust relation.
+   Can send a trust request in order to build a trust relation. 
     
-   <strong>1.c REGISTERED USER WITH A TRUST RELATIONSHIP</strong>
+   <h4>1.c REGISTERED USER WITH A TRUST RELATIONSHIP</h4>
    
    Can add skills and comments for other user.
     
- <strong>2. ESTABLISHING A TRUST RELATIONSHIP</strong>
+ <h3>2. ESTABLISHING A TRUST RELATIONSHIP</h3>
  
-  A user can send a trust request to the other user. Receiving user is notified and can choose to approve or reject this request. After rejection users are allowed to make another attempt to establish a trust relationship.
+  A user can send a trust request to the other user. Receiving user is notified and can choose to approve or reject this request. After rejection users are allowed to make another attempt to establish a trust relationship. As a result of the approval trust relationship is established and users will be shown an "Add Trust"and an "Add Skill" button in order to contribute to the other user's profile. Users are also shown an upvote button in the list of existing skills of the user which allows them to recognise this skill for one time.
   
-  <strong>3. SUBMITTING A COMMENT</strong>
-  
- 
+  <h3>3. SUBMITTING A COMMENT</h3>
+   
+   When viewing the profile of a trusted user it is possible to add a comment in order to recognise a good trait, action or characteristics of the user. The receiving user will be notified about this comment and will have chance to publish it or reject. However, rejection of a comment will end up with the termination of the mutual trust relationship. 
+   
+   <h3>4. RECOGNISING A SKILL </h3>
+   
+   A trusted user can recognise a skill for user which will be available for other users to upvote. I f the user that upvotes a skill is also recogniosed for this skill than the pro counter will be incremented(A predefined skill list can be added in this component).
     
+  
