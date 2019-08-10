@@ -16,9 +16,9 @@ Open Trust is a web app based on the idea that users are not allowed to introduc
 
 There are three different user types who can view a profile
 
-  a. Unregistered user
-  b. Registered user whitout a trust relationship
-  c. Registered user with a trust relationship
+  a. Unregistered user </br>
+  b. Registered user without a trust relationship </br>
+  c. Registered user with a trust relationship </br>
   
  <h4>1.a UNREGISTERED USER</h4>
   
