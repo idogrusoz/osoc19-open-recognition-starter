@@ -1,29 +1,29 @@
-import React, { Component } from "react";
-import Moment from "react-moment";
-import Example from "../AddComponent/addComponent";
+import React, { Component } from 'react'
+import Moment from 'react-moment'
+import AddComment from './AddComment'
 
 class Comments extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       comments: [{}],
-      person: "test",
-      path: window.location.pathname.split("/")
-    };
+      person: 'test',
+      path: window.location.pathname.split('/')
+    }
   }
 
   verificationConnectionIdentity = () => {
-    return (
-      localStorage.getItem("id") &&
-      typeof this.props.loc !== "undefined" &&
-      localStorage.getItem("id") !== this.props.loc
-    );
-  };
+    if (this.props.trustRelation.length > 0) {
+      return this.props.trustRelation[0].active
+    } else {
+      return false
+    }
+  }
 
   async componentDidMount() {
-    if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
+    if (localStorage.getItem('id') && typeof this.props.loc === 'undefined') {
       const comment = await fetch(
-        `http://localhost:3000/comment/${localStorage.getItem("id")}`
+        `http://localhost:3000/comment/${localStorage.getItem('id')}`
       )
         .then(response => response.json())
         .then(data =>
@@ -31,13 +31,13 @@ class Comments extends Component {
             data.map(async x => {
               await fetch(`http://localhost:3000/users/${x.author}`)
                 .then(res => res.json())
-                .then(data2 => (x.author = data2[0].first_name));
-              return x;
+                .then(data2 => (x.author = data2[0].first_name))
+              return x
             })
           )
-        );
+        )
 
-      this.setState({ comments: comment });
+      this.setState({ comments: comment })
     } else {
       const comment = await fetch(
         `http://localhost:3000/comment/${this.props.loc}`
@@ -54,25 +54,24 @@ class Comments extends Component {
                       id: data2[0].id,
                       name: `${data2[0].first_name} ${data2[0].last_name}`
                     })
-                );
-              return x;
+                )
+              return x
             })
           )
-        );
+        )
 
-      this.setState({ comments: comment });
+      this.setState({ comments: comment })
     }
   }
 
   render() {
-    console.log(this.props.comments);
     return (
-      <div className="comments">
-        <div className="part-header">
+      <div className='comments'>
+        <div className='part-header'>
           <h3>Comments:</h3>
         </div>
         {this.verificationConnectionIdentity() ? (
-          <Example user={this.props.loc} trust={this.props.trustRelation} />
+          <AddComment user={this.props.loc} trust={this.props.trustRelation} />
         ) : null}
 
         {this.props.comments.length === 0 ? (
@@ -83,16 +82,16 @@ class Comments extends Component {
         ) : (
           this.props.comments.map((x, i) =>
             x.published ? (
-              <div key={i} className="comment-item">
+              <div key={i} className='comment-item'>
                 <div>
                   <div>
-                    <div className="comment-info">
+                    <div className='comment-info'>
                       <br />
                       <a href={`/profile/${x.login}`}>author : {x.author}</a>
                       <br />
                       relation : {x.relationship}
                       <br />
-                      <Moment format="YYYY/MM/DD">{x.creationdate}</Moment>
+                      <Moment format='YYYY/MM/DD'>{x.creationdate}</Moment>
                       <br />
                     </div>
                     {x.message}
@@ -103,8 +102,8 @@ class Comments extends Component {
           )
         )}
       </div>
-    );
+    )
   }
 }
 
-export default Comments;
+export default Comments
