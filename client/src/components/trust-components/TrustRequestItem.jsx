@@ -36,8 +36,7 @@ function TrustRequestItem(props) {
         <button
           className='rect-button-no-hover-small'
           onClick={() => {
-            handleReject()
-            props.handleUpdate(props.item.id)
+            props.handleReject()
           }}
         >
           Reject

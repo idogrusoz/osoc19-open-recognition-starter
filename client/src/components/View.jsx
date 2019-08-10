@@ -132,6 +132,20 @@ class View extends Component {
     this.setState({ users: [{}] })
   }
 
+  handleReject = async () => {
+    const id1 = localStorage.getItem('id')
+    const id2 = this.state.users[0].id
+    await fetch(`http://localhost:3000/trust/reject/${id1}/${id2}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .then(res => console.log('Trust request rejected:', res))
+      .catch(err => console.log('Error:', err))
+
+    this.getTrustPending()
+    this.setState({ users: [{}] })
+  }
+
   searchFn = async username => {
     this.props.history.push(`/profile/${username}`)
     const fullName = await fetch(
@@ -306,6 +320,7 @@ class View extends Component {
                     key={i}
                     item={user}
                     handleAccept={this.handleAccept}
+                    handleReject={this.handleReject}
                   />
                 ))
               : null}
