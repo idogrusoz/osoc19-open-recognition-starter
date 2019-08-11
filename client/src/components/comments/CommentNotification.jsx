@@ -10,6 +10,7 @@ export default class CommentNotification extends Component {
   }
 
   componentDidMount = async () => {
+    console.log('Notification mounts')
     const id = localStorage.getItem('id')
     await fetch(`http://localhost:3000/comment/pending/${id}`)
       .then(response => response.json())
