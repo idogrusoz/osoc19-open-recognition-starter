@@ -303,12 +303,12 @@ class View extends Component {
             />
           </div>
           <div className='center-column'>
-            {this.state.name[0].id === localStorage.getItem('íd') ? (
+            {this.state.name[0].id === parseInt(localStorage.getItem('id')) ? (
               <CommentNotification />
             ) : null}
             <Comments
               comments={this.state.comments}
-              loc={this.state.loc}
+              loc={this.state.name[0].id}
               trustRelation={this.state.trustRelation}
             />
           </div>
