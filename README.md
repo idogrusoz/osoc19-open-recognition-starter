@@ -7,7 +7,7 @@
 
 <h1>Open Trust</h1>
 
-<h3>Build by Hack Your Future Belgium students <a href="https://github.com/bitomagira">Steve Bitomagira</a>, 
+<h3>Build by Hack Your Future Belgium students Steve Bitomagira, 
   <a href="https://github.com/idogrusoz">Ibrahim Dogrusoz</a> and <a href="https://github.com/TamarAsashvili">Tamar Asashvili</a>  during the Open Summer of Code 2019 for Open Recognition Belgium </h3>
 
 Open Trust is a web app based on the idea that users are not allowed to introduce themselves on their profile pages. They need to build a common trust relationship with another user. After the establishment of the trust realtionship a user can make comments recognize the skills of the other user.
