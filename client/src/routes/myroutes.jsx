@@ -1,6 +1,5 @@
 import React from "react";
 import "../index.css";
-import Search from "../components/search/searchresult";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Register from "../components/register/Register";
 import SignIn from "../components/SignIn/SignIn";
@@ -37,11 +36,6 @@ export default class Myroutes extends React.Component {
             <Route exact path="/addcomment" component={AddComment} />
             <Route exact path="/profile/:id" component={View} />
             {/* <Route exact path="/profile" component={Layout} /> */}
-            <Route
-              exact
-              path="/search"
-              render={props => <Search users={this.state.users} />}
-            />
           </Switch>
         </Router>
       </div>

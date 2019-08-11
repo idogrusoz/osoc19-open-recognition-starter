@@ -6,8 +6,6 @@ class Comments extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      comments: [{}],
-      person: "test",
       path: window.location.pathname.split("/")
     };
   }
@@ -19,50 +17,6 @@ class Comments extends Component {
       localStorage.getItem("id") !== this.props.loc
     );
   };
-
-  async componentDidMount() {
-    if (localStorage.getItem("id") && typeof this.props.loc === "undefined") {
-      const comment = await fetch(
-        `http://localhost:3000/comment/${localStorage.getItem("id")}`
-      )
-        .then(response => response.json())
-        .then(data =>
-          Promise.all(
-            data.map(async x => {
-              await fetch(`http://localhost:3000/users/${x.author}`)
-                .then(res => res.json())
-                .then(data2 => (x.author = data2[0].first_name));
-              return x;
-            })
-          )
-        );
-
-      this.setState({ comments: comment });
-    } else {
-      const comment = await fetch(
-        `http://localhost:3000/comment/${this.props.loc}`
-      )
-        .then(response => response.json())
-        .then(data =>
-          Promise.all(
-            data.map(async x => {
-              await fetch(`http://localhost:3000/users/${x.author}`)
-                .then(res => res.json())
-                .then(
-                  data2 =>
-                    (x.author = {
-                      id: data2[0].id,
-                      name: `${data2[0].first_name} ${data2[0].last_name}`
-                    })
-                );
-              return x;
-            })
-          )
-        );
-
-      this.setState({ comments: comment });
-    }
-  }
 
   render() {
     console.log(this.props.comments);

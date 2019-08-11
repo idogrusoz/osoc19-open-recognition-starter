@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component } from "react";
 import Profile from "./Profile";
 import Comments from "./comments/Comments";
 import TrustedList from "./TrustedList";
@@ -48,11 +48,10 @@ class View extends Component {
           data.map(async x => {
             await fetch(`http://localhost:3000/users/${x.author}`)
               .then(res => res.json())
-              .then(
-                data2 => (
-                  (x.author = data2[0].first_name), (x.login = data2[0].login)
-                )
-              );
+              .then(data2 => {
+                x.author = data2[0].first_name;
+                x.login = data2[0].login;
+              });
             return x;
           })
         )
@@ -146,11 +145,10 @@ class View extends Component {
           data.map(async x => {
             await fetch(`http://localhost:3000/users/${x.author}`)
               .then(res => res.json())
-              .then(
-                data2 => (
-                  (x.author = data2[0].first_name), (x.login = data2[0].login)
-                )
-              );
+              .then(data2 => {
+                x.author = data2[0].first_name;
+                x.login = data2[0].login;
+              });
             return x;
           })
         )

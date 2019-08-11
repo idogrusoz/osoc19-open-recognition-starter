@@ -3,38 +3,22 @@ import TrustButton from "./trust-components/TrustButton";
 import TrustedLogo from "./trust-components/TrustedLogo";
 
 class Profile extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: [{}],
-      path: window.location.pathname.split("/")
-    };
-  }
-  async componentDidMount() {
-    if (localStorage.getItem("id") && typeof this.props.id === "undefined") {
-      const fullName = await fetch(
-        `http://localhost:3000/users/${localStorage.getItem("id")}`
-      ).then(function(response) {
-        return response.json();
-      });
-      this.setState({ name: fullName });
-    } else {
-      const fullName = await fetch(
-        `http://localhost:3000/users/${this.props.id}`
-      ).then(function(response) {
-        return response.json();
-      });
-      this.setState({ name: fullName });
-    }
-  }
-
+  /*......render the trust relationship situation between the user loggedin and the profile user rendered
+  if none is connected, show nothing
+  if the user loggedin is viewing his profile, show nothing
+  if the user loggedin is viewing another user's profile whith who he doesn't have a trust relaship,
+  he will have the ability to send him a trust request
+  if the user loggedin is viewing a profile of someone he is in relation with,
+   he will see the trust stamp......*/
   renderTrustButton = id => {
     const trusted = this.props.trustRelation;
-    if (localStorage.getItem("id") !== null) {
-      if (localStorage.getItem("id") !== id) {
+    const userConnected = localStorage.getItem("id");
+    const profilerendered = id;
+    if (userConnected !== null) {
+      if (userConnected !== profilerendered) {
         if (trusted.length > 0) {
           if (trusted[0].active === true) {
-            return <TrustedLogo id={id} />;
+            return <TrustedLogo id={profilerendered} />;
           } else if (
             trusted[0].active === false &&
             trusted[0].user2approval === false
@@ -48,7 +32,7 @@ class Profile extends Component {
             );
           }
         } else {
-          return <TrustButton id={id} />;
+          return <TrustButton id={profilerendered} />;
         }
       } else {
         return null;
@@ -57,6 +41,8 @@ class Profile extends Component {
   };
 
   render() {
+    //the infos of the profile rendered are passed as props from view component
+
     const user = this.props.name[0];
     return (
       <div className="profile" key={user.id}>
