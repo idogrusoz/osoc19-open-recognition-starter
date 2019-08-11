@@ -20,7 +20,7 @@ function AddComment(props) {
       relationship: relation
     }
 
-    fetch(`http://localhost:3000/comment`, {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/comment`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

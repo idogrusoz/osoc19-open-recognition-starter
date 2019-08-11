@@ -10,7 +10,7 @@ services:
     restart: unless-stopped
   
   client-focus:
-    image: osoc19-focus/frontend:0.1
+    image: osoc19-focus/frontend:0.2
     build:
       context: ./client
       dockerfile: Dockerfile-prod
@@ -20,7 +20,7 @@ services:
       - api-server-focus
 
   api-server-focus:
-    image: osoc19-focus/backend:0.1
+    image: osoc19-focus/backend:0.2
     build:
       context: ./demo-api-server
     ports:

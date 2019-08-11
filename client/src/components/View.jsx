@@ -3,7 +3,7 @@ import Profile from './Profile'
 import Comments from './comments/Comments'
 import TrustedList from './TrustedList'
 import Header from '../components/header/Header'
-import Skills from './skill/Skills'
+import Skills from './Skill/skills'
 import CommentNotification from './comments/CommentNotification'
 import TrustRequestItem from '../components/trust-components/TrustRequestItem'
 import Search from './search/Search'
@@ -34,7 +34,7 @@ class View extends Component {
     const path = this.props.location.pathname.split('/')
     const username = path[path.length - 1]
     const fullName = await fetch(
-      `http://localhost:3000/users/search/${username}`
+      `${process.env.REACT_APP_BACKEND_URL}/users/search/${username}`
     ).then(function(response) {
       return response.json()
     })
@@ -42,13 +42,13 @@ class View extends Component {
 
     this.listSkills()
     const comment = await fetch(
-      `http://localhost:3000/comment/${this.state.name[0].id}`
+      `${process.env.REACT_APP_BACKEND_URL}/comment/${this.state.name[0].id}`
     )
       .then(response => response.json())
       .then(data =>
         Promise.all(
           data.map(async x => {
-            await fetch(`http://localhost:3000/users/${x.author}`)
+            await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${x.author}`)
               .then(res => res.json())
               .then(
                 data2 => (
@@ -62,7 +62,7 @@ class View extends Component {
       )
 
     this.setState({ comments: comment })
-    await fetch(`http://localhost:3000/trust/people/${this.state.name[0].id}`)
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/people/${this.state.name[0].id}`)
       .then(res => res.json())
       .then(data => this.setState({ trustedpeople: data }))
 
@@ -92,13 +92,13 @@ class View extends Component {
 
   getTrustPending = async () => {
     let newUsers = []
-    await fetch(`http://localhost:3000/trust/pending/${this.state.name[0].id}`)
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/pending/${this.state.name[0].id}`)
       .then(res => res.json())
       .then(data =>
         Promise.all(
           data.map(
             async item =>
-              await fetch(`http://localhost:3000/users/${item.userrequesting}`)
+              await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${item.userrequesting}`)
                 .then(res => res.json())
                 .then(data => {
                   newUsers.push(data[0])
@@ -107,7 +107,7 @@ class View extends Component {
           )
         )
       )
-    await fetch(`http://localhost:3000/trust/people/${this.state.name[0].id}`)
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/people/${this.state.name[0].id}`)
       .then(res => res.json())
       .then(data => this.setState({ trustedpeople: data }))
   }
@@ -120,7 +120,7 @@ class View extends Component {
       userrecieving: parseInt(id),
       dateapproving: dateApproving
     }
-    await fetch(`http://localhost:3000/trust/approve/${id}`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/approve/${id}`, {
       method: 'PUT',
       body: JSON.stringify(data),
       headers: { 'Content-Type': 'application/json' }
@@ -135,7 +135,7 @@ class View extends Component {
   handleReject = async () => {
     const id1 = localStorage.getItem('id')
     const id2 = this.state.users[0].id
-    await fetch(`http://localhost:3000/trust/reject/${id1}/${id2}`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/reject/${id1}/${id2}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -149,7 +149,7 @@ class View extends Component {
   searchFn = async username => {
     this.props.history.push(`/profile/${username}`)
     const fullName = await fetch(
-      `http://localhost:3000/users/search/${username}`
+      `${process.env.REACT_APP_BACKEND_URL}/users/search/${username}`
     ).then(function(response) {
       return response.json()
     })
@@ -157,13 +157,13 @@ class View extends Component {
 
     this.listSkills()
     const comment = await fetch(
-      `http://localhost:3000/comment/${this.state.name[0].id}`
+      `${process.env.REACT_APP_BACKEND_URL}/comment/${this.state.name[0].id}`
     )
       .then(response => response.json())
       .then(data =>
         Promise.all(
           data.map(async x => {
-            await fetch(`http://localhost:3000/users/${x.author}`)
+            await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/${x.author}`)
               .then(res => res.json())
               .then(
                 data2 => (
@@ -177,7 +177,7 @@ class View extends Component {
       )
 
     this.setState({ comments: comment })
-    await fetch(`http://localhost:3000/trust/people/${this.state.name[0].id}`)
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/trust/people/${this.state.name[0].id}`)
       .then(res => res.json())
       .then(data => this.setState({ trustedpeople: data }))
 
@@ -189,7 +189,7 @@ class View extends Component {
       const viewingUser = parseInt(localStorage.getItem('id'))
       const viewedProfile = parseInt(this.state.name[0].id)
       await fetch(
-        `http://localhost:3000/trust/relationship/${viewedProfile}/${viewingUser}`
+        `${process.env.REACT_APP_BACKEND_URL}/trust/relationship/${viewedProfile}/${viewingUser}`
       )
         .then(response => response.json())
         .then(data => this.setState({ trustRelation: data }))
@@ -203,14 +203,14 @@ class View extends Component {
   }
 
   listSkills = async () => {
-    await fetch(`http://localhost:3000/skill/${this.state.name[0].id}`)
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/skill/${this.state.name[0].id}`)
       .then(response => response.json())
       .then(data => {
         this.setState({ skills: data })
         let pro = []
         data.map(item =>
           fetch(
-            `http://localhost:3000/skill/pros/${this.state.name[0].id}/${
+            `${process.env.REACT_APP_BACKEND_URL}/skill/pros/${this.state.name[0].id}/${
               item.name
             }`
           )
@@ -236,7 +236,7 @@ class View extends Component {
       name: skill
     }
 
-    await fetch(`http://localhost:3000/skill`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/skill`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -258,7 +258,7 @@ class View extends Component {
       reciever: this.state.name[0].id
     }
 
-    await fetch(`http://localhost:3000/skill/`, {
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/skill/`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

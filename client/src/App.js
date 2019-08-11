@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import MyRoutes from './routes/MyRoutes'
+import MyRoutes from './routes/myroutes'
 import './App.css'
 
 class App extends Component {

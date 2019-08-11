@@ -11,7 +11,7 @@ export default class Landing extends Component {
   }
 
   searchFn = async username => {
-    await fetch(`http://localhost:3000/users/search/${username}`)
+    await fetch(`${process.env.REACT_APP_BACKEND_URL}/users/search/${username}`)
       .then(res => res.json())
       .then(data => {
         if (data[0].login) {
