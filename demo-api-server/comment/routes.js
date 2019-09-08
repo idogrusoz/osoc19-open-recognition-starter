@@ -1,16 +1,16 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const controller = require("./controller");
+const controller = require('./controller')
 
-router.post("/", controller.addNewComment);
+router.post('/', controller.addNewComment)
 
-router.get("/:id", controller.getUserComments);
+router.get('/:id', controller.getUserComments)
 
-router.get('/pending/:id', controller.getPendingComments)
+router.get('/:id/pending', controller.getPendingComments)
 
-router.put("/approve/:id", controller.updateComment)
+router.put('/:id/approval', controller.updateComment)
 
-router.delete("/reject/:id", controller.rejectComment)
+router.delete('/:id/rejection', controller.rejectComment)
 
-module.exports = router;
+module.exports = router

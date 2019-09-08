@@ -1,13 +1,13 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const controller = require("./controller");
+const controller = require('./controller')
 
-router.get("/:id", controller.getSkills);
+router.get('/:id', controller.getSkills)
 
-router.get("/preventmultiple/:id", controller.fetchSkills)
+router.get('/:id/nomultiple', controller.fetchSkills)
 
-router.post("/", controller.addSkill);
-router.get("/pros/:id/:skill", controller.getNumberOfPros);
+router.post('/', controller.addSkill)
+router.get('/:id/pros/:skill', controller.getNumberOfPros)
 
-module.exports = router;
+module.exports = router
