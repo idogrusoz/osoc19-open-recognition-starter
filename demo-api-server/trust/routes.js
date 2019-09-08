@@ -1,20 +1,20 @@
-const express = require("express");
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
-const controller = require("./controller");
+const controller = require('./controller')
 
-router.get("/people/:id", controller.getTrustpeople);
+router.get('/:id/people', controller.getTrustpeople)
 
-router.get("/:id", controller.getTrust);
+router.get('/:id', controller.getTrust)
 
-router.get("/relationship/:id1/:id2", controller.getRelationship);
+router.get('/:id1/relationship/:id2', controller.getRelationship)
 
-router.post("/", controller.addTrust);
+router.post('/', controller.addTrust)
 
-router.get("/pending/:id", controller.getPendingTrust);
+router.get('/:id/pending', controller.getPendingTrust)
 
-router.delete("/reject/:id1/:id2", controller.rejectTrust);
+router.delete('/:id1/rejection/:id2', controller.rejectTrust)
 
-router.put("/approve/:id", controller.approveTrust);
+router.put('/:id/approval', controller.approveTrust)
 
-module.exports = router;
+module.exports = router
