@@ -23,7 +23,7 @@ class Comments extends Component {
   async componentDidMount() {
     if (localStorage.getItem('id') && typeof this.props.loc === 'undefined') {
       const comment = await fetch(
-        `http://localhost:3000/comment/${localStorage.getItem('id')}`
+        `http://localhost:3000/comments/${localStorage.getItem('id')}`
       )
         .then(response => response.json())
         .then(data =>
@@ -40,7 +40,7 @@ class Comments extends Component {
       this.setState({ comments: comment })
     } else {
       const comment = await fetch(
-        `http://localhost:3000/comment/${this.props.loc}`
+        `http://localhost:3000/comments/${this.props.loc}`
       )
         .then(response => response.json())
         .then(data =>

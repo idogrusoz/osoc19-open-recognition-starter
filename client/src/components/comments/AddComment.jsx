@@ -20,7 +20,7 @@ function AddComment(props) {
       relationship: relation
     }
 
-    fetch(`http://localhost:3000/comment`, {
+    fetch(`http://localhost:3000/comments`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

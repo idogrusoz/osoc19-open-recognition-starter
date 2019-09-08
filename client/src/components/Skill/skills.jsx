@@ -23,7 +23,7 @@ class Skills extends Component {
 
   renderButton = item => {
     let skillsList = []
-    fetch(`http://localhost:3000/skill/preventmultiple/${this.props.loc}`)
+    fetch(`http://localhost:3000/skills/${this.props.loc}/nomultiple`)
       .then(response => response.json())
       .then(data => (skillsList = data))
       .then(() => {
@@ -47,7 +47,7 @@ class Skills extends Component {
             id={item.name}
             title='Click to recognise this skill'
             className='upvote'
-            onClick={() => this.props.givetrust(item.name)}
+            onClick={() => this.props.giveTrust(item.name)}
           >
             {' '}
             +

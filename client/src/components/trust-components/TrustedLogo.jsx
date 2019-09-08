@@ -13,17 +13,19 @@ export default class TrustedLogo extends Component {
   handleCancel = async () => {
     this.setState({ trust: false })
     const id = localStorage.getItem('id')
-    const user1 = parseInt(`${this.props.id}`)
-    const user2 = parseInt(id)
+    const user1 = parseInt(id)
+    const user2 = parseInt(`${this.props.id}`)
 
-    await fetch(`http://localhost:3000/trust/reject/${user1}/${user2}`, {
+    await fetch(`http://localhost:3000/trusts/${user1}/rejection/${user2}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
       .then(res => {
         console.log('Trust relation canceled')
       })
+      // .then(this.props.updateTrustList())
       .catch(err => console.log('Error:', err))
+    await this.props.updateTrustList()
   }
   render() {
     return this.state.trust ? (
