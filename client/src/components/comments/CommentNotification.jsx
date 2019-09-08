@@ -10,9 +10,8 @@ export default class CommentNotification extends Component {
   }
 
   componentDidMount = async () => {
-    console.log('Notification mounts')
     const id = localStorage.getItem('id')
-    await fetch(`http://localhost:3000/comment/pending/${id}`)
+    await fetch(`http://localhost:3000/comments/${id}/pending`)
       .then(response => response.json())
       .then(data => {
         this.setState({ comments: data })
@@ -33,6 +32,7 @@ export default class CommentNotification extends Component {
         key={comment.id}
         item={comment}
         handleUpdate={this.handleUpdate}
+        listComments={this.props.listComments}
       />
     ))
   }

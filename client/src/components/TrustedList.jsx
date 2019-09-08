@@ -9,11 +9,11 @@ export default class TrustedList extends Component {
   }
   componentDidMount = () => {
     if (localStorage.getItem('id') && typeof this.props.loc === 'undefined') {
-      fetch(`http://localhost:3000/trust/people/${localStorage.id}`)
+      fetch(`http://localhost:3000/trusts/${localStorage.id}/people`)
         .then(res => res.json())
         .then(data => this.setState({ trustedpeople: data }))
     } else {
-      fetch(`http://localhost:3000/trust/people/${this.props.loc}`)
+      fetch(`http://localhost:3000/trusts/${this.props.loc}/people`)
         .then(res => res.json())
         .then(data => {
           this.setState({ trustedpeople: data })

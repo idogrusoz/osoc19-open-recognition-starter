@@ -24,11 +24,11 @@ export default class CommentNotificationItem extends Component {
   handleReject = async id => {
     const user1 = this.props.item.author
     const user2 = this.props.item.reciever
-    await fetch(`http://localhost:3000/comment/reject/${id}`, {
+    await fetch(`http://localhost:3000/comments/${id}/rejection`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     }).then(res => console.log('Comment is deleted', res))
-    await fetch(`http://localhost:3000/trust/reject/${user1}/${user2}`, {
+    await fetch(`http://localhost:3000/trusts/${user1}/rejection/${user2}`, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' }
     })
@@ -39,13 +39,14 @@ export default class CommentNotificationItem extends Component {
   }
 
   handleAccept = async id => {
-    await fetch(`http://localhost:3000/comment/approve/${id}`, {
+    await fetch(`http://localhost:3000/comments/${id}/approval`, {
       method: 'PUT'
     })
       .then(res => {
         console.log('Comment will be published', res)
       })
       .catch(err => console.log('Error:', err))
+    await this.props.listComments()
   }
 
   render() {

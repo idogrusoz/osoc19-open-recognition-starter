@@ -49,7 +49,7 @@ function AddSkill(props) {
         aria-labelledby='example-modal-sizes-title-lg'
       >
         <div className='pop-up-header'>
-          <h3>Please add a skill that you recognize</h3>
+          <h3>Please add a skill that you recognise</h3>
         </div>
 
         <form className='add-form'>
