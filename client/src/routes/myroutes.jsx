@@ -6,7 +6,8 @@ import SignIn from '../components/signIn/SignIn'
 import AddComment from '../components/comments/AddComment'
 import Landing from '../components/landing/Landing'
 import View from '../components/View'
-export default class Myroutes extends React.Component {
+
+export default class MyRoutes extends React.Component {
   constructor() {
     super()
     this.state = {
