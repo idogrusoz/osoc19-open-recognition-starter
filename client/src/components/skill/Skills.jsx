@@ -62,6 +62,14 @@ class Skills extends Component {
   render() {
     return (
       <div className='skills'>
+        {this.verifications() &&
+        this.props.user !== parseInt(localStorage.getItem('id')) ? (
+          <AddSkill
+            trust={this.props.trustRelation}
+            user={this.props.loc}
+            addSkill={this.props.addSkill}
+          />
+        ) : null}
         <div className='skills-body'>
           <div className='part-header'>
             <h3>Skills</h3>
@@ -82,14 +90,6 @@ class Skills extends Component {
             ))}
           </div>
         </div>
-        {this.verifications() &&
-        this.props.user !== parseInt(localStorage.getItem('id')) ? (
-          <AddSkill
-            trust={this.props.trustRelation}
-            user={this.props.loc}
-            addSkill={this.props.addSkill}
-          />
-        ) : null}
       </div>
     )
   }
