@@ -1,21 +1,35 @@
-import Modal from 'react-bootstrap/Modal'
-import { useState } from 'react'
-import React from 'react'
+import React, { Component } from 'react'
 
-function AddComment(props) {
-  const [lgShow, setLgShow] = useState(false)
+export default class AddComment extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      relation: '',
+      comment: '',
+      textField: false
+    }
+  }
 
-  const sayhello = () => {
-    const relation = document.getElementById('relation').value
-    const message = document.getElementById('comment').value
+  handleChange = event => {
+    this.setState({ [event.target.name]: event.target.value })
+  }
+
+  validateForm = () => {
+    return this.state.relation.length > 3 && this.state.comment.length > 5
+  }
+
+  submitComment = event => {
+    this.renderTextArea()
+    const relation = this.state.relation
+    const comment = this.state.comment
     const author = localStorage.getItem('id')
-    const reciever = props.user
+    const reciever = this.props.user
 
     const data = {
       author: author,
       reciever: reciever,
       creationdate: new Date(),
-      message: message,
+      message: comment,
       published: false,
       relationship: relation
     }
@@ -30,69 +44,65 @@ function AddComment(props) {
     })
       .then(res => console.log('new comment added'))
       .catch(error => console.log('Error:', error))
-    setLgShow(false)
   }
 
-  const renderButton = () => {
-    const trusted = props.trust
-    if (trusted.length < 1) {
-      return null
-    } else {
-      if (trusted[0].active) {
-        return (
-          <div className='add-button'>
-            <button
-              className='rect-button-on-white'
-              style={{ width: '140px' }}
-              onClick={() => setLgShow(true)}
-            >
-              Add a comment
-            </button>
-          </div>
-        )
-      } else {
-        return null
-      }
-    }
+  renderTextArea = () => {
+    this.setState({ textField: !this.state.textField })
   }
 
-  return (
-    <div>
-      {props.user !== parseInt(localStorage.getItem('id'))
-        ? renderButton()
-        : null}
-
-      <Modal
-        size='lg'
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby='example-modal-sizes-title-lg'
-      >
-        <div className='pop-up-header' closeButton>
-          <h3>Please add a comment to recognize this user's success</h3>
+  render() {
+    return (
+      <div>
+        <div className='add-button'>
+          <button
+            className='rect-button-on-white'
+            style={{ width: '140px' }}
+            onClick={this.renderTextArea}
+          >
+            Add a comment
+          </button>
         </div>
-        <form className='add-form'>
-          <p className={'form-name'}>How do you know this user?</p>
-          <input
-            type='text'
-            placeholder='e.g. Colleagues. / Had a purchase. / I was her/his professor. etc.'
-            id='relation'
-          />
-          <p className={'form-name'}>Comment:</p>
-          <textarea
-            className='comment-input'
-            type='text'
-            rows='5'
-            id='comment'
-            placeholder='Your comment here...'
-          />
-        </form>
-        <button className='rect-button-on-white' onClick={sayhello}>
-          Submit
-        </button>
-      </Modal>
-    </div>
-  )
+        {this.state.textField ? (
+          <div className='text-field'>
+            <div className='pop-up-header'>
+              <h3>Please add a comment to recognize this user's success</h3>
+            </div>
+            <form className='add-form'>
+              <p className={'form-name'}>How do you know this user?</p>
+              <input
+                type='text'
+                placeholder='e.g. Colleagues. / Had a purchase. / I was her/his professor. etc.'
+                name='relation'
+                onChange={this.handleChange}
+              />
+              <p className={'form-name'}>Comment:</p>
+              <textarea
+                className='comment-input'
+                type='text'
+                rows='5'
+                name='comment'
+                placeholder='Your comment here...'
+                onChange={this.handleChange}
+              />
+            </form>
+            <div className='add-comment-buttons'>
+              <button
+                className='rect-button-on-white'
+                onClick={this.renderTextArea}
+              >
+                Cancel
+              </button>
+              <button
+                className='rect-button-on-white'
+                onClick={this.submitComment}
+                disabled={!this.validateForm()}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
+        ) : null}
+      </div>
+    )
+  }
 }
-
-export default AddComment
