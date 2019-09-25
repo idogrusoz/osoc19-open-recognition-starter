@@ -11,36 +11,16 @@ function AddSkill(props) {
     setLgShow(false)
   }
 
-  const renderButton = () => {
-    const trusted = props.trust
-    if (trusted.length < 1) {
-      return null
-    } else {
-      if (trusted[0].active) {
-        return (
-          <div className='add-button'>
-            <button
-              className='rect-button-on-white'
-              onClick={() => setLgShow(true)}
-            >
-              Add skill
-            </button>
-          </div>
-        )
-      } else {
-        return null
-      }
-    }
-  }
-
   return (
     <div>
-      {props.user !==
-      parseInt(
-        localStorage.getItem('id') && localStorage.getItem('id') !== undefined
-      )
-        ? renderButton()
-        : null}
+      <div className='add-button'>
+        <button
+          className='rect-button-on-white'
+          onClick={() => setLgShow(true)}
+        >
+          Add skill
+        </button>
+      </div>
 
       <Modal
         size='lg'

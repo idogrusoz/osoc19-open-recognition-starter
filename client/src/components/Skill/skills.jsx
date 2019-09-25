@@ -82,7 +82,8 @@ class Skills extends Component {
             ))}
           </div>
         </div>
-        {this.verifications() ? (
+        {this.verifications() &&
+        this.props.user !== parseInt(localStorage.getItem('id')) ? (
           <AddSkill
             trust={this.props.trustRelation}
             user={this.props.loc}
