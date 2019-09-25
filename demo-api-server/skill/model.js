@@ -1,7 +1,7 @@
-"use strict";
+'use strict'
 
-const database = require("../database");
-const SQL = require("pg-template-tag").default;
+const database = require('../database')
+const SQL = require('pg-template-tag').default
 
 const createTable = () => {
   database.query(`
@@ -13,8 +13,8 @@ const createTable = () => {
       author INTEGER NOT NULL REFERENCES users(id),
       reciever INTEGER NOT NULL REFERENCES users(id)
     );
-`);
-};
+`)
+}
 
 const insertSkill = data => {
   database.query(SQL`
@@ -27,8 +27,8 @@ const insertSkill = data => {
     ${data.author},
     ${data.reciever}
   )
-  `);
-};
+  `)
+}
 
 const fetchSkillsOfOneUser = id =>
   database.query(SQL`
@@ -38,7 +38,7 @@ const fetchSkillsOfOneUser = id =>
     skill
     WHERE
     reciever = ${id};
-  `);
+  `)
 
 const getNumberOfPros = (id, skill) =>
   database.query(SQL`
@@ -46,7 +46,7 @@ const getNumberOfPros = (id, skill) =>
   inner join
   (select distinct reciever from skill where name =${skill}) y2
   on yd.author=y2.reciever;
-  `);
+  `)
 
 const getSkillsGrouped = id => {
   return database.query(SQL`
@@ -54,12 +54,12 @@ const getSkillsGrouped = id => {
     FROM skill 
     WHERE reciever=${id}
     GROUP BY name;
-    `);
-};
+    `)
+}
 module.exports = {
   createTable,
   insertSkill,
   fetchSkillsOfOneUser,
   getNumberOfPros,
   getSkillsGrouped
-};
+}

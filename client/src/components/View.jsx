@@ -47,16 +47,17 @@ class View extends Component {
       .then(response => response.json())
       .then(data =>
         Promise.all(
-          data.map(async x => {
-            await fetch(`http://localhost:3000/users/${x.author}`)
+          data.map(async user => {
+            await fetch(`http://localhost:3000/users/${user.author}`)
               .then(res => res.json())
               .then(
                 data2 => (
                   // eslint-disable-next-line no-sequences
-                  (x.author = data2[0].first_name), (x.login = data2[0].login)
+                  (user.author = data2[0].first_name),
+                  (user.login = data2[0].login)
                 )
               )
-            return x
+            return user
           })
         )
       )
@@ -127,7 +128,6 @@ class View extends Component {
     })
       .then(res => console.log('Trust request is approved', res))
       .catch(err => console.log('Error:', err))
-
     this.getTrustPending()
     this.setState({ users: [{}] })
   }
@@ -287,7 +287,7 @@ class View extends Component {
 
   render() {
     return (
-      <div className='tout'>
+      <div className='top'>
         <Header searchFn={this.searchFn} width={this.state.width} />
         <div className='view-body'>
           <div className='left-column'>

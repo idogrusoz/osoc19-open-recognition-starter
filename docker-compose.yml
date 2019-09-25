@@ -1,4 +1,4 @@
-version: "3"
+version: '3'
 services:
   pgadmin:
     image: dpage/pgadmin4
@@ -10,7 +10,7 @@ services:
   postgresql:
     image: postgres:11
     ports:
-      - 4321:5432
+      - 5432:5432
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
