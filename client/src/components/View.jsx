@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import Profile from './Profile'
 import Comments from './comments/Comments'
 import TrustedList from './TrustedList'
-import Header from '../components/header/Header'
+import Header from './header/Header'
 import Skills from './skill/Skills'
 import CommentNotification from './comments/CommentNotification'
-import TrustRequestItem from '../components/trust-components/TrustRequestItem'
+import TrustRequestItem from './trust-components/TrustRequestItem'
 import Search from './search/Search'
 
 class View extends Component {
@@ -227,8 +227,7 @@ class View extends Component {
     this.setState({ comments: comment })
   }
 
-  addSkill = async () => {
-    const skill = document.getElementById('skill').value
+  addSkill = async skill => {
     const author = localStorage.getItem('id')
     const reciever = this.state.name[0].id
 
