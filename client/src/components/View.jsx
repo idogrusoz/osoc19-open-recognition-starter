@@ -227,8 +227,7 @@ class View extends Component {
     this.setState({ comments: comment })
   }
 
-  addSkill = async () => {
-    const skill = document.getElementById('skill').value
+  addSkill = async skill => {
     const author = localStorage.getItem('id')
     const reciever = this.state.name[0].id
 
