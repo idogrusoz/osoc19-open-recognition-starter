@@ -69,7 +69,8 @@ class Comments extends Component {
         <div className='part-header'>
           <h3>Comments:</h3>
         </div>
-        {this.verificationConnectionIdentity() ? (
+        {this.verificationConnectionIdentity() &&
+        this.props.user !== parseInt(localStorage.getItem('id')) ? (
           <AddComment user={this.props.loc} trust={this.props.trustRelation} />
         ) : null}
 
