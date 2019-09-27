@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../../api/api'
 
 export default class AddComment extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ export default class AddComment extends Component {
     this.renderTextArea()
     const relation = this.state.relation
     const comment = this.state.comment
-    const author = localStorage.getItem('id')
+    const author = parseInt(localStorage.getItem('id'))
     const reciever = this.props.user
 
     const data = {
@@ -34,14 +35,7 @@ export default class AddComment extends Component {
       relationship: relation
     }
 
-    fetch(`http://localhost:3000/comments`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
+    API.post(`comments`, { data })
       .then(res => console.log('new comment added'))
       .catch(error => console.log('Error:', error))
   }
