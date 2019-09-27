@@ -7,13 +7,14 @@ import Skills from './skill/Skills'
 import CommentNotification from './comments/CommentNotification'
 import TrustRequestItem from './trust-components/TrustRequestItem'
 import Search from './search/Search'
+import API from '../api/api'
 
 class View extends Component {
   constructor(props) {
     super(props)
     this.state = {
       loc: localStorage.getItem('id'),
-      trustRelation: [],
+      trustRelation: [{}],
       name: [{}],
       skills: [{}],
       pros: [],
@@ -33,38 +34,15 @@ class View extends Component {
     window.addEventListener('resize', this.checkSize)
     const path = this.props.location.pathname.split('/')
     const username = path[path.length - 1]
-    const fullName = await fetch(
-      `http://localhost:3000/users/searchresults/${username}`
-    ).then(function(response) {
-      return response.json()
-    })
-    this.setState({ name: fullName })
+    await API.get(`users/searchresults/${username}`)
+      .then(res => res.data)
+      .then(data => this.setState({ name: data }))
 
     this.listSkills()
-    const comment = await fetch(
-      `http://localhost:3000/comments/${this.state.name[0].id}`
-    )
-      .then(response => response.json())
-      .then(data =>
-        Promise.all(
-          data.map(async user => {
-            await fetch(`http://localhost:3000/users/${user.author}`)
-              .then(res => res.json())
-              .then(
-                data2 => (
-                  // eslint-disable-next-line no-sequences
-                  (user.author = data2[0].first_name),
-                  (user.login = data2[0].login)
-                )
-              )
-            return user
-          })
-        )
-      )
+    this.listComments()
 
-    this.setState({ comments: comment })
-    await fetch(`http://localhost:3000/trusts/${this.state.name[0].id}/people`)
-      .then(res => res.json())
+    await API.get(`trusts/${this.state.name[0].id}/people`)
+      .then(res => res.data)
       .then(data => this.setState({ trustedpeople: data }))
 
     if (
@@ -74,10 +52,8 @@ class View extends Component {
     ) {
       const viewingUser = parseInt(localStorage.getItem('id'))
       const viewedProfile = parseInt(this.state.name[0].id)
-      await fetch(
-        `http://localhost:3000/trusts/${viewingUser}/relationship/${viewedProfile}`
-      )
-        .then(response => response.json())
+      await API.get(`trusts/${viewingUser}/relationship/${viewedProfile}`)
+        .then(res => res.data)
         .then(data => {
           this.setState({ trustRelation: data })
         })
@@ -91,25 +67,47 @@ class View extends Component {
     this.getTrustPending()
   }
 
+  listComments = async () => {
+    let commentsArray = []
+    await API.get(`comments/${this.state.name[0].id}`)
+      .then(res => res.data)
+      .then(data => {
+        // Promise.all(
+        data.map(async commentItem => {
+          await API.get(`users/${commentItem.author}`)
+            .then(res => res.data)
+            .then(
+              data => (
+                // eslint-disable-next-line no-sequences
+                (commentItem.author = data[0].first_name),
+                (commentItem.login = data[0].login)
+              )
+            )
+          commentsArray.push(commentItem)
+        })
+        // )
+      })
+      .then(this.setState({ comments: commentsArray }))
+  }
+
   getTrustPending = async () => {
     let newUsers = []
-    await fetch(`http://localhost:3000/trusts/${this.state.name[0].id}/pending`)
-      .then(res => res.json())
+    await API.get(`trusts/${this.state.name[0].id}/pending`)
+      .then(res => res.data)
       .then(data =>
-        Promise.all(
-          data.map(
-            async item =>
-              await fetch(`http://localhost:3000/users/${item.userrequesting}`)
-                .then(res => res.json())
-                .then(data => {
-                  newUsers.push(data[0])
-                  this.setState({ users: newUsers })
-                })
-          )
+        data.map(
+          async item =>
+            await API.get(`users/${item.userrequesting}`)
+              .then(res => res.data)
+              .then(data => {
+                newUsers.push(data[0])
+              })
         )
       )
-    await fetch(`http://localhost:3000/trusts/${this.state.name[0].id}/people`)
-      .then(res => res.json())
+      .then(this.setState({ users: newUsers }))
+
+    await API.get(`trusts/${this.state.name[0].id}/people`)
+      .then(res => res.data)
       .then(data => this.setState({ trustedpeople: data }))
   }
 
@@ -121,11 +119,7 @@ class View extends Component {
       userrecieving: parseInt(id),
       dateapproving: dateApproving
     }
-    await fetch(`http://localhost:3000/trusts/${id}/approval`, {
-      method: 'PUT',
-      body: JSON.stringify(data),
-      headers: { 'Content-Type': 'application/json' }
-    })
+    await API.put(`trusts/${id}/approval`, { data })
       .then(res => console.log('Trust request is approved', res))
       .catch(err => console.log('Error:', err))
     this.getTrustPending()
@@ -135,10 +129,7 @@ class View extends Component {
   handleReject = async () => {
     const id1 = localStorage.getItem('id')
     const id2 = this.state.users[0].id
-    await fetch(`http://localhost:3000/trusts/${id1}/rejection/${id2}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    })
+    await API.delete(`trusts/${id1}/rejection/${id2}`)
       .then(res => console.log('Trust request rejected:', res))
       .catch(err => console.log('Error:', err))
 
@@ -148,18 +139,18 @@ class View extends Component {
 
   searchFn = async username => {
     this.props.history.push(`/profile/${username}`)
-    const fullName = await fetch(
-      `http://localhost:3000/users/searchresults/${username}`
-    ).then(function(response) {
-      return response.json()
-    })
-    this.setState({ name: fullName })
+    await API.get(`users/searchresults/${username}`)
+      .then(function(response) {
+        return response.data
+      })
+      .then(data => this.setState({ name: data }))
+      .then(data => console.log(data))
 
     this.listSkills()
     this.listComments()
-    await fetch(`http://localhost:3000/trusts/${this.state.name[0].id}/people`)
-      .then(res => res.json())
-      .then(data => this.setState({ trustedpeople: data }))
+    await API.get(`trusts/${this.state.name[0].id}/people`).then(res =>
+      this.setState({ trustedpeople: res.data })
+    )
 
     if (
       localStorage.getItem('id') !== null &&
@@ -168,10 +159,8 @@ class View extends Component {
     ) {
       const viewingUser = parseInt(localStorage.getItem('id'))
       const viewedProfile = parseInt(this.state.name[0].id)
-      await fetch(
-        `http://localhost:3000/trusts/${viewingUser}/relationship/${viewedProfile}`
-      )
-        .then(response => response.json())
+      await API.get(`trusts/${viewingUser}/relationship/${viewedProfile}`)
+        .then(res => res.data)
         .then(data => this.setState({ trustRelation: data }))
     }
 
@@ -183,69 +172,61 @@ class View extends Component {
   }
 
   listSkills = async () => {
-    await fetch(`http://localhost:3000/skills/${this.state.name[0].id}`)
-      .then(response => response.json())
-      .then(data => {
-        this.setState({ skills: data })
-        let pro = []
-        data.map(item =>
-          fetch(
-            `http://localhost:3000/skills/${this.state.name[0].id}/pros/${item.name}`
+    let pro = []
+    if (this.state.name[0].id === undefined) {
+      console.log(1111)
+      this.listSkills()
+    } else {
+      await API.get(`skills/${this.state.name[0].id}`)
+        .then(res => res.data)
+        .then(data => {
+          this.setState({ skills: data })
+          data.map(item =>
+            API.get(`skills/${this.state.name[0].id}/pros/${item.name}`).then(
+              response => {
+                pro.push(response.data[0].count)
+                this.setState({
+                  pros: pro
+                })
+              }
+            )
           )
-            .then(response => response.json())
-            .then(data => {
-              pro.push(data[0].count)
-              this.setState({
-                pros: pro
-              })
-            })
-        )
-      })
+        })
+    }
   }
 
   listComments = async () => {
-    const comment = await fetch(
-      `http://localhost:3000/comments/${this.state.name[0].id}`
-    )
-      .then(response => response.json())
-      .then(data =>
+    const comment = await API.get(`comments/${this.state.name[0].id}`).then(
+      response =>
         Promise.all(
-          data.map(async x => {
-            await fetch(`http://localhost:3000/users/${x.author}`)
-              .then(res => res.json())
-              .then(
-                data2 => (
-                  // eslint-disable-next-line no-sequences
-                  (x.author = data2[0].first_name), (x.login = data2[0].login)
-                )
+          response.data.map(async x => {
+            await API.get(`users/${x.author}`).then(
+              res => (
+                // eslint-disable-next-line no-sequences
+                (x.author = res.data[0].first_name),
+                (x.login = res.data[0].login)
               )
+            )
             return x
           })
         )
-      )
+    )
 
     this.setState({ comments: comment })
   }
 
   addSkill = async skill => {
-    const author = localStorage.getItem('id')
+    const author = parseInt(localStorage.getItem('id'))
     const reciever = this.state.name[0].id
 
     const data = {
+      name: skill,
       author: author,
-      reciever: reciever,
-      name: skill
+      reciever: reciever
     }
 
-    await fetch(`http://localhost:3000/skills`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res)
+    await API.post(`skills`, { data })
+      .then(res => console.log(res))
       .catch(error => console.log('Error:', error))
     await this.listSkills()
   }
@@ -258,22 +239,16 @@ class View extends Component {
       reciever: this.state.name[0].id
     }
 
-    await fetch(`http://localhost:3000/skills/`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    await API.post(`skills/`, { data })
       .then(res => res)
       .catch(error => console.log('Error:', error))
     this.listSkills()
   }
 
   updateTrustList = async () => {
-    await fetch(`http://localhost:3000/trusts/${this.state.name[0].id}/people`)
-      .then(res => res.json())
-      .then(data => this.setState({ trustedpeople: data }))
+    await API.get(`trusts/${this.state.name[0].id}/people`).then(res =>
+      this.setState({ trustedpeople: res.data })
+    )
   }
 
   checkSize = () => {
@@ -283,7 +258,6 @@ class View extends Component {
       this.setState({ width: 'no mobile' })
     }
   }
-
   render() {
     return (
       <div className='top'>
@@ -321,7 +295,8 @@ class View extends Component {
           </div>
           <div className='right-column'>
             {this.state.name[0].id === parseInt(localStorage.getItem('id')) &&
-            Object.getOwnPropertyNames(this.state.users[0]).length > 0
+            (this.state.users[0] !== undefined &&
+              this.state.users[0].hasOwnProperty('id'))
               ? this.state.users.map((user, i) => (
                   <TrustRequestItem
                     key={i}
@@ -338,5 +313,4 @@ class View extends Component {
     )
   }
 }
-
 export default View
