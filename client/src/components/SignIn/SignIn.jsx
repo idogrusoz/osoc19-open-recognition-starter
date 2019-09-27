@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import image from '../header/logo.svg'
 import { Link } from 'react-router-dom'
+import API from '../../api/api'
 
 export default class SignIn extends Component {
   constructor() {
@@ -26,13 +27,7 @@ export default class SignIn extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const { history } = this.props
-    fetch(
-      `http://localhost:3000/users/${this.state.login}/${this.state.password}`,
-      {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-      }
-    )
+    API.get(`/users/${this.state.login}/${this.state.password}`)
       .then(res => {
         if (res.status === 200) {
           res.json().then(data => {

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../../api/api'
 import CommentNotificationItem from './CommentNotificationItem'
 
 export default class CommentNotification extends Component {
@@ -11,8 +12,8 @@ export default class CommentNotification extends Component {
 
   componentDidMount = async () => {
     const id = localStorage.getItem('id')
-    await fetch(`http://localhost:3000/comments/${id}/pending`)
-      .then(response => response.json())
+    await API.get(`comments/${id}/pending`)
+      .then(res => res.data)
       .then(data => {
         this.setState({ comments: data })
       })

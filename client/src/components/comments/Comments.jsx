@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Moment from 'react-moment'
+import API from '../../api/api'
 import AddComment from './AddComment'
 
 class Comments extends Component {
@@ -21,46 +22,39 @@ class Comments extends Component {
   }
 
   async componentDidMount() {
+    let commentsArray = []
     if (localStorage.getItem('id') && typeof this.props.loc === 'undefined') {
-      const comment = await fetch(
-        `http://localhost:3000/comments/${localStorage.getItem('id')}`
-      )
-        .then(response => response.json())
+      await API.get(`comments/${localStorage.getItem('id')}`)
+        .then(response => response.data)
         .then(data =>
-          Promise.all(
-            data.map(async x => {
-              await fetch(`http://localhost:3000/users/${x.author}`)
-                .then(res => res.json())
-                .then(data2 => (x.author = data2[0].first_name))
-              return x
-            })
-          )
+          data.map(async x => {
+            await API.get(`users/${x.author}`)
+              .then(res => res.data)
+              .then(data => (x.author = data[0].first_name))
+            commentsArray.push(x)
+          })
         )
 
-      this.setState({ comments: comment })
+      this.setState({ comments: commentsArray })
     } else {
-      const comment = await fetch(
-        `http://localhost:3000/comments/${this.props.loc}`
-      )
-        .then(response => response.json())
-        .then(data =>
-          Promise.all(
-            data.map(async x => {
-              await fetch(`http://localhost:3000/users/${x.author}`)
-                .then(res => res.json())
-                .then(
-                  data2 =>
-                    (x.author = {
-                      id: data2[0].id,
-                      name: `${data2[0].first_name} ${data2[0].last_name}`
-                    })
-                )
-              return x
-            })
-          )
-        )
-      this.setState({ comments: comment })
+      await API.get(`comments/${this.props.loc}`)
+        .then(response => response.data)
+        .then(data => {
+          data.map(async x => {
+            await API.get(`3000/users/${x.author}`).then(res =>
+              res.data.then(
+                data =>
+                  (x.author = {
+                    id: data[0].id,
+                    name: `${data[0].first_name} ${data[0].last_name}`
+                  })
+              )
+            )
+            commentsArray.push(x)
+          })
+        })
     }
+    this.setState({ comments: commentsArray })
   }
 
   render() {

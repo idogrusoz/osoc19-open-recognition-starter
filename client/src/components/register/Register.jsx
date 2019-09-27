@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../../api/api'
 import image from '../header/logo.svg'
 import SignInOut from '../header/SignInOut'
 
@@ -26,13 +27,7 @@ export default class Register extends Component {
   handleSubmit = () => {
     const data = this.state
     const { history } = this.props
-    fetch('http://localhost:3000/users/', {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    API.post('users/', { data })
       .then(res => {
         history.push('/signin')
       })

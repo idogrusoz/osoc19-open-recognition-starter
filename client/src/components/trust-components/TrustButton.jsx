@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../../api/api'
 
 export default class TrustButton extends Component {
   constructor(props) {
@@ -25,18 +26,16 @@ export default class TrustButton extends Component {
         daterequesting: reqDate,
         user1approval: true
       },
-      () =>
-        fetch('http://localhost:3000/trusts/', {
-          method: 'POST',
-          body: JSON.stringify(this.state),
-          headers: { 'Content-Type': 'application/json' }
-        })
+      () => {
+        const trustData = this.state
+        API.post('trusts/', { trustData })
           .then(() =>
             this.setState(() => {
               return { buttonText: 'Pending' }
             })
           )
           .catch(error => console.error)
+      }
     )
   }
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../api/api'
 import TrustButton from './trust-components/TrustButton'
 import TrustedLogo from './trust-components/TrustedLogo'
 
@@ -12,17 +13,15 @@ class Profile extends Component {
   }
   async componentDidMount() {
     if (localStorage.getItem('id') && typeof this.props.id === 'undefined') {
-      const fullName = await fetch(
-        `http://localhost:3000/users/${localStorage.getItem('id')}`
-      ).then(function(response) {
-        return response.json()
+      const fullName = await API.get(
+        `users/${localStorage.getItem('id')}`
+      ).then(res => {
+        return res.data
       })
       this.setState({ name: fullName })
     } else {
-      const fullName = await fetch(
-        `http://localhost:3000/users/${this.props.id}`
-      ).then(function(response) {
-        return response.json()
+      const fullName = await API.get(`users/${this.props.id}`).then(res => {
+        return res.data
       })
       this.setState({ name: fullName })
     }

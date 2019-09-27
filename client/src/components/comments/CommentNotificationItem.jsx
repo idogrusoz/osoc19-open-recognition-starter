@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../../api/api'
 export default class CommentNotificationItem extends Component {
   constructor(props) {
     super(props)
@@ -10,8 +11,8 @@ export default class CommentNotificationItem extends Component {
 
   componentDidMount = async () => {
     const id = this.props.item.author
-    await fetch(`http://localhost:3000/users/${id}`)
-      .then(response => response.json())
+    await API.get(`users/${id}`)
+      .then(response => response.data)
       .then(data => {
         this.setState({
           user: data,
@@ -24,14 +25,10 @@ export default class CommentNotificationItem extends Component {
   handleReject = async id => {
     const user1 = this.props.item.author
     const user2 = this.props.item.reciever
-    await fetch(`http://localhost:3000/comments/${id}/rejection`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    }).then(res => console.log('Comment is deleted', res))
-    await fetch(`http://localhost:3000/trusts/${user1}/rejection/${user2}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    })
+    await API.delete(`comments/${id}/rejection`).then(res =>
+      console.log('Comment is deleted', res)
+    )
+    await API.delete(`trusts/${user1}/rejection/${user2}`)
       .then(res => {
         console.log('Trust relation is terminated', res)
       })
@@ -39,9 +36,7 @@ export default class CommentNotificationItem extends Component {
   }
 
   handleAccept = async id => {
-    await fetch(`http://localhost:3000/comments/${id}/approval`, {
-      method: 'PUT'
-    })
+    await API.put(`comments/${id}/approval`)
       .then(res => {
         console.log('Comment will be published', res)
       })

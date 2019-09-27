@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import LandingImage from '../landing/LandingImage'
+import API from '../../api/api'
 import Search from '../search/Search'
 
 export default class Landing extends Component {
@@ -11,8 +12,8 @@ export default class Landing extends Component {
   }
 
   searchFn = async username => {
-    await fetch(`http://localhost:3000/users/searchresults/${username}`)
-      .then(res => res.json())
+    await API.get(`users/searchresults/${username}`)
+      .then(res => res.data)
       .then(data => {
         if (data[0].login) {
           this.props.history.push(`/profile/${username}`)
