@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../../api/api'
 import AddSkill from './AddSkill'
 
 class Skills extends Component {
@@ -23,8 +24,8 @@ class Skills extends Component {
 
   renderButton = item => {
     let skillsList = []
-    fetch(`http://localhost:3000/skills/${this.props.loc}/nomultiple`)
-      .then(response => response.json())
+    API.get(`skills/${this.props.loc}/nomultiple`)
+      .then(response => response.data)
       .then(data => (skillsList = data))
       .then(() => {
         skillsList.forEach(skill => {
