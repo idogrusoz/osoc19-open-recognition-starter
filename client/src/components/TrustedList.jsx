@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../api/api'
 
 export default class TrustedList extends Component {
   constructor(props) {
@@ -9,12 +10,12 @@ export default class TrustedList extends Component {
   }
   componentDidMount = () => {
     if (localStorage.getItem('id') && typeof this.props.loc === 'undefined') {
-      fetch(`http://localhost:3000/trusts/${localStorage.id}/people`)
-        .then(res => res.json())
+      API.get(`trusts/${localStorage.id}/people`)
+        .then(res => res.data)
         .then(data => this.setState({ trustedpeople: data }))
     } else {
-      fetch(`http://localhost:3000/trusts/${this.props.loc}/people`)
-        .then(res => res.json())
+      API.get(`trusts/${this.props.loc}/people`)
+        .then(res => res.data)
         .then(data => {
           this.setState({ trustedpeople: data })
         })
