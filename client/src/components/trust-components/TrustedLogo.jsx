@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import API from '../../api/api'
 import or from './or.svg'
 import TrustButton from './TrustButton'
 
@@ -16,10 +17,7 @@ export default class TrustedLogo extends Component {
     const user1 = parseInt(id)
     const user2 = parseInt(`${this.props.id}`)
 
-    await fetch(`http://localhost:3000/trusts/${user1}/rejection/${user2}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' }
-    })
+    await API.delete(`trusts/${user1}/rejection/${user2}`)
       .then(res => {
         console.log('Trust relation canceled')
       })
