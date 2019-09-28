@@ -60,7 +60,7 @@ const getUserById = id =>
   id = ${id}
   `)
 
-const checkUser = (login, password) =>
+const checkUser = login =>
   database.query(SQL`
 
     SELECT
