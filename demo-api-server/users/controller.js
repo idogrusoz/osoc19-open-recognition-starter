@@ -1,12 +1,22 @@
 const usertable = require('./model')
+const bcrypt = require('bcrypt')
+
+const saltRounds = 10
 
 usertable.createTable()
 const controller = {}
 
 controller.insert = (req, res) => {
   const data = req.body.data
-  usertable.insert(data)
-  res.send(data)
+  bcrypt.hash(data.password, saltRounds, (err, hash) => {
+    if (err) {
+      throw err
+    } else {
+      data.password = hash
+      usertable.insert(data)
+      res.sendStatus(200)
+    }
+  })
 }
 
 controller.getUser = (req, res) => {
