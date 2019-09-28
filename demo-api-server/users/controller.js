@@ -30,21 +30,19 @@ controller.getUser = (req, res) => {
 
 controller.checkUser = (req, res) => {
   const data = req.body.data
-
-  bcrypte.hash(data.password, saltRounds, (err, hash) => {
-    if (err) {
-      throw err
-    } else {
-      data.password = hash
-      const result = usertable.checkUser(data.login, data.password)
-      result.then(x => {
-        if (x.rows.length === 0) {
-          res.status(403).send('Wrong login or password')
-        } else {
-          res.status(200).send(x.rows)
-        }
-      })
-    }
+  const result = usertable.checkUser(data.login)
+  result.then(user => {
+    user.rows[0] === undefined
+      ? res.status(403).send('Wrong username or password')
+      : bcrypt.compare(data.password, user.rows[0].password, (err, result) => {
+          if (result) {
+            let userData = user.rows[0]
+            delete userData.password
+            res.status(200).send(userData)
+          } else {
+            res.status(403).send('Wrong username or password')
+          }
+        })
   })
 }
 
