@@ -29,15 +29,21 @@ controller.getUser = (req, res) => {
 }
 
 controller.checkUser = (req, res) => {
-  const login = req.params.login
-  const password = req.params.password
-  const result = usertable.checkUser(login, password)
+  const data = req.body.data
 
-  result.then(x => {
-    if (x.rows.length === 0) {
-      res.status(403).send('Wrong login or password')
+  bcrypte.hash(data.password, saltRounds, (err, hash) => {
+    if (err) {
+      throw err
     } else {
-      res.status(200).send(x.rows)
+      data.password = hash
+      const result = usertable.checkUser(data.login, data.password)
+      result.then(x => {
+        if (x.rows.length === 0) {
+          res.status(403).send('Wrong login or password')
+        } else {
+          res.status(200).send(x.rows)
+        }
+      })
     }
   })
 }
