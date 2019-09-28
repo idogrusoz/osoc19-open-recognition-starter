@@ -7,7 +7,7 @@ usertable.createTable()
 const controller = {}
 
 controller.insert = (req, res) => {
-  const data = req.body
+  const data = req.body.data
   bcrypt.hash(data.password, saltRounds, (err, hash) => {
     if (err) {
       throw err
