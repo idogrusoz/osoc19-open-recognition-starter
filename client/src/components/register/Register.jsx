@@ -27,7 +27,7 @@ export default class Register extends Component {
   handleSubmit = () => {
     const data = this.state
     const { history } = this.props
-    API.post('users/', { data })
+    API.post('users/register', { data })
       .then(res => {
         history.push('/signin')
       })
