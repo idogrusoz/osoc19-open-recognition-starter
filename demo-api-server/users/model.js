@@ -1,7 +1,7 @@
-"use strict";
+'use strict'
 
-const database = require("../database");
-const SQL = require("pg-template-tag").default;
+const database = require('../database')
+const SQL = require('pg-template-tag').default
 const createTable = () => {
   database.query(`
   CREATE TABLE IF NOT EXISTS
@@ -19,8 +19,8 @@ const createTable = () => {
       login VARCHAR(30) NOT NULL,
       password VARCHAR(100) NOT NULL
     );
-`);
-};
+`)
+}
 
 const insert = data => {
   database.query(SQL`
@@ -47,8 +47,8 @@ const insert = data => {
     ${data.login} ,
     ${data.password}
     )
-  `);
-};
+  `)
+}
 
 const getUserById = id =>
   database.query(SQL`
@@ -58,7 +58,7 @@ const getUserById = id =>
   users
   WHERE
   id = ${id}
-  `);
+  `)
 
 const checkUser = (login, password) =>
   database.query(SQL`
@@ -69,9 +69,9 @@ const checkUser = (login, password) =>
     users
     WHERE
 
-    login = ${login} AND password = ${password};
+    login = ${login};
 
-    `);
+    `)
 
 const getUserByName = name =>
   database.query(SQL`
@@ -82,7 +82,7 @@ const getUserByName = name =>
     users
     WHERE
     login = ${name}
-    `);
+    `)
 
 module.exports = {
   createTable,
@@ -90,4 +90,4 @@ module.exports = {
   getUserById,
   getUserByName,
   checkUser
-};
+}
