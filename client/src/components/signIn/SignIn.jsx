@@ -27,14 +27,16 @@ export default class SignIn extends Component {
   handleSubmit = event => {
     event.preventDefault()
     const { history } = this.props
-    API.get(`/users/${this.state.login}/${this.state.password}`)
+    const data = {
+      login: this.state.login,
+      password: this.state.password
+    }
+    API.post(`/users/login`, { data })
       .then(res => {
         if (res.status === 200) {
-          res.json().then(data => {
-            const user = data
-            localStorage.setItem('id', `${user[0].id}`)
-            history.push(`/profile/${user[0].login}`)
-          })
+          const user = res.data
+          localStorage.setItem('id', `${user.id}`)
+          history.push(`/profile/${user.login}`)
         } else {
           this.setState({ mistake: true })
         }
