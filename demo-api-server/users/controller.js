@@ -1,7 +1,12 @@
 const usertable = require('./model')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+const fs = require('fs')
 
 const saltRounds = 10
+
+const PUBLIC_KEY = fs.readFileSync('./public.key')
+const PRIVATE_KEY = fs.readFileSync('./private.key')
 
 usertable.createTable()
 const controller = {}
@@ -37,7 +42,11 @@ controller.checkUser = (req, res) => {
       : bcrypt.compare(data.password, user.rows[0].password, (err, result) => {
           if (result) {
             let userData = user.rows[0]
+            let token = jwt.sign({ user: userData.login }, PRIVATE_KEY, {
+              expiresIn: '24h'
+            })
             delete userData.password
+            userData.token = token
             res.status(200).send(userData)
           } else {
             res.status(403).send('Wrong username or password')
