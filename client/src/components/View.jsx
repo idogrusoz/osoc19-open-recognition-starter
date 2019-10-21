@@ -91,11 +91,9 @@ class View extends Component {
   }
 
   getTrustPending = async () => {
-    console.log('get trust pending')
     let newUsers = []
     await API.get(`trusts/${this.state.name[0].id}/pending`)
       .then(res => {
-        console.log(res.data)
         return res.data
       })
       .then(data =>

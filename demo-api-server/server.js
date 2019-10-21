@@ -1,13 +1,21 @@
 const express = require('express')
 const app = express()
+const cookieParser = require('cookie-parser')
 const cors = require('cors')
 
-app.use(cors())
+const corsOptions = {
+  origin: 'http://localhost:3001',
+  credentials: true
+}
+
+app.use(cors(corsOptions))
+
 const bodyParser = require('body-parser')
 const router = express.Router()
 app.use(bodyParser.json())
 
 app.use(bodyParser.json())
+app.use(cookieParser())
 
 const users = require('./users')
 app.use('/users', users)
