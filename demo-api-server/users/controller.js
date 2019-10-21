@@ -42,12 +42,17 @@ controller.checkUser = (req, res) => {
       : bcrypt.compare(data.password, user.rows[0].password, (err, result) => {
           if (result) {
             let userData = user.rows[0]
-            let token = jwt.sign({ user: userData.login }, PRIVATE_KEY, {
+            const token = jwt.sign({ user: userData.login }, PRIVATE_KEY, {
               expiresIn: '24h'
             })
             delete userData.password
-            userData.token = token
-            res.status(200).send(userData)
+            res
+              .status(200)
+              .cookie('token', token, {
+                maxAge: 1000 * 60 * 60 * 24,
+                httpOnly: true
+              })
+              .send(userData)
           } else {
             res.status(403).send('Wrong username or password')
           }

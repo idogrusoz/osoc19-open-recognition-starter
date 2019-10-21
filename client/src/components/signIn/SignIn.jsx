@@ -31,7 +31,9 @@ export default class SignIn extends Component {
       login: this.state.login,
       password: this.state.password
     }
-    API.post(`/users/login`, { data })
+    API.post(`/users/login`, {
+      data
+    })
       .then(res => {
         if (res.status === 200) {
           const user = res.data
