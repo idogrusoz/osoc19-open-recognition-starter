@@ -35,8 +35,8 @@ class View extends Component {
       .then(res => res.data)
       .then(data => this.setState({ name: data }))
 
-    this.listSkills()
-    this.listComments()
+    await this.listSkills()
+    await this.listComments()
 
     await API.get(`trusts/${this.state.name[0].id}/people`)
       .then(res => res.data)
@@ -55,22 +55,22 @@ class View extends Component {
       })
     }
 
-    this.getTrustPending()
+    await this.getTrustPending()
   }
 
-  getTrustRelation = async () => {
+  getTrustRelation = () => {
     const viewingUser = parseInt(localStorage.getItem('id'))
     const viewedProfile = parseInt(this.state.name[0].id)
-    await API.get(`trusts/${viewingUser}/relationship/${viewedProfile}`)
+    API.get(`trusts/${viewingUser}/relationship/${viewedProfile}`)
       .then(res => res.data)
       .then(data => {
         this.setState({ trustRelation: data })
       })
   }
 
-  listComments = async () => {
+  listComments = () => {
     let commentsArray = []
-    await API.get(`comments/${this.state.name[0].id}`)
+    API.get(`comments/${this.state.name[0].id}`)
       .then(res => res.data)
       .then(data => {
         data.map(async commentItem => {
@@ -91,17 +91,20 @@ class View extends Component {
   }
 
   getTrustPending = async () => {
+    console.log('get trust pending')
     let newUsers = []
     await API.get(`trusts/${this.state.name[0].id}/pending`)
-      .then(res => res.data)
+      .then(res => {
+        console.log(res.data)
+        return res.data
+      })
       .then(data =>
-        data.map(
-          async item =>
-            await API.get(`users/${item.userrequesting}`)
-              .then(res => res.data)
-              .then(data => {
-                newUsers.push(data[0])
-              })
+        data.map(item =>
+          API.get(`users/${item.userrequesting}`)
+            .then(res => res.data)
+            .then(data => {
+              newUsers.push(data[0])
+            })
         )
       )
       .then(this.setState({ users: newUsers, requestExists: true }))
@@ -111,11 +114,11 @@ class View extends Component {
       .then(data => this.setState({ trustedpeople: data }))
   }
 
-  handleAccept = async () => {
+  handleAccept = async userId => {
     const dateApproving = new Date()
     const id = localStorage.getItem('id')
     const data = {
-      userrequesting: `${this.state.users[0].id}`,
+      userrequesting: userId,
       userrecieving: parseInt(id),
       dateapproving: dateApproving
     }
@@ -125,9 +128,9 @@ class View extends Component {
     this.getTrustPending()
   }
 
-  handleReject = async () => {
+  handleReject = async userId => {
     const id1 = localStorage.getItem('id')
-    const id2 = this.state.users[0].id
+    const id2 = userId
     await API.delete(`trusts/${id1}/rejection/${id2}`)
       .then(res => console.log('Trust request rejected:', res))
       .catch(err => console.log('Error:', err))
@@ -143,8 +146,8 @@ class View extends Component {
       })
       .then(data => this.setState({ name: data }))
 
-    this.listSkills()
-    this.listComments()
+    await this.listSkills()
+    await this.listComments()
     await API.get(`trusts/${this.state.name[0].id}/people`).then(res =>
       this.setState({ trustedpeople: res.data })
     )
@@ -195,8 +198,8 @@ class View extends Component {
     const comment = await API.get(`comments/${this.state.name[0].id}`).then(
       response =>
         Promise.all(
-          response.data.map(async x => {
-            await API.get(`users/${x.author}`).then(
+          response.data.map(x => {
+            API.get(`users/${x.author}`).then(
               res => (
                 // eslint-disable-next-line no-sequences
                 (x.author = res.data[0].first_name),
