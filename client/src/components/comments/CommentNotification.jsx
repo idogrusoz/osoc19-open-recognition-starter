@@ -34,6 +34,7 @@ export default class CommentNotification extends Component {
         item={comment}
         handleUpdate={this.handleUpdate}
         listComments={this.props.listComments}
+        updateTrustList={this.props.updateTrustList}
       />
     ))
   }

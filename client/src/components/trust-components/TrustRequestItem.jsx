@@ -1,7 +1,8 @@
 import React from 'react'
 
 function TrustRequestItem(props) {
-  return (
+  console.log(props.requestExists)
+  return props.requestExists ? (
     <div className='notify-item'>
       <div className='notify-text'>
         <a href={`${props.item.login}`}>
@@ -29,7 +30,7 @@ function TrustRequestItem(props) {
         </button>
       </div>
     </div>
-  )
+  ) : null
 }
 
 export default TrustRequestItem

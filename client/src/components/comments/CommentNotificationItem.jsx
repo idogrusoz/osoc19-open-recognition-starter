@@ -32,6 +32,7 @@ export default class CommentNotificationItem extends Component {
       .then(res => {
         console.log('Trust relation is terminated', res)
       })
+      .then(() => this.props.updateTrustList())
       .catch(err => console.log('Error:', err))
   }
 
