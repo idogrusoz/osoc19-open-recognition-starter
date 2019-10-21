@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const protect = require('../middleware/auth')
 
 const controller = require('./controller')
 
@@ -9,12 +10,12 @@ router.get('/:id', controller.getTrust)
 
 router.get('/:id1/relationship/:id2', controller.getRelationship)
 
-router.post('/', controller.addTrust)
+router.route('/').post(protect, controller.addTrust)
 
 router.get('/:id/pending', controller.getPendingTrust)
 
-router.delete('/:id1/rejection/:id2', controller.rejectTrust)
+router.route('/:id1/rejection/:id2').delete(protect, controller.rejectTrust)
 
-router.put('/:id/approval', controller.approveTrust)
+router.route('/:id/approval').put(protect, controller.approveTrust)
 
 module.exports = router

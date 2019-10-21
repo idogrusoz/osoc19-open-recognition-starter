@@ -1,16 +1,17 @@
 const express = require('express')
 const router = express.Router()
+const protect = require('../middleware/auth')
 
 const controller = require('./controller')
 
-router.post('/', controller.addNewComment)
+router.route('/').post(protect, controller.addNewComment)
 
 router.get('/:id', controller.getUserComments)
 
 router.get('/:id/pending', controller.getPendingComments)
 
-router.put('/:id/approval', controller.updateComment)
+router.route('/:id/approval').put(protect, controller.updateComment)
 
-router.delete('/:id/rejection', controller.rejectComment)
+router.route('/:id/rejection').delete(protect, controller.rejectComment)
 
 module.exports = router
