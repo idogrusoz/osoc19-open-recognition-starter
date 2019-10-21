@@ -11,18 +11,8 @@ export default class MyRoutes extends React.Component {
   constructor() {
     super()
     this.state = {
-      users: [
-        {
-          first_name: 'steve'
-        }
-      ]
+      users: []
     }
-  }
-
-  getuser = x => {
-    this.setState({
-      users: x
-    })
   }
 
   render() {

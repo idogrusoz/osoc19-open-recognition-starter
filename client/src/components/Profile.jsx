@@ -36,6 +36,7 @@ class Profile extends Component {
             return (
               <TrustedLogo
                 updateTrustList={this.props.updateTrustList}
+                getTrustRelation={this.props.getTrustRelation}
                 id={id}
               />
             )

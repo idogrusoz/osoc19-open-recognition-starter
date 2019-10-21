@@ -24,6 +24,7 @@ export default class TrustedLogo extends Component {
       // .then(this.props.updateTrustList())
       .catch(err => console.log('Error:', err))
     await this.props.updateTrustList()
+    await this.props.getTrustRelation()
   }
   render() {
     return this.state.trust ? (

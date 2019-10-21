@@ -20,13 +20,10 @@ class View extends Component {
       pros: [],
       comments: [{}],
       trustedpeople: [{}],
-      users: [{}],
-      test: [1, 2, 3],
-      width: ''
+      users: [],
+      width: '',
+      requestExists: false
     }
-  }
-  componentWillMount = () => {
-    this.getTrustPending()
   }
 
   componentDidMount = async () => {
@@ -50,13 +47,7 @@ class View extends Component {
       this.state.name[0].id !== localStorage.getItem('id') &&
       this.state.name[0].id !== 'profile'
     ) {
-      const viewingUser = parseInt(localStorage.getItem('id'))
-      const viewedProfile = parseInt(this.state.name[0].id)
-      await API.get(`trusts/${viewingUser}/relationship/${viewedProfile}`)
-        .then(res => res.data)
-        .then(data => {
-          this.setState({ trustRelation: data })
-        })
+      await this.getTrustRelation()
     }
     if (this.state.name[0].id === parseInt(localStorage.getItem('id'))) {
       this.setState({
@@ -67,12 +58,21 @@ class View extends Component {
     this.getTrustPending()
   }
 
+  getTrustRelation = async () => {
+    const viewingUser = parseInt(localStorage.getItem('id'))
+    const viewedProfile = parseInt(this.state.name[0].id)
+    await API.get(`trusts/${viewingUser}/relationship/${viewedProfile}`)
+      .then(res => res.data)
+      .then(data => {
+        this.setState({ trustRelation: data })
+      })
+  }
+
   listComments = async () => {
     let commentsArray = []
     await API.get(`comments/${this.state.name[0].id}`)
       .then(res => res.data)
       .then(data => {
-        // Promise.all(
         data.map(async commentItem => {
           await API.get(`users/${commentItem.author}`)
             .then(res => res.data)
@@ -104,7 +104,7 @@ class View extends Component {
               })
         )
       )
-      .then(this.setState({ users: newUsers }))
+      .then(this.setState({ users: newUsers, requestExists: true }))
 
     await API.get(`trusts/${this.state.name[0].id}/people`)
       .then(res => res.data)
@@ -123,7 +123,6 @@ class View extends Component {
       .then(res => console.log('Trust request is approved', res))
       .catch(err => console.log('Error:', err))
     this.getTrustPending()
-    this.setState({ users: [{}] })
   }
 
   handleReject = async () => {
@@ -134,7 +133,6 @@ class View extends Component {
       .catch(err => console.log('Error:', err))
 
     this.getTrustPending()
-    this.setState({ users: [{}] })
   }
 
   searchFn = async username => {
@@ -144,7 +142,6 @@ class View extends Component {
         return response.data
       })
       .then(data => this.setState({ name: data }))
-      .then(data => console.log(data))
 
     this.listSkills()
     this.listComments()
@@ -174,7 +171,6 @@ class View extends Component {
   listSkills = async () => {
     let pro = []
     if (this.state.name[0].id === undefined) {
-      console.log(1111)
       this.listSkills()
     } else {
       await API.get(`skills/${this.state.name[0].id}`)
@@ -228,7 +224,7 @@ class View extends Component {
     await API.post(`skills`, { data })
       .then(res => console.log(res))
       .catch(error => console.log('Error:', error))
-    await this.listSkills()
+    this.listSkills()
   }
 
   giveTrust = async skillName => {
@@ -272,6 +268,7 @@ class View extends Component {
             <Profile
               name={this.state.name}
               trustRelation={this.state.trustRelation}
+              getTrustRelation={this.getTrustRelation}
               updateTrustList={this.updateTrustList}
             />
             <Skills
@@ -285,7 +282,10 @@ class View extends Component {
           </div>
           <div className='center-column'>
             {this.state.name[0].id === parseInt(localStorage.getItem('id')) ? (
-              <CommentNotification listComments={this.listComments} />
+              <CommentNotification
+                listComments={this.listComments}
+                updateTrustList={this.updateTrustList}
+              />
             ) : null}
             <Comments
               comments={this.state.comments}
@@ -295,16 +295,18 @@ class View extends Component {
           </div>
           <div className='right-column'>
             {this.state.name[0].id === parseInt(localStorage.getItem('id')) &&
-            (this.state.users[0] !== undefined &&
-              this.state.users[0].hasOwnProperty('id'))
-              ? this.state.users.map((user, i) => (
-                  <TrustRequestItem
-                    key={i}
-                    item={user}
-                    handleAccept={this.handleAccept}
-                    handleReject={this.handleReject}
-                  />
-                ))
+            this.state.users[0] !== undefined
+              ? this.state.users[0].hasOwnProperty('id')
+                ? this.state.users.map((user, i) => (
+                    <TrustRequestItem
+                      key={i}
+                      item={user}
+                      handleAccept={this.handleAccept}
+                      handleReject={this.handleReject}
+                      requestExists={this.state.requestExists}
+                    />
+                  ))
+                : null
               : null}
             <TrustedList trustedpeople={this.state.trustedpeople} />
           </div>
