@@ -5,7 +5,7 @@ skilltable.createTable()
 const controller = {}
 
 controller.addSkill = (req, res) => {
-  const data = req.body.data
+  const data = req.body
   skilltable.insertSkill(data)
   res.send(data)
 }

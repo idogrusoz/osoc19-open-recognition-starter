@@ -4,7 +4,9 @@ trusttable.createTable()
 const controller = {}
 
 controller.addTrust = (req, res) => {
+  console.log(req.body.trustData)
   const data = req.body.trustData
+
   trusttable.insertTrust(data)
   res.send(data)
 }
