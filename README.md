@@ -1,3 +1,5 @@
+[![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/HackYourFutureBEHomework/osoc19-open-recognition-starter)
+
 
 <div>
 <img src="https://2019.summerofcode.be/static/img/logo/logo-osoc-color.svg" height="200px" />
